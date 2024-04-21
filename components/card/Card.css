@@ -1,0 +1,58 @@
+.card {
+    background-color: #1E0342;
+    border-radius: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    position: relative;
+    color: white;
+    max-width: 98vw; /* Responsive max-width */
+    margin: 20px auto; /* Center align */
+    padding: 18px;
+  }
+  
+  .card-content {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .info {
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
+  
+  .label {
+    font-weight: bold;
+  }
+  
+  .value {
+    margin-top: 5px;
+  }
+  
+  .action-btn {
+    position: absolute;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .withdraw {
+    top: 20px;
+    right: 40px;
+    background-color: #0E46A3;
+  }
+  
+  .recharge {
+    bottom: 20px;
+    right: 40px;
+    background-color: #0E46A3;
+  }
+  
+  @media only screen and (max-width: 600px) {
+    .card {
+      max-width: 90%; /* Adjust max-width for smaller screens */
+    }
+  }
+  
