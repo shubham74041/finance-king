@@ -1,0 +1,38 @@
+.navbar {
+    background-color: #333;
+    padding: 10px;
+}
+
+.navbar-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navbar-item {
+    margin-right: 10px; /* Adjust as needed */
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Media Query for responsiveness */
+@media (max-width: 768px) {
+    .navbar-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .navbar-item {
+        margin-bottom: 10px; /* Adjust as needed */
+        margin-right: 0;
+    }
+}
