@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import "./NavBar.css"; // Import your CSS file for NavBar styling
 import userIcon from "../icons/user.svg";
 import withdrawalIcon from "../icons/referral.svg";
-
 import rechargeIcon from "../icons/money-withdrawal.svg";
+import referralIcon from "../icons/affiliate.svg";
 
 const NavBar = () => {
   return (
@@ -31,7 +31,7 @@ const NavBar = () => {
         </li>
         <li className="navbar-item">
           <Link to="/referral" className="navbar-link">
-            <img src="" alt="Referral" className="navbar-icon" />
+            <img src={referralIcon} alt="Referral" className="navbar-icon" />
           </Link>
         </li>
       </ul>
