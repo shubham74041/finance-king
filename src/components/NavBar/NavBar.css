@@ -28,7 +28,8 @@
 /* Media Query for responsiveness */
 @media (max-width: 768px) {
     .navbar-list {
-        flex-direction: column;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
         align-items: center;
     }
     .navbar-item {

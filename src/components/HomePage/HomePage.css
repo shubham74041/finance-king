@@ -1,0 +1,32 @@
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* flex-direction: column; */
+}
+
+.dummy-card {
+    width: 500px;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.dummy-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.dummy-card h3 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.dummy-card p {
+    margin-top: 5px;
+    font-size: 14px;
+}

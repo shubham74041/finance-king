@@ -1,6 +1,11 @@
 .footer {
     background-color: #333;
     padding: 10px;
+    position: fixed;
+     top: 95%;
+    /*left: 0; */
+    width: 100%;
+    z-index: 1000; /* Adjust as needed */
 }
 
 .footer-list {
@@ -28,7 +33,8 @@
 /* Media Query for responsiveness */
 @media (max-width: 768px) {
     .footer-list {
-        flex-direction: column;
+        /* flex-direction: column; */
+        flex-wrap: wrap;
         align-items: center;
     }
     .footer-item {

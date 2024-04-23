@@ -1,25 +1,23 @@
-// AddCardPage.js
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
+import React from 'react';
+import { connect } from 'react-redux';
+import { addCard } from '../redux/actions';
 import AdminPage from './AdminPage/AdminPage';
-// import AdminPage from './AdminPage';
+import HomePage from './HomePage/HomePage';
 
-const AddCardPage = () => {
-    const navigate = useNavigate(); // Use useNavigate hook to get navigation function
-    const [cards, setCards] = useState([]);
-
+const AddCardPage = ({ addCard }) => {
     const handleAddCard = (newCardData) => {
-        setCards([...cards, newCardData]);
-        // Redirect to home page after adding the card
-        navigate('/');
+        addCard(newCardData);
     };
 
     return (
-        <div style={{backgroundColor:"red"}}>
+        <div>
             <h1>Add Card</h1>
+            {/* Pass handleAddCard function as a prop to AdminPage */}
             <AdminPage onAddCard={handleAddCard} />
+            {/* Pass cards state as a prop to HomePage */}
+            <HomePage />
         </div>
     );
 };
 
-export default AddCardPage;
+export default connect(null, { addCard })(AddCardPage);

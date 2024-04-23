@@ -1,7 +1,8 @@
-// AdminPage.js
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
+import { addCard } from '../../redux/actions';
 
-const AdminPage = ({ onAddCard }) => {
+const AdminPage = ({ addCard }) => {
     const [newCardData, setNewCardData] = useState({
         timestamp: '',
         amount: '',
@@ -13,8 +14,8 @@ const AdminPage = ({ onAddCard }) => {
         setNewCardData({ ...newCardData, [name]: value });
     };
 
-    const addCard = () => {
-        onAddCard(newCardData);
+    const handleAddCard = () => {
+        addCard(newCardData);
         setNewCardData({ timestamp: '', amount: '', imagePath: '' });
     };
 
@@ -50,9 +51,9 @@ const AdminPage = ({ onAddCard }) => {
                     onChange={handleChange}
                 />
             </div>
-            <button onClick={addCard}>Add Card</button>
+            <button onClick={handleAddCard}>Add Card</button>
         </div>
     );
 };
 
-export default AdminPage;
+export default connect(null, { addCard })(AdminPage);
