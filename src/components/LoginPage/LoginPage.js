@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import axios from "axios";
+import "./LoginPage.css";
 
 const LoginPage = () => {
   const navigate = useNavigate(); // Initialize navigate function
@@ -19,7 +20,7 @@ const LoginPage = () => {
           if (res.data === "exist") {
             navigate("/"); // Use navigate function to redirect
           } else if (res.data === "notexist") {
-            alert("InCorrect Password / User not SignUp!");
+            alert("Incorrect Password / User not SignUp!");
           }
         })
         .catch((err) => {
@@ -34,18 +35,9 @@ const LoginPage = () => {
   return (
     <div className="login">
       <form action="POST">
-        <div
-          className="LoginPage"
-          style={{
-            width: "400px",
-            margin: "200px auto",
-            padding: "20px 40px 20px 20px",
-            border: "1px solid #ccc",
-            borderRadius: "5px",
-          }}
-        >
+        <div className="LoginPage">
           <h1>Login Page</h1>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="phone_number">
             <label className="form-label">Phone-Number:</label>
             <input
               placeholder="phoneNumber"
@@ -54,15 +46,9 @@ const LoginPage = () => {
               type="number"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "3px",
-              }}
             />
           </div>
-          <div style={{ marginBottom: "15px" }}>
+          <div className="password">
             <label className="form-label">Password:</label>
             <input
               className="form-control"
@@ -71,35 +57,20 @@ const LoginPage = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              style={{
-                width: "100%",
-                padding: "8px",
-                border: "1px solid #ccc",
-                borderRadius: "3px",
-              }}
             />
           </div>
-          <button
-            onClick={handleLogin}
-            style={{
-              width: "50%",
-              marginLeft: "25%",
-              padding: "10px",
-              backgroundColor: "#007bff",
-              color: "#fff",
-              border: "none",
-              borderRadius: "3px",
-              cursor: "pointer",
-            }}
-          >
+          <p className="forgot">
+            <Link to="/forgot-password">Forgot Password?</Link>
+          </p>
+          <button onClick={handleLogin} className="login_btn">
             Login
           </button>
-          {/* <p>{message}</p> */}
+          <div>
+            <p className="register">
+              Don't have an account? <Link to="/signup">Register Now</Link>
+            </p>
+          </div>
         </div>
-        <br />
-        <p>OR</p>
-        <br />
-        <Link to="/signup">SignUp</Link>
       </form>
     </div>
   );
@@ -109,4 +80,5 @@ LoginPage.propTypes = {
   history: PropTypes.object.isRequired,
   onLoginSuccess: PropTypes.func.isRequired,
 };
+
 export default LoginPage;

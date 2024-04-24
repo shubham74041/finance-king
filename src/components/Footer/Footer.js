@@ -4,7 +4,7 @@ import "./Footer.css"; // Import your CSS file for Footer styling
 import logoutIcon from "../icons/logout.svg";
 import contactIcon from "../icons/contact.svg";
 import productIcon from "../icons/product.svg";
-import amountIcon from "../icons/dollar.svg";
+import userIcon from "../icons/user.svg";
 
 const Footer = () => {
   return (
@@ -31,7 +31,7 @@ const Footer = () => {
         </li>
         <li className="footer-item">
           <Link to="/total-amount" className="footer-link">
-            <img src={amountIcon} alt="Total Amount" className="footer-icon" />
+            <img src={userIcon} alt="User Profile" className="footer-icon" />
           </Link>
         </li>
       </ul>

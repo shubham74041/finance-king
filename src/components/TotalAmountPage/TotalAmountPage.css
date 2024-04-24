@@ -1,0 +1,30 @@
+/* .total-amount-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.user-info {
+  grid-column: span 2;
+}
+
+.amount-details {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+
+  grid-gap: 10px;
+}
+
+.button-container {
+  display: grid;
+ 
+  grid-column: span 2;
+  grid-gap: 10px;
+}
+
+.additional-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  grid-gap: 10px;
+}  */

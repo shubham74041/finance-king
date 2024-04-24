@@ -18,6 +18,7 @@ import ProductDetailsPage from "./components/ProductDetailsPage/ProductDetailsPa
 import TotalAmountPage from "./components/TotalAmountPage/TotalAmountPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
+import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
               <Route path="/total-amount" element={<TotalAmountPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
+              <Route path="/forgot" element={<ForgotPassword />} />
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
