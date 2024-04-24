@@ -1,39 +1,41 @@
 .navbar {
-    background-color: #333;
-    padding: 10px;
+  background-color: #333;
+  padding: 10px;
+  position: sticky;
+  top: 0;
 }
 
 .navbar-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: space-around;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: space-around;
 }
 
 .navbar-item {
-    margin-right: 10px; /* Adjust as needed */
+  margin-right: 10px; /* Adjust as needed */
 }
 
 .navbar-link {
-    text-decoration: none;
-    color: #fff;
+  text-decoration: none;
+  color: #fff;
 }
 
 .navbar-icon {
-    width: 24px;
-    height: 24px;
+  width: 30px;
+  height: 30px;
 }
 
 /* Media Query for responsiveness */
 @media (max-width: 768px) {
-    .navbar-list {
-        /* flex-direction: column; */
-        flex-wrap: wrap;
-        align-items: center;
-    }
-    .navbar-item {
-        margin-bottom: 10px; /* Adjust as needed */
-        margin-right: 0;
-    }
+  .navbar-list {
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .navbar-item {
+    margin-bottom: 10px; /* Adjust as needed */
+    margin-right: 0;
+  }
 }

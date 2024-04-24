@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 // import PropTypes from "prop-types";
 import axios from "axios";
+import "./SignUpPage.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ const SignUp = () => {
       <h2>SignUp</h2>
 
       <form action="POST">
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <label className="form-label">Email:</label>
           <input
             placeholder="email"
@@ -49,16 +50,10 @@ const SignUp = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderRadius: "3px",
-            }}
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <label className="form-label">Phone-Number:</label>
           <input
             placeholder="phoneNumber"
@@ -67,16 +62,10 @@ const SignUp = () => {
             type="number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderRadius: "3px",
-            }}
           />
         </div>
 
-        <div style={{ marginBottom: "15px" }}>
+        <div>
           <label className="form-label">Password:</label>
           <input
             className="form-control"
@@ -85,34 +74,14 @@ const SignUp = () => {
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            style={{
-              width: "100%",
-              padding: "8px",
-              border: "1px solid #ccc",
-              borderRadius: "3px",
-            }}
           />
         </div>
-        <button
-          onClick={handleLogin}
-          style={{
-            width: "50%",
-            marginLeft: "25%",
-            padding: "10px",
-            backgroundColor: "#007bff",
-            color: "#fff",
-            border: "none",
-            borderRadius: "3px",
-            cursor: "pointer",
-          }}
-        >
-          SignUp
-        </button>
+        <button onClick={handleLogin}>SignUp</button>
         {/* <p>{message}</p> */}
       </form>
       <br />
       <p>OR</p>
-      <br />
+
       <Link to="/login">Login Page</Link>
     </div>
   );
