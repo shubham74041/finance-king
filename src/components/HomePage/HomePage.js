@@ -92,23 +92,23 @@ const HomePage = ({ cards }) => {
   ];
 
   return (
-    <div className="home" 
+    <div className="home"
     // style={{marginTop: "10%", marginBottom: "10%"}}
     >
       {/* <h1>Home Page</h1> */}
       <div
-            style={{
-              position: "fixed",
-              top: "40px",
-              left: 0,
-              width: "100%",
-              zIndex: "1000",
-              borderRadius:"5%"
+        style={{
+          position: "fixed",
+          top: "40px",
+          left: 0,
+          width: "100%",
+          zIndex: "1000",
+          borderRadius: "5%"
 
-            }}
-          >
-            <NavBar />
-          </div>
+        }}
+      >
+        <NavBar />
+      </div>
       <div className="card-container">
         {/* Render dummy cards */}
         {cards && cards.length > 0 ? (
@@ -121,10 +121,26 @@ const HomePage = ({ cards }) => {
             <img src={card.image} alt={card.title} />
             <div className="card-details">
               <h3>{card.title}</h3>
-              <p>{"Daily Income: "+card.dailyIncome}</p>
-              <p>{"Total Amount: "+card.totalAmount}</p>
-              <p>{"Cycle: "+card.cycle}</p>
-              <button className="buy-button">Buy</button>
+              <p> {"Daily Income: "}
+                <i className="fa fa-inr" />
+                {card.dailyIncome}</p>
+              <p>  {"Total Amount: "}
+                <i className="fa fa-inr" />
+                {card.totalAmount}
+              </p>
+              <p>{"Cycle: " + card.cycle}</p>
+              <span style={{
+                display: "flex",
+                flexDirection: "row",
+                justifyContent: "space-between",
+                alignItems: "center",
+                // width: "100%",
+              }}>
+
+                <h4> <i class="fa fa-inr"></i> 123323</h4>
+                <button className="buy-button">Buy</button>
+              </span>
+
             </div>
           </div>
         ))}
