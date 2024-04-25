@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import NavBar from "./components/NavBar/NavBar";
+// import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
 import UserDetailsPage from "./components/UserDetailsPage/UserDetailsPage";
@@ -27,26 +27,27 @@ function App() {
       {/* Provide the Redux store */}
       <Router>
         <div className="App">
-        <div
-  style={{
-    position: "fixed",
-    top: 0,
-    left: 0,
-    width: "100%",
-    height: "40px",
-    zIndex: "1000",
-    background: "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(93,93,99,1) 35%, rgba(0,212,255,1) 100%)",
-    fontFamily: "'Sedan', serif",
-    color: "white", // Bright color for text
-    // textAlign: "center", // Center-align the text
-    lineHeight: "40px", // Vertical centering
-    fontSize: "24px", // Font size
-    fontWeight: "bold", // Bold font weight
-    paddingLeft:"10px"
-  }}
->
-  Finance
-</div>
+          <div
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "40px",
+              zIndex: "1000",
+              background:
+                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(93,93,99,1) 35%, rgba(0,212,255,1) 100%)",
+              fontFamily: "'Sedan', serif",
+              color: "white", // Bright color for text
+              // textAlign: "center", // Center-align the text
+              lineHeight: "40px", // Vertical centering
+              fontSize: "24px", // Font size
+              fontWeight: "bold", // Bold font weight
+              paddingLeft: "10px",
+            }}
+          >
+            Rajiowin
+          </div>
 
           <div>
             <Routes>
@@ -61,7 +62,7 @@ function App() {
               <Route path="/total-amount" element={<TotalAmountPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/signup" element={<SignUpPage />} />
-              <Route path="/forgot" element={<ForgotPassword />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
             </Routes>
