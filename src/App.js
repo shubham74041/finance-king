@@ -60,8 +60,8 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/product-details" element={<ProductDetailsPage />} />
               <Route path="/total-amount" element={<TotalAmountPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUpPage />} />
+              {/* <Route path="/login" element={<LoginPage />} /> */}
+              {/* <Route path="/signup" element={<SignUpPage />} /> */}
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
