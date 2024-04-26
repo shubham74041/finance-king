@@ -1,0 +1,114 @@
+/* Base styles */
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 30px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9; /* Light grey background */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  flex-wrap: wrap;
+}
+
+.contact-form,
+.contact-info {
+  flex-basis: 48%; /* Each takes up 48% of the container width */
+}
+
+.contact-form {
+  padding-right: 15px; /* Adjust padding */
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+p {
+  line-height: 1.5;
+}
+
+/* Form styles */
+form {
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  background-color: #ffffff; /* White input background */
+}
+
+textarea {
+  height: 100px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50; /* Green button */
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button[type="submit"]:hover {
+  background-color: #3e8e41; /* Darker green on hover */
+}
+
+/* Success message styles */
+.success-message {
+  background-color: #dff0d8; /* Light green */
+  color: green;
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+/* Contact info styles */
+.contact-info p {
+  margin-bottom: 10px;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 768px) {
+  .contact-form,
+  .contact-info {
+    flex-basis: 100%; /* Each takes up 100% of the container width on mobile */
+    border-right: none; /* Remove border between the two parts on mobile */
+    padding-right: 0; /* Remove padding on mobile */
+  }
+
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+  }
+}
