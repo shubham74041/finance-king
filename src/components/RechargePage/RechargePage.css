@@ -1,0 +1,78 @@
+.recharge-container {
+    width: 80%;
+    max-width: 400px; /* Adjust max-width as needed */
+    margin: 60px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+  }
+  
+  .recharge-heading {
+    text-align: center;
+    margin-top: 0;
+  }
+  
+  .input-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .amount-input {
+    margin-right: 10px;
+    padding: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .submit-button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #007bff;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .suggestions-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .suggestions-label {
+    margin-right: 10px;
+  }
+  
+  .suggestion-button {
+    padding: 5px 10px;
+    border: none;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .suggestion-button:hover {
+    background-color: #ccc;
+  }
+
+  .suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 5px;
+  }
+  
+  .suggestion-box {
+    padding: 5px 10px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .suggestion-box:hover {
+    background-color: #f0f0f0;
+  }
+  
