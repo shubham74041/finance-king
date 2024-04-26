@@ -19,6 +19,7 @@ import TotalAmountPage from "./components/TotalAmountPage/TotalAmountPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
+import { Link } from "react-router-dom";
 
 function App() {
   return (
@@ -33,22 +34,31 @@ function App() {
               top: 0,
               left: 0,
               width: "100%",
-              height: "40px",
+              height: "45px",
               zIndex: "1000",
-              background:
-                "linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(93,93,99,1) 35%, rgba(0,212,255,1) 100%)",
+              background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(37,37,152,1) 47%, rgba(0,212,255,1) 100%)",
               fontFamily: "'Sedan', serif",
               color: "white", // Bright color for text
               // textAlign: "center", // Center-align the text
-              lineHeight: "40px", // Vertical centering
-              fontSize: "24px", // Font size
+              lineHeight: "39px", // Vertical centering
+              fontSize: "22px", // Font size
               fontWeight: "bold", // Bold font weight
               paddingLeft: "10px",
+              // display:"flex",
+              // justifyContent:"space-between"
+              borderBottom: "0.5px solid white",
+              boxShadow: "1px 1px 1px black",
             }}
           >
-            Rajiowin
-          </div>
+            <Link to="/" className="navbar-link">
+              <span style={{ border: "0.5px solid steelblue", padding: "2px", boxShadow: "1px 1px 1px red", height: "30px" }}>
+                {"Rajiowin"}
 
+              </span>
+            </Link>
+
+
+          </div>
           <div>
             <Routes>
               <Route path="/" element={<HomePage />} />

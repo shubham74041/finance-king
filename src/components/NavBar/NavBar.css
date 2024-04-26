@@ -1,8 +1,11 @@
 .navbar {
-  background-color:#282c34;
+  background-color: #401F71;
   padding: 10px;
-  position: sticky;
-  top: 0;
+  margin-top: 10px;
+  width: 97vw;
+  margin-left: 0.4%;
+  border-radius: 10px; /* Increased to make it more visibly rounded */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Adjust shadow values as needed */
 }
 
 .navbar-list {
