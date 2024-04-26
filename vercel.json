@@ -1,6 +1,6 @@
 {
   "version": 2,
   "name": "finance-king",
-  "builds": [{ "src": "App.js", "use": "@vercel/node" }],
+  "builds": [{ "src": "Index.js", "use": "@vercel/node" }],
   "routes": [{ "src": "/(.*)", "dest": "/App.js" }]
 }
