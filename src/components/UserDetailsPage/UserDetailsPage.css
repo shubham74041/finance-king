@@ -1,0 +1,23 @@
+.user-details-container {
+    width: 80%; /* Adjust as per your requirement */
+    margin: 0 auto;
+    padding: 20px;
+    border: 2px solid #ccc; /* 3D border */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Box shadow */
+    margin-top: 7%;
+  }
+  
+  .user-detail {
+    margin-bottom: 15px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .user-details-container {
+      width: 70%;
+    margin-top: 27%;
+
+    }
+  }
+  
