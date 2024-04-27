@@ -1,18 +1,19 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css"; // Import your CSS file for Footer styling
-import logoutIcon from "../icons/logout.svg";
+
 import contactIcon from "../icons/contact.svg";
 import productIcon from "../icons/product.svg";
 import userIcon from "../icons/user.svg";
+import homeIcon from "../icons/home-icon.svg";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <ul className="footer-list">
         <li className="footer-item">
-          <Link to="/logout" className="footer-link">
-            <img src={logoutIcon} alt="Logout" className="footer-icon" />
+          <Link to="/" className="footer-link">
+            <img src={homeIcon} alt="Home" className="footer-icon " />
           </Link>
         </li>
         <li className="footer-item">

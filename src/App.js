@@ -20,6 +20,7 @@ import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import { Link } from "react-router-dom";
+import PromotionPage from "./components/PromotionTasks/PromotionPage";
 
 function App() {
   return (
@@ -36,7 +37,8 @@ function App() {
               width: "100%",
               height: "45px",
               zIndex: "1000",
-              background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(37,37,152,1) 47%, rgba(0,212,255,1) 100%)",
+              background:
+                "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(37,37,152,1) 47%, rgba(0,212,255,1) 100%)",
               fontFamily: "'Sedan', serif",
               color: "white", // Bright color for text
               // textAlign: "center", // Center-align the text
@@ -51,13 +53,17 @@ function App() {
             }}
           >
             <Link to="/" className="navbar-link">
-              <span style={{ border: "0.5px solid steelblue", padding: "2px", boxShadow: "1px 1px 1px red", height: "30px" }}>
+              <span
+                style={{
+                  border: "0.5px solid steelblue",
+                  padding: "2px",
+                  boxShadow: "1px 1px 1px red",
+                  height: "30px",
+                }}
+              >
                 {"Rajiowin"}
-
               </span>
             </Link>
-
-
           </div>
           <div>
             <Routes>
@@ -75,6 +81,7 @@ function App() {
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
+              <Route path="/promotion-tasks" element={<PromotionPage />} />
             </Routes>
           </div>
           <Footer />
