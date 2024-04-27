@@ -15,16 +15,17 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  padding-top: 50px;
 }
 
 /* Dummy card styling */
 .dummy-card {
-  width: calc(100% - 20px); /* Subtracting margins */
-  /* max-width: 500px; Maximum width for larger screens */
-  margin: 10px auto; /* Centering and adding space between cards */
+  width: calc(100% - 50px); /* Subtracting margins */
+  max-width: 97vw; 
+  margin: 10px auto; 
   padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   box-shadow: 0 2px 4px rgba(37, 15, 15, 0.264);
   display: flex; /* Use flexbox for layout */
 }

@@ -1,62 +1,59 @@
+/* TotalAmountPage.css */
+
 .total-amount-container {
+  max-width: 800px;
   margin: 0 auto;
-  padding: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 7%;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
 }
 
 .user-info {
   margin-bottom: 20px;
-  background-color: yellowgreen;
-}
-
-.user-info h4 {
-  margin: 0;
-  font-size: 18px;
 }
 
 .amount-details {
   display: flex;
-  /* grid-template-rows: repeat(3, 1fr); */
-  flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
 .amount-details div {
+  flex: 1;
   text-align: center;
 }
 
-.amount-details p {
-  margin: 0;
-}
-
-.button-container {
+/* .button-container {
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  justify-content: center;
+  margin-bottom: 20px; 
+}
+/* 
+.button-container button {
+background: linear-gradient(to bottom, #4e8bff, #4e6eff); 
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+} */
+
+.button-container button:hover {
+  background: linear-gradient(to bottom, #4e6eff, #4e8bff);
 }
 
-.button-container button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 10px;
-}
 
 .additional-links {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 50px;
-  margin-top: 80px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .additional-links div {
-  text-align: center;
-}
-
-.additional-links p {
-  margin: 0;
-  font-size: 14px;
+  margin: 5px;
 }
 
 /* Responsive Styles */
@@ -66,37 +63,47 @@
   }
 
   .amount-details {
-    grid-template-columns: repeat(1, 1fr);
+    flex-direction: column;
+  }
+
+  .amount-details div {
+    margin-bottom: 10px;
   }
 
   .button-container {
     flex-direction: column;
-    align-items: center;
   }
 
   .button-container button {
     margin-bottom: 10px;
   }
 
-  .additional-links {
-    grid-template-columns: repeat(2, 1fr);
+  .additional-links div {
+    flex-basis: 50%;
   }
-}
-
-@media screen and (max-width: 480px) {
-  .user-info h4 {
-    font-size: 16px;
-  }
-
-  .amount-details p {
-    font-size: 14px;
+  .button-container {
+    flex-direction: column;
   }
 
   .button-container button {
-    font-size: 14px;
-  }
-
-  .additional-links p {
-    font-size: 12px;
+    margin-bottom: 10px;
   }
 }
+
+/* TotalAmountPage.css */
+
+.withdrawl-button,
+.recharge-button {
+  flex: 1; /* Make both buttons take up equal space */
+}
+
+.button-container button {
+  background: linear-gradient(to bottom, #4e8bff, #4e6eff); /* Adding gradient color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+

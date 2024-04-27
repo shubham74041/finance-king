@@ -1,14 +1,14 @@
+// TotalAmountPage.js
+
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./TotalAmountPage.css";
 
 const TotalAmountPage = () => {
   const navigate = useNavigate();
-  const handleAddMoney = () => {
-    navigate("/recharge");
-  };
-  const handleWithdraw = () => {
-    navigate("/withdrawal");
+
+  const handleNavigate = (route) => {
+    navigate(route);
   };
 
   return (
@@ -21,50 +21,39 @@ const TotalAmountPage = () => {
         <p>9996986494</p>
       </div>
       <div className="amount-details">
-        <div>
-          <p>&#8377; 0</p>
-          <p>Total balance</p>
-        </div>
-        <div>
-          <p>&#8377; 0</p>
-          <p>Income</p>
-        </div>
-        <div>
-          <p>&#8377; 0</p>
-          <p>Recharge</p>
-        </div>
+        {/* Amount details content */}
       </div>
 
       <div className="button-container">
-        <button onClick={handleAddMoney}>Recharge</button>
-        <button onClick={handleWithdraw}>Withdraw</button>
+        <button onClick={() => handleNavigate("/recharge")}>Recharge</button>
+        <button onClick={() => handleNavigate("/withdrawal")}>Withdraw</button>
       </div>
+
       <div className="additional-links">
         <div>
-          <p>Company</p>
+          <button onClick={() => handleNavigate("/company")}>Company</button>
         </div>
 
         <div>
-          <p>Record</p>
+          <button onClick={() => handleNavigate("/record")}>Record</button>
         </div>
 
         <div>
-          <p>My Orders</p>
+          <button onClick={() => handleNavigate("/myorders")}>My Orders</button>
         </div>
 
         <div>
-          <p>Recharge History</p>
+          <button onClick={() => handleNavigate("/rechargehistory")}>Recharge History</button>
         </div>
 
         <div>
-          <p>Change Password</p>
+          <button onClick={() => handleNavigate("/changepassword")}>Change Password</button>
         </div>
 
         <div>
-          <p>Logout</p>
+          <button onClick={() => handleNavigate("/logout")}>Logout</button>
         </div>
       </div>
-      {/* Add content specific to total amount page */}
     </div>
   );
 };
