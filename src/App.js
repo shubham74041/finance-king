@@ -37,8 +37,9 @@ function App() {
               width: "100%",
               height: "45px",
               zIndex: "1000",
-              background:
-                "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(37,37,152,1) 47%, rgba(0,212,255,1) 100%)",
+              // background:"#87CEEB",
+              // background:
+              background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(19,19,103,1) 100%, rgba(0,212,255,1) 100%)",
               fontFamily: "'Sedan', serif",
               color: "white", // Bright color for text
               // textAlign: "center", // Center-align the text
