@@ -2,12 +2,12 @@
 
 .home-card {
     background-color: rgb(13, 8, 41);
-    padding: 5px;
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
-    margin-top: 7%;
+    margin-top: 4%;
 }
 
 .user-info {
@@ -33,15 +33,16 @@
     color: #fff;
 }
 
+
 .withdraw-btn {
     background-color: #3498db;
     color: #fff;
-    margin-top:10%;
+    margin-top:7%;
 }
 .recharge-btn {
     background-color: #3498db;
     color: #fff;
-    margin-top:10%;
+    margin-top:6%;
 }
 
 .user-id:hover, .balance:hover, .withdraw-btn:hover, .recharge-btn:hover {
