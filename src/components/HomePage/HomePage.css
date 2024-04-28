@@ -1,10 +1,10 @@
-.home{
-/* background:#08b1a8; */
-width: 100vw;
-height: fit-content;
-margin-top: 7%;
-margin-bottom: 5%;
+.home {
+  width: 100vw;
+  height: fit-content;
+  margin-top: 50px;
+  margin-bottom: 5%;
 }
+
 h1 {
   text-align: center;
   margin-top: 60px;
@@ -15,7 +15,7 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-top: 50px;
+  padding-top: 10px;
 }
 
 /* Dummy card styling */
@@ -32,7 +32,7 @@ h1 {
 
 /* Dummy card image */
 .dummy-card img {
-  width: 20%; /* Set width for image */
+  width: 20vw; 
   border-radius: 5px;
 }
 
@@ -54,21 +54,25 @@ h1 {
 
 /* Buy button */
 .buy-button {
-  padding: 8px 16px;
+  padding: 8px 12px; /* Adjust padding */
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  width: 20vw;
 }
 
 
-@media screen and (max-width: 650px) {
+/* Media query for mobile view */
+@media screen and (max-width: 600px) {
   .home {
-    /* Apply your styles here for mobile view */
-    /* background: red; Example background color */
-    width: 100vw;
-    height: fit-content;
-    margin-top: 32%;
+    margin-top: 15%;
+    margin-bottom: 5%;
+    /* height: fit-content; */
+
+  }
+  .card-container {
+    padding-top: 10px;
   }
 }

@@ -10,11 +10,9 @@ const HomePage = ({ cards }) => {
     {
       id: 1,
       title: "Plan A",
-      // description: "This is a description for card 1.",
       dailyIncome: 100,
       totalAmount: 1000,
       cycle: "90 days",
-
       image:
         "https://images.unsplash.com/photo-1572635196237-14b3f281503f?q=80&w=1780&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     },
@@ -92,25 +90,10 @@ const HomePage = ({ cards }) => {
   ];
 
   return (
-    <div className="home"
-    // style={{marginTop: "10%", marginBottom: "10%"}}
-    >
-      {/* <h1>Home Page</h1> */}
-      <div
-        style={{
-          position: "fixed",
-          top: "40px",
-          left: 0,
-          width: "100%",
-          zIndex: "1000",
-          borderRadius: "5%"
-
-        }}
-      >
-        <NavBar />
-      </div>
+    <div className="home">
+      <NavBar />
       <div className="card-container">
-        {/* Render dummy cards */}
+        {/* Render Redux cards */}
         {cards && cards.length > 0 ? (
           cards.map((card, index) => <GenericCard key={index} {...card} />)
         ) : null}
@@ -121,26 +104,13 @@ const HomePage = ({ cards }) => {
             <img src={card.image} alt={card.title} />
             <div className="card-details">
               <h3>{card.title}</h3>
-              <p> {"Daily Income: "}
-                <i className="fa fa-inr" />
-                {card.dailyIncome}</p>
-              <p>  {"Total Amount: "}
-                <i className="fa fa-inr" />
-                {card.totalAmount}
-              </p>
+              <p>{"Daily Income: "}<i className="fa fa-inr" />{card.dailyIncome}</p>
+              <p>{"Total Amount: "}<i className="fa fa-inr" />{card.totalAmount}</p>
               <p>{"Cycle: " + card.cycle}</p>
-              <span style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                // width: "100%",
-              }}>
-
-                <h4> <i class="fa fa-inr"></i> 123323</h4>
+              <span className="card-footer">
+                <h4><i className="fa fa-inr"></i> 123323</h4>
                 <button className="buy-button">Buy</button>
               </span>
-
             </div>
           </div>
         ))}
