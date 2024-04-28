@@ -20,6 +20,12 @@ import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import { Link } from "react-router-dom";
 import PromotionPage from "./components/PromotionTasks/PromotionPage";
 import Wallet from "./components/wallet/Wallet";
+import OrderPage from "./components/OrderPage/OrderPage";
+import FinancialPage from "./components/FinancialDetail/FinancialPage";
+import FollowPage from "./components/FollowUs/FollowPage";
+import DownloadPage from "./components/AppDownlaod/DownloadPage";
+import SupportPage from "./components/Support/SupportPage";
+import ComplaintPage from "./components/Complaint/ComplaintPage";
 
 function App() {
   return (
@@ -47,16 +53,16 @@ function App() {
             }}
           >
             {/* <Link to="/" className="navbar-link"> */}
-              <span
-                style={{
-                  border: "0.5px solid steelblue",
-                  padding: "2px",
-                  boxShadow: "1px 1px 1px red",
-                  height: "30px",
-                }}
-              >
-                {"Rajiowin"}
-              </span>
+            <span
+              style={{
+                border: "0.5px solid steelblue",
+                padding: "2px",
+                boxShadow: "1px 1px 1px red",
+                height: "30px",
+              }}
+            >
+              {"Rajiowin"}
+            </span>
             {/* </Link> */}
           </div>
           <div>
@@ -75,6 +81,12 @@ function App() {
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
               <Route path="/promotion-tasks" element={<PromotionPage />} />
+              <Route path="/order" element={<OrderPage />} />
+              <Route path="/financial" element={<FinancialPage />} />
+              <Route path="/download" element={<DownloadPage />} />
+              <Route path="/support" element={<SupportPage />} />
+              <Route path="/complaint" element={<ComplaintPage />} />
+              <Route path="/follow" element={<FollowPage />} />
             </Routes>
           </div>
           <Footer />
