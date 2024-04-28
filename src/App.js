@@ -45,7 +45,7 @@ function App() {
               boxShadow: "1px 1px 1px black",
             }}
           >
-            <Link to="/" className="navbar-link">
+            {/* <Link to="/" className="navbar-link"> */}
               <span
                 style={{
                   border: "0.5px solid steelblue",
@@ -56,7 +56,7 @@ function App() {
               >
                 {"Rajiowin"}
               </span>
-            </Link>
+            {/* </Link> */}
           </div>
           <div>
             <Routes>
