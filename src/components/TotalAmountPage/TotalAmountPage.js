@@ -3,6 +3,12 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./TotalAmountPage.css";
+import HomeCard from "../HomeCard/HomeCard";
+import { FaAngleRight } from "react-icons/fa";
+import withdrawalIcon from "../icons/withdrawalIcon.png";
+// import Support from "../icons/support.svg";
+
+
 
 const TotalAmountPage = () => {
   const navigate = useNavigate();
@@ -13,45 +19,53 @@ const TotalAmountPage = () => {
 
   return (
     <div className="total-amount-container">
-      <h2 style={{ textAlign: "center", marginTop: "60px" }}>
-        Total Amount Page
-      </h2>
-      <div className="user-info">
-        <h4>UserId:</h4>
-        <p>9996986494</p>
-      </div>
-      <div className="amount-details">
-        {/* Amount details content */}
-      </div>
-
-      <div className="button-container">
-        <button onClick={() => handleNavigate("/recharge")}>Recharge</button>
-        <button onClick={() => handleNavigate("/withdrawal")}>Withdraw</button>
-      </div>
-
+      <HomeCard />
       <div className="additional-links">
-        <div>
-          <button onClick={() => handleNavigate("/company")}>Company</button>
+        <div className="link" onClick={() => handleNavigate("/order")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{ width: "30px", height: "30px" }} />
+          <div className="common-space">
+
+          <span>Order Record</span>
+          <FaAngleRight />
+          </div>
         </div>
 
-        <div>
-          <button onClick={() => handleNavigate("/record")}>Record</button>
+        <div className="link" onClick={() => handleNavigate("/financial")}>
+        <img src={withdrawalIcon} alt="Withdrawal" className="" style={{ width: "30px", height: "30px" }} />
+        <div className="common-space">
+          <span>Financial Details</span>
+          <FaAngleRight />
+        </div>
         </div>
 
-        <div>
-          <button onClick={() => handleNavigate("/myorders")}>My Orders</button>
+        <div className="link" onClick={() => handleNavigate("/download")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{width:"30px",height:"30px"}} />
+          <span>Downloads</span>
+          <FaAngleRight />
         </div>
 
-        <div>
-          <button onClick={() => handleNavigate("/rechargehistory")}>Recharge History</button>
+        <div className="link" onClick={() => handleNavigate("/follow")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{width:"30px",height:"30px"}} />
+          <span>Follow us</span>
+          <FaAngleRight />
         </div>
 
-        <div>
-          <button onClick={() => handleNavigate("/changepassword")}>Change Password</button>
+        <div className="link" onClick={() => handleNavigate("/support")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{width:"30px",height:"30px"}} />
+          <span>Support</span>
+          <FaAngleRight />
         </div>
 
-        <div>
-          <button onClick={() => handleNavigate("/logout")}>Logout</button>
+        <div className="link" onClick={() => handleNavigate("/complaint")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{width:"30px",height:"30px"}} />
+          <span>Complaint</span>
+          <FaAngleRight />
+        </div>
+
+        <div className="link" onClick={() => handleNavigate("/logout")}>
+          <img src={withdrawalIcon} alt="Withdrawal" className="" style={{width:"30px",height:"30px"}} />
+          <span>Sign Out</span>
+          <FaAngleRight />
         </div>
       </div>
     </div>
