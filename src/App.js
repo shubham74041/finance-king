@@ -1,10 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-// import NavBar from "./components/NavBar/NavBar";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
 import UserDetailsPage from "./components/UserDetailsPage/UserDetailsPage";
-
 import AddCardPage from "./components/AddCardPage";
 import AdminPage from "./components/AdminPage/AdminPage";
 import { Provider } from "react-redux";
@@ -25,8 +23,6 @@ import PromotionPage from "./components/PromotionTasks/PromotionPage";
 function App() {
   return (
     <Provider store={store}>
-      {" "}
-      {/* Provide the Redux store */}
       <Router>
         <div className="App">
           <div
@@ -37,18 +33,13 @@ function App() {
               width: "100%",
               height: "45px",
               zIndex: "1000",
-              // background:"#87CEEB",
-              // background:
               background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(19,19,103,1) 100%, rgba(0,212,255,1) 100%)",
               fontFamily: "'Sedan', serif",
-              color: "white", // Bright color for text
-              // textAlign: "center", // Center-align the text
-              lineHeight: "39px", // Vertical centering
-              fontSize: "22px", // Font size
-              fontWeight: "bold", // Bold font weight
+              color: "white",
+              lineHeight: "39px",
+              fontSize: "22px",
+              fontWeight: "bold",
               paddingLeft: "10px",
-              // display:"flex",
-              // justifyContent:"space-between"
               borderBottom: "0.5px solid white",
               boxShadow: "1px 1px 1px black",
             }}
@@ -77,8 +68,6 @@ function App() {
               <Route path="/contact" element={<ContactPage />} />
               <Route path="/product-details" element={<ProductDetailsPage />} />
               <Route path="/total-amount" element={<TotalAmountPage />} />
-              {/* <Route path="/login" element={<LoginPage />} /> */}
-              {/* <Route path="/signup" element={<SignUpPage />} /> */}
               <Route path="/forgot-password" element={<ForgotPassword />} />
               <Route path="/add-card" element={<AddCardPage />} />
               <Route path="/admin" element={<AdminPage />} />
