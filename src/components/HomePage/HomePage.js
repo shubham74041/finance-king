@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css"; // Import CSS file for styling
 import NavBar from "../NavBar/NavBar";
+import HomeCard from "../HomeCard/HomeCard";
 
 const HomePage = ({ cards }) => {
   // Dummy card data
@@ -91,7 +92,8 @@ const HomePage = ({ cards }) => {
 
   return (
     <div className="home">
-      <NavBar />
+      <HomeCard/>
+      {/* <NavBar /> */}
       <div className="card-container">
         {/* Render Redux cards */}
         {cards && cards.length > 0 ? (

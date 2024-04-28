@@ -1,0 +1,84 @@
+/* HomeCard.css */
+
+.home-card {
+    background-color: rgb(13, 8, 41);
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7%;
+}
+
+.user-info {
+    margin-bottom: 10px;
+    color: #fff;
+}
+
+.actions {
+    /* display: flex;
+    flex-direction: column; */
+}
+
+.user-id, .balance, .withdraw-btn, .recharge-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius:15px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+.user-id, .balance {
+    background-color: #3498db;
+    color: #fff;
+}
+
+.withdraw-btn {
+    background-color: #3498db;
+    color: #fff;
+    margin-top:10%;
+}
+.recharge-btn {
+    background-color: #3498db;
+    color: #fff;
+    margin-top:10%;
+}
+
+.user-id:hover, .balance:hover, .withdraw-btn:hover, .recharge-btn:hover {
+    background-color: #2980b9;
+}
+
+@media screen and (max-width: 600px) {
+    .home-card {
+        /* background-color: rgb(13, 8, 41); */
+        /* padding: 10%; */
+        border-radius: 10px;
+        /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+        /* display: flex;
+        justify-content: space-between; */
+        /* margin-top: 7%; */
+        margin: 5px;
+    }
+    .actions {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .user-id, .balance {
+        /* margin-bottom: 10px; */
+    }
+
+    .user-id, .balance{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .withdraw-btn, .recharge-btn {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 15%;
+        /* width: 40%; */
+    }
+}
