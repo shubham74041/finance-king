@@ -1,0 +1,45 @@
+/* Wallet.css */
+
+.wallet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7; /* Add a light background color */
+}
+
+.wallet-content {
+    width: 300px; /* Adjust as needed */
+    padding: 30px;
+    background-color: #fff; /* Add a white background */
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-heading {
+    text-align: center;
+    color: #333; /* Dark text color */
+    margin-bottom: 20px;
+}
+
+.wallet-info {
+    display: flex;
+    /* justify-content: space-between; */
+    align-items: center;
+    gap: 5%;
+    margin-bottom: 20px;
+}
+
+.total-amount {
+    font-weight: bold;
+    color: #555; /* Darker text color */
+}
+
+.amount-value {
+    font-size: 1.2rem;
+    color: #27ae60; /* Green color for amount value */
+}
+
+.wallet-actions {
+    /* Add styles for actions/buttons */
+}

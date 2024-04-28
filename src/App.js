@@ -19,6 +19,7 @@ import SignUpPage from "./components/SignUpPage/SignUpPage";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
 import { Link } from "react-router-dom";
 import PromotionPage from "./components/PromotionTasks/PromotionPage";
+import Wallet from "./components/wallet/Wallet";
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
               <Route path="/" element={<HomePage />} />
               <Route path="/user-details" element={<UserDetailsPage />} />
               <Route path="/withdrawal" element={<WithdrawalPage />} />
+              <Route path="/Wallet" element={<Wallet />} />
               <Route path="/recharge" element={<RechargePage />} />
               <Route path="/referral" element={<ReferralPage />} />
               <Route path="/logout" element={<LogoutPage />} />

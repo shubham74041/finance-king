@@ -11,7 +11,7 @@ const NavBar = () => {
     <nav className="navbar">
       <ul className="navbar-list">
       <li className="navbar-item">
-          <Link to="/withdrawal" className="navbar-link">
+          <Link to="/Wallet" className="navbar-link">
             <div className="navbar-icon-container">
               <img src={walletIcon} alt="Wallet" className="navbar-icon" />
               <span className="icon-name">Wallet</span>
