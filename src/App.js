@@ -87,6 +87,8 @@ function App() {
               <Route path="/support" element={<SupportPage />} />
               <Route path="/complaint" element={<ComplaintPage />} />
               <Route path="/follow" element={<FollowPage />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
             </Routes>
           </div>
           <Footer />
