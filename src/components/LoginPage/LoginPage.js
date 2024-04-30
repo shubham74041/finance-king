@@ -15,7 +15,10 @@ const LoginPage = () => {
 
     try {
       await axios
-        .post("http://localhost:8080/", { phoneNumber, password })
+        .post("https://rajjiowin-backend.vercel.app/", {
+          phoneNumber,
+          password,
+        })
         .then((res) => {
           if (res.data === "exist") {
             navigate("/"); // Use navigate function to redirect
