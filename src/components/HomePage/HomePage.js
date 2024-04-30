@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css"; // Import CSS file for styling
-import NavBar from "../NavBar/NavBar";
+// import NavBar from "../NavBar/NavBar";
 import HomeCard from "../HomeCard/HomeCard";
 
 const HomePage = ({ cards }) => {
@@ -92,27 +92,55 @@ const HomePage = ({ cards }) => {
 
   return (
     <div className="home">
-      <HomeCard/>
+      <HomeCard />
       {/* <NavBar /> */}
       <div className="card-container">
         {/* Render Redux cards */}
-        {cards && cards.length > 0 ? (
-          cards.map((card, index) => <GenericCard key={index} {...card} />)
-        ) : null}
+        {cards && cards.length > 0
+          ? cards.map((card, index) => <GenericCard key={index} {...card} />)
+          : null}
 
         {/* Dummy cards */}
         {dummyCards.map((card) => (
           <div key={card.id} className="dummy-card">
-            <img src={card.image} alt={card.title} />
+            <div>
+              <div className="title">
+                <h3>{card.title}</h3>
+              </div>
+
+              <div className="img">
+                <img src={card.image} alt={card.title} />
+              </div>
+            </div>
             <div className="card-details">
-              <h3>{card.title}</h3>
-              <p>{"Daily Income: "}<i className="fa fa-inr" />{card.dailyIncome}</p>
+              <div className="card-details1">
+                <span>Price</span>
+                <span>
+                  <b>123323</b>
+                </span>
+                <span>Daily Income</span>
+                <span>
+                  <b>{card.dailyIncome}</b>
+                </span>
+              </div>
+              <div className="card-details2">
+                <span>Cycle</span>
+                <span>
+                  <b>{card.cycle}</b>
+                </span>
+                <span>Total Income</span>
+                <span>
+                  <b>{card.totalAmount}</b>
+                </span>
+              </div>
+              <button className="buy-button">Buy</button>
+              {/* <p>{"Daily Income: "}<i className="fa fa-inr" />{card.dailyIncome}</p>
               <p>{"Total Amount: "}<i className="fa fa-inr" />{card.totalAmount}</p>
               <p>{"Cycle: " + card.cycle}</p>
               <span className="card-footer">
                 <h4><i className="fa fa-inr"></i> 123323</h4>
                 <button className="buy-button">Buy</button>
-              </span>
+              </span> */}
             </div>
           </div>
         ))}
