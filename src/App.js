@@ -47,17 +47,19 @@ function App() {
               lineHeight: "39px",
               fontSize: "22px",
               fontWeight: "bold",
-              paddingLeft: "10px",
+              // paddingLeft: "10px",
               borderBottom: "0.5px solid white",
               boxShadow: "1px 1px 1px black",
+              display: "flex",
+              justifyContent: "center",
             }}
           >
             {/* <Link to="/" className="navbar-link"> */}
             <span
               style={{
-                border: "0.5px solid steelblue",
+                // border: "0.5px solid steelblue",
                 padding: "2px",
-                boxShadow: "1px 1px 1px red",
+                // boxShadow: "1px 1px 1px red",
                 height: "30px",
               }}
             >
