@@ -15,49 +15,55 @@ const HomePage = ({ cards }) => {
     {
       id: 1,
       title: "Plan A",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
-      image: Img1,
+      price: 550,
+      dailyIncome: 15.5,
+      totalAmount: 1155,
+      cycle: "75 days",
+      image: Img2,
     },
     {
       id: 2,
       title: "Plan B",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
-      image: Img2,
+      price: 1900,
+      dailyIncome: 60,
+      totalAmount: 3900,
+      cycle: "65 days",
+      image: Img5,
     },
     {
       id: 3,
       title: "Plan C",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
+      price: 4800,
+      dailyIncome: 164,
+      totalAmount: 9850,
+      cycle: "60 days",
       image: Img3,
     },
     {
       id: 4,
       title: "Plan D",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
+      price: 14400,
+      dailyIncome: 545,
+      totalAmount: 30000,
+      cycle: "55 days",
       image: Img4,
     },
     {
       id: 5,
       title: "Plan E",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
-      image: Img5,
+      price: 38600,
+      dailyIncome: 2150,
+      totalAmount: 111800,
+      cycle: "52 days",
+      image: Img1,
     },
     {
       id: 6,
       title: "Plan F",
-      dailyIncome: 100,
-      totalAmount: 1000,
-      cycle: "90 days",
+      price: 92800,
+      dailyIncome: 6400,
+      totalAmount: 320150,
+      cycle: "50 days",
       image: Img6,
     },
   ];
@@ -73,7 +79,9 @@ const HomePage = ({ cards }) => {
           <div key={card.id} className="dummy-card">
             <div className="img-container">
               <div className="title">
-                <span>{card.title}</span>
+                <span>
+                  <b>{card.title}</b>
+                </span>
               </div>
               <div className="img">
                 <img
@@ -87,27 +95,27 @@ const HomePage = ({ cards }) => {
               <div className="card-details1">
                 <span>Price</span>
                 <span>
-                  <b>123323</b>
+                  <b>&#8377; {card.price}</b>
                 </span>
               </div>
               <div className="card-details2">
-              <span>Cycle</span>
+                <span>Cycle</span>
                 <span>
                   <b>{card.cycle}</b>
                 </span>
-                </div>
+              </div>
               <div className="card-details2">
                 <span>Daily</span>
                 <span>
-                  <b>{card.dailyIncome}</b>
+                  <b>&#8377; {card.dailyIncome}</b>
                 </span>
               </div>
               <div className="card-details2">
-              <span>Total Income</span>
+                <span>Total Income</span>
                 <span>
-                  <b>{card.totalAmount}</b>
+                  <b>&#8377; {card.totalAmount}</b>
                 </span>
-                </div>
+              </div>
               <button className="buy-button">Buy</button>
             </div>
           </div>

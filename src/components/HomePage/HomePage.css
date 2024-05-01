@@ -22,7 +22,7 @@
   box-shadow: 0 2px 4px rgba(37, 15, 15, 0.264);
   display: flex;
 }
-.img-container{
+.img-container {
   display: flex;
   flex-direction: column;
   width: 20%;
@@ -99,11 +99,11 @@
     align-items: center;
   } */
 
-  .img-container{
+  .img-container {
     /* display: flex;
     flex-direction: column;
     */
-    width: 30%; 
+    width: 30%;
   }
 
   .responsive-image {
@@ -129,7 +129,9 @@
   .buy-button {
     /* width: auto; Allow button to take the width of its content */
   }
-  .title{
+  .title {
     margin-bottom: 22px;
+    font-weight: bold;
+    margin: 5px 0 10px 30px;
   }
 }
