@@ -109,8 +109,9 @@ const HomePage = ({ cards }) => {
               </div>
 
               <div className="img">
-                <img src={card.image} alt={card.title} />
-              </div>
+  <img src={card.image} alt={card.title} className="responsive-image" />
+</div>
+
             </div>
             <div className="card-details">
               <div className="card-details1">

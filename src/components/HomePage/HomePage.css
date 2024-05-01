@@ -37,17 +37,30 @@
   margin-right: 5px;
 }
 /* Dummy card image */
-.img {
-  /* width: 20vw; */
-  /* position: relative; */
+/* .img {
+  /* width: 20vw;
+  /* position: relative;
   display: flex;
   width: 40vw;
   height: 30vh;
   border-radius: 5px;
-  /* margin-top: 70px; */
-  /* margin-left: 0; */
-  /* padding-bottom: 20px; */
+  /* margin-top: 70px;
+  /* margin-left: 0;
+  /* padding-bottom: 20px;
+} */
+
+.img {
+  /* Set maximum width to prevent image overflow */
+  max-width: 100%;
 }
+
+.responsive-image {
+  width: 25%;
+  height: auto;
+}
+
+/* Media query for mobile devices */
+
 
 /* Card details container */
 .card-details {
@@ -110,6 +123,13 @@
     height: 20vh;
     border-radius: 3px;
   }
+    .responsive-image {
+      /* Adjust size for mobile devices */
+      /* max-width: 100%; */
+      width: 70%;
+      height: auto;
+    }
+
   /* Card details container */
   .card-details {
     display: flex;
