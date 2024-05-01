@@ -5,20 +5,15 @@
   margin-bottom: 5%;
 }
 
-/* Container for cards */
 .card-container {
-  /* display: flex; */
-  /* flex-wrap: wrap; */
-  /* justify-content: center; */
-  /* padding-top: 10px; */
-  /* display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px; */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 10px;
 }
 
-/* Dummy card styling */
 .dummy-card {
-  width: calc(100% - 30px); /* Subtracting margins */
+  width: calc(100% - 30px);
   max-width: 97vw;
   margin: 10px auto;
   padding: 10px;
@@ -26,133 +21,115 @@
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(37, 15, 15, 0.264);
   display: flex;
-  /* Use flexbox for layout */
 }
-.title {
-  margin-top: 5px;
-  margin-left: 20px;
-}
-.title h3 {
-  margin-top: 0;
-  margin-right: 5px;
-}
-/* Dummy card image */
-/* .img {
-  /* width: 20vw;
-  /* position: relative;
+.img-container{
   display: flex;
-  width: 40vw;
-  height: 30vh;
-  border-radius: 5px;
-  /* margin-top: 70px;
-  /* margin-left: 0;
-  /* padding-bottom: 20px;
-} */
+  flex-direction: column;
+  width: 20%;
+}
 
 .img {
-  /* Set maximum width to prevent image overflow */
-  max-width: 100%;
+  /* max-width: 30%; Limit image width to 30% */
+  flex: 0 0 auto; /* Allow the image to shrink but not grow */
 }
 
 .responsive-image {
-  width: 25%;
+  width: 100%;
   height: auto;
 }
 
-/* Media query for mobile devices */
-
-
-/* Card details container */
 .card-details {
+  flex: 1; /* Take remaining space */
+  padding: 0 10px; /* Add padding to details */
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  gap: 10px;
+  justify-content: center;
 }
 
-.card-details1 {
-  display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  gap: 2%;
-}
+.card-details1,
 .card-details2 {
   display: flex;
-  flex-wrap: wrap;
-  margin-top: 20px;
-  /* gap: 3%; */
+  justify-content: space-between;
+  align-items: center;
 }
-/* .card-details { */
-/* flex: 1; Take remaining space
-  padding: 0 10px; Add padding
-} */
 
-/* Card title */
-/* .card-details h3 {
-  font-size: 18px;
-} */
-
-/* Card description */
-/* .card-details p {
-  font-size: 14px;
-} */
-
-/* Buy button */
 .buy-button {
-  padding: 8px 12px; /* Adjust padding */
+  padding: 8px 12px;
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  width: 20vw;
+  width: 100%;
+  max-width: 200px;
+  align-self: flex-end; /* Align button to the end of details */
 }
 
-/* Media query for mobile view */
+/* @media screen and (max-width: 600px) {
+  .home {
+    margin-top: 15%;
+    margin-bottom: 15%;
+    height: fit-content;
+  }
+
+  .responsive-image {
+    width: 100%;
+    height: auto;
+  }
+
+  .card-details {
+    padding: 0 10px;
+  }
+  .img-container{
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+  }
+} */
+
 @media screen and (max-width: 600px) {
   .home {
     margin-top: 15%;
     margin-bottom: 15%;
     height: fit-content;
   }
-  /* .card-container {
-    padding-top: 10px;
+  /* .dummy-card {
+    flex-direction: column;
+    align-items: center;
   } */
 
-  .img {
-    display: flex;
-    height: 20vh;
-    border-radius: 3px;
+  .img-container{
+    /* display: flex;
+    flex-direction: column;
+    */
+    width: 30%; 
   }
-    .responsive-image {
-      /* Adjust size for mobile devices */
-      /* max-width: 100%; */
-      width: 70%;
-      height: auto;
-    }
 
-  /* Card details container */
+  .responsive-image {
+    width: 100%;
+    height: auto;
+  }
   .card-details {
+    width: 100%;
+    padding: 10px;
     display: flex;
     flex-direction: column;
+    gap: 10px;
   }
 
-  .card-details1 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3%;
-  }
+  .card-details1,
   .card-details2 {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 3%;
+    /* display: flex;
+    flex-direction: column; */
+    gap: 10px;
+    /* justify-content: center; */
+  }
+
+  .buy-button {
+    /* width: auto; Allow button to take the width of its content */
+  }
+  .title{
+    margin-bottom: 22px;
   }
 }
-
-/* Media query for window view */
-/* @media screen and (min-width: 601px) {
-  .dummy-card {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-} */
