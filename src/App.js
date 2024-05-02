@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { AuthProvider } from "./components/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
 import UserDetailsPage from "./components/UserDetailsPage/UserDetailsPage";
@@ -30,72 +32,81 @@ import ComplaintPage from "./components/Complaint/ComplaintPage";
 function App() {
   return (
     <Provider store={store}>
-      <Router>
-        <div className="App">
-          <div
-            style={{
-              position: "fixed",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "45px",
-              zIndex: "1000",
-              // background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(19,19,103,1) 100%, rgba(0,212,255,1) 100%)",
-              backgroundColor: "rgb(13, 8, 41)",
-              fontFamily: "'Sedan', serif",
-              color: "white",
-              lineHeight: "39px",
-              fontSize: "22px",
-              fontWeight: "bold",
-              // paddingLeft: "10px",
-              borderBottom: "0.5px solid white",
-              boxShadow: "1px 1px 1px black",
-              display: "flex",
-              justifyContent: "center",
-            }}
-          >
-            {/* <Link to="/" className="navbar-link"> */}
-            <span
+      <AuthProvider>
+        <Router>
+          <div className="App">
+            <div
               style={{
-                // border: "0.5px solid steelblue",
-                padding: "2px",
-                // boxShadow: "1px 1px 1px red",
-                height: "30px",
+                position: "fixed",
+                top: 0,
+                left: 0,
+                width: "100%",
+                height: "45px",
+                zIndex: "1000",
+                // background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(19,19,103,1) 100%, rgba(0,212,255,1) 100%)",
+                backgroundColor: "rgb(13, 8, 41)",
+                fontFamily: "'Sedan', serif",
+                color: "white",
+                lineHeight: "39px",
+                fontSize: "22px",
+                fontWeight: "bold",
+                // paddingLeft: "10px",
+                borderBottom: "0.5px solid white",
+                boxShadow: "1px 1px 1px black",
+                display: "flex",
+                justifyContent: "center",
               }}
             >
-              {"Rajiowin"}
-            </span>
-            {/* </Link> */}
+              {/* <Link to="/" className="navbar-link"> */}
+              <span
+                style={{
+                  // border: "0.5px solid steelblue",
+                  padding: "2px",
+                  // boxShadow: "1px 1px 1px red",
+                  height: "30px",
+                }}
+              >
+                {"Rajiowin"}
+              </span>
+              {/* </Link> */}
+            </div>
+            <div>
+              <Routes>
+                {/* <Route path="/" element={<HomePage />} /> */}
+                <Route
+                  path="/"
+                  element={<PrivateRoute component={HomePage} />}
+                />
+                <Route path="/user-details" element={<UserDetailsPage />} />
+                <Route path="/withdrawal" element={<WithdrawalPage />} />
+                <Route path="/Wallet" element={<Wallet />} />
+                <Route path="/recharge" element={<RechargePage />} />
+                <Route path="/referral" element={<ReferralPage />} />
+                <Route path="/logout" element={<LogoutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+                <Route
+                  path="/product-details"
+                  element={<ProductDetailsPage />}
+                />
+                <Route path="/total-amount" element={<TotalAmountPage />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/add-card" element={<AddCardPage />} />
+                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/promotion-tasks" element={<PromotionPage />} />
+                <Route path="/order" element={<OrderPage />} />
+                <Route path="/financial" element={<FinancialPage />} />
+                <Route path="/download" element={<DownloadPage />} />
+                <Route path="/support" element={<SupportPage />} />
+                <Route path="/complaint" element={<ComplaintPage />} />
+                <Route path="/follow" element={<FollowPage />} />
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+              </Routes>
+            </div>
+            <Footer />
           </div>
-          <div>
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/user-details" element={<UserDetailsPage />} />
-              <Route path="/withdrawal" element={<WithdrawalPage />} />
-              <Route path="/Wallet" element={<Wallet />} />
-              <Route path="/recharge" element={<RechargePage />} />
-              <Route path="/referral" element={<ReferralPage />} />
-              <Route path="/logout" element={<LogoutPage />} />
-              <Route path="/contact" element={<ContactPage />} />
-              <Route path="/product-details" element={<ProductDetailsPage />} />
-              <Route path="/total-amount" element={<TotalAmountPage />} />
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/add-card" element={<AddCardPage />} />
-              <Route path="/admin" element={<AdminPage />} />
-              <Route path="/promotion-tasks" element={<PromotionPage />} />
-              <Route path="/order" element={<OrderPage />} />
-              <Route path="/financial" element={<FinancialPage />} />
-              <Route path="/download" element={<DownloadPage />} />
-              <Route path="/support" element={<SupportPage />} />
-              <Route path="/complaint" element={<ComplaintPage />} />
-              <Route path="/follow" element={<FollowPage />} />
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUpPage />} />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
+      </AuthProvider>
     </Provider>
   );
 }
