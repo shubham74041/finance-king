@@ -72,11 +72,11 @@ function App() {
             </div>
             <div>
               <Routes>
-                {/* <Route path="/" element={<HomePage />} /> */}
-                <Route
+                <Route path="/" element={<HomePage />} />
+                {/* <Route
                   path="/"
                   element={<PrivateRoute component={HomePage} />}
-                />
+                /> */}
                 <Route path="/user-details" element={<UserDetailsPage />} />
                 <Route path="/withdrawal" element={<WithdrawalPage />} />
                 <Route path="/Wallet" element={<Wallet />} />
