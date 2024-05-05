@@ -38,51 +38,53 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      <h2>SignUp</h2>
-
       <form action="POST">
-        <div>
-          <label className="form-label">Email:</label>
-          <input
-            placeholder="email"
-            id="email"
-            className="form-control"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+        <div className="form-container">
+          <h2>Rajiowin</h2>
+          <div>
+            <label className="email-label">Email</label>
+            <input
+              placeholder="Enter Email"
+              id="email"
+              className="email_input"
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="mobile-label">Mobile No.</label>
+            <input
+              placeholder="Enter Mobile No."
+              id="phoneNumber"
+              className="mobile_input"
+              type="number"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+            />
+          </div>
+          <div>
+            <label className="password-label">Password</label>
+            <input
+              className="password_input"
+              id="password"
+              placeholder="Enter Password"
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button className="register_btn" onClick={handleLogin}>
+            Register
+          </button>
+          <div>
+            <p className="register">
+              Already have an account? <Link to="/login">Login Here</Link>
+            </p>
+          </div>
+          {/* <p>{message}</p> */}
         </div>
-
-        <div>
-          <label className="form-label">Phone-Number:</label>
-          <input
-            placeholder="phoneNumber"
-            id="phoneNumber"
-            className="form-control"
-            type="number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </div>
-
-        <div>
-          <label className="form-label">Password:</label>
-          <input
-            className="form-control"
-            id="password"
-            placeholder="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button onClick={handleLogin}>SignUp</button>
-        {/* <p>{message}</p> */}
       </form>
-      <br />
-      <p>OR</p>
-
-      <Link to="/login">Login Page</Link>
     </div>
   );
 };

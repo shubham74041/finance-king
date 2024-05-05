@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { AuthProvider } from "./components/AuthContext";
+import { AuthProvider } from "./components/AuthProvider"; // Corrected import statement
+
 // import PrivateRoute from "./components/PrivateRoute";
 import Footer from "./components/Footer/Footer";
 import HomePage from "./components/HomePage/HomePage";
@@ -28,13 +29,14 @@ import FollowPage from "./components/FollowUs/FollowPage";
 import DownloadPage from "./components/AppDownlaod/DownloadPage";
 import SupportPage from "./components/Support/SupportPage";
 import ComplaintPage from "./components/Complaint/ComplaintPage";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
     <Provider store={store}>
-      <AuthProvider>
+      <div className="App">
         <Router>
-          <div className="App">
+          <AuthProvider>
             <div
               style={{
                 position: "fixed",
@@ -72,18 +74,24 @@ function App() {
             </div>
             <div>
               <Routes>
-                <Route path="/" element={<HomePage />} />
-                {/* <Route
-                  path="/"
-                  element={<PrivateRoute component={HomePage} />}
-                /> */}
+                {/* <Route path="/" element={<HomePage />} /> */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<HomePage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/contact" element={<ContactPage />} />
+                </Route>
                 <Route path="/user-details" element={<UserDetailsPage />} />
                 <Route path="/withdrawal" element={<WithdrawalPage />} />
                 <Route path="/Wallet" element={<Wallet />} />
                 <Route path="/recharge" element={<RechargePage />} />
                 <Route path="/referral" element={<ReferralPage />} />
                 <Route path="/logout" element={<LogoutPage />} />
+
                 <Route path="/contact" element={<ContactPage />} />
+
+                {/* <ProtectedRoute path="/contact" element={<ContactPage />} /> */}
                 <Route
                   path="/product-details"
                   element={<ProductDetailsPage />}
@@ -104,9 +112,9 @@ function App() {
               </Routes>
             </div>
             <Footer />
-          </div>
+          </AuthProvider>
         </Router>
-      </AuthProvider>
+      </div>
     </Provider>
   );
 }

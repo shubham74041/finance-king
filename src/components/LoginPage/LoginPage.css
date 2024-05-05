@@ -6,28 +6,41 @@
 }
 .LoginPage {
   width: 400px;
+  /* backdrop-filter: blur(10px); */
   padding: 10px 40px 10px 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-top: 0;
+  background-color: rgb(13, 8, 41);
+  box-shadow: -13px -9px 0px 0px rgba(18, 1, 28, 0.4);
 }
 
 h1 {
   text-align: center;
+  color: white;
+  font-family: "'Sedan', serif";
 }
 
-.form-label {
+.login-label {
   margin-bottom: 5px;
   display: block;
+  color: white;
+  margin-left: 10px;
 }
 
-.form-control {
-  width: 100%;
+.input_box {
+  width: 90% !important;
   padding: 8px;
   border: 1px solid #ccc;
-  border-radius: 3px;
+  border-radius: 10px;
   margin-bottom: 15px;
   margin-left: 10px;
+}
+.input_box2 {
+  width: 95% !important;
+  padding: 8px !important;
+  border: 1px solid #ccc !important;
+  border-radius: 10px !important;
 }
 
 .forgot {
@@ -46,7 +59,7 @@ h1 {
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 20px;
   cursor: pointer;
   display: block;
   margin-left: 95px;
@@ -54,6 +67,7 @@ h1 {
 
 .register {
   text-align: center;
+  color: white;
 }
 
 .register a {
@@ -63,4 +77,35 @@ h1 {
 
 .register a:hover {
   text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .LoginPage {
+    width: 90%; /* Adjust width to fit smaller screens */
+    padding: 10px; /* Reduce padding */
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .login_btn {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%; /* Adjust button width */
+  }
+  .input_box {
+    margin-right: 5px !important;
+  }
+  .input_box1 {
+    width: 85%;
+    /* margin-left: 15px; */
+    padding: 8px;
+    border: 1px solid #ccc;
+  }
+  .input_box2 {
+    width: 96% !important;
+    padding: 8px;
+    border: 1px solid #ccc;
+
+    /* border-radius: 4px; */
+  }
 }

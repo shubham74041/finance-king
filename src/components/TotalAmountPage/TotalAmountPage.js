@@ -12,9 +12,11 @@ import followIcon from "../icons/icons8-telegram-100.png";
 import supportIcon from "../icons/contact.png";
 import complainIcon from "../icons/icons8-complaint-100.png";
 import signoutIcon from "../icons/icons8-logout-100.png";
+import { useAuth } from "../AuthProvider";
 // import Support from "../icons/support.svg";
 
 const TotalAmountPage = () => {
+  const auth = useAuth();
   const navigate = useNavigate();
 
   const handleNavigate = (route) => {
@@ -107,7 +109,7 @@ const TotalAmountPage = () => {
             className=""
             style={{ width: "30px", height: "30px", marginRight: "10px" }}
           />
-          <span>Sign Out</span>
+          <span onClick={() => auth.logout()}>Sign Out</span>
           {/* <FaAngleRight /> */}
         </div>
       </div>
