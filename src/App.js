@@ -82,31 +82,79 @@ function App() {
                 <Route element={<ProtectedRoute />}>
                   <Route path="/contact" element={<ContactPage />} />
                 </Route>
-                <Route path="/user-details" element={<UserDetailsPage />} />
-                <Route path="/withdrawal" element={<WithdrawalPage />} />
-                <Route path="/Wallet" element={<Wallet />} />
-                <Route path="/recharge" element={<RechargePage />} />
-                <Route path="/referral" element={<ReferralPage />} />
-                <Route path="/logout" element={<LogoutPage />} />
 
-                <Route path="/contact" element={<ContactPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/withdrawal" element={<WithdrawalPage />} />
+                </Route>
+                <Route path="/user-details" element={<UserDetailsPage />} />
+                {/* <Route path="/withdrawal" element={<WithdrawalPage />} /> */}
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/Wallet" element={<Wallet />} />
+                </Route>
+
+                {/* <Route path="/Wallet" element={<Wallet />} /> */}
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/recharge" element={<RechargePage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/Wallet" element={<Wallet />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/referral" element={<ReferralPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/logout" element={<LogoutPage />} />
+                </Route>
+
+                {/* <Route path="/contact" element={<ContactPage />} /> */}
 
                 {/* <ProtectedRoute path="/contact" element={<ContactPage />} /> */}
-                <Route
-                  path="/product-details"
-                  element={<ProductDetailsPage />}
-                />
-                <Route path="/total-amount" element={<TotalAmountPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route
+                    path="/product-details"
+                    element={<ProductDetailsPage />}
+                  />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/total-amount" element={<TotalAmountPage />} />
+                </Route>
+
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/add-card" element={<AddCardPage />} />
                 <Route path="/admin" element={<AdminPage />} />
-                <Route path="/promotion-tasks" element={<PromotionPage />} />
-                <Route path="/order" element={<OrderPage />} />
-                <Route path="/financial" element={<FinancialPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/promotion-tasks" element={<PromotionPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/order" element={<OrderPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/financial" element={<FinancialPage />} />
+                </Route>
+
                 <Route path="/download" element={<DownloadPage />} />
-                <Route path="/support" element={<SupportPage />} />
-                <Route path="/complaint" element={<ComplaintPage />} />
-                <Route path="/follow" element={<FollowPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/support" element={<SupportPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/complaint" element={<ComplaintPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/follow" element={<FollowPage />} />
+                </Route>
+
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
               </Routes>
