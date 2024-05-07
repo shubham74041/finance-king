@@ -1,15 +1,33 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
+import telegramIcon from "../icons/icons8-telegram-100.png";
+import supportIcon from "../icons/contact.png";
 import "./LoginPage.css";
 import { useAuth } from "../AuthProvider"; // Assuming you've defined an AuthContext
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const [input, setInput] = useState({
     phoneNumber: "",
     password: "",
   });
+
+  const handleTele = (e) => {
+    e.stopPropagation(); // Stop the event propagation
+    const telegramUsername = "Piyush3029";
+
+    // Construct the Telegram URL
+    const telegramUrl = `https://t.me/${telegramUsername}`;
+
+    // Open the Telegram URL in a new tab or window
+    window.open(telegramUrl, "_blank");
+  };
+
+  const handleSupport = () => {
+    navigate("/contact");
+  };
 
   const auth = useAuth();
   // const navigate = useNavigate();
@@ -62,7 +80,7 @@ const LoginPage = () => {
 
   return (
     <div className="login">
-      <form onSubmit={handleLogin}>
+      <form>
         <div className="LoginPage">
           <h1>Rajiowin</h1>
           <div className="phone_number">
@@ -97,11 +115,58 @@ const LoginPage = () => {
           <p className="forgot">
             <Link to="/forgot-password">Forgot Password?</Link>
           </p>
-          <button className="login_btn">Login</button>
+          <button onClick={handleLogin} className="login_btn">
+            Login
+          </button>
           <div>
             <p className="register">
               Don't have an account? <Link to="/signup">Register Now</Link>
             </p>
+            {/* <div> */}
+
+            <button className="tele_button" onClick={handleTele}>
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  height: "25px",
+                }}
+              >
+                <img
+                  src={telegramIcon}
+                  alt="telegram"
+                  style={{
+                    width: "30px",
+                    height: "30px",
+                    marginRight: "5px",
+                    marginBottom: "5px",
+                  }}
+                />
+                {/* <span style={{ textAlign: "center", margin: "2px 0 3px 0" }}>
+                Official Telegram
+              </span> */}
+                <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>
+              </div>
+            </button>
+
+            <button onClick={handleSupport} className="support_button">
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  height: "25px",
+                }}
+              >
+                <img
+                  src={supportIcon}
+                  alt="support"
+                  style={{ width: "30px", height: "30px", marginRight: "5px" }}
+                />
+
+                <p style={{ margin: "4px 2px 7px 2px" }}>Contact Support</p>
+              </div>
+            </button>
+            {/* </div> */}
           </div>
         </div>
       </form>

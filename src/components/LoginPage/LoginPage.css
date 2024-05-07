@@ -2,7 +2,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
+  margin-top: 20px;
 }
 .LoginPage {
   width: 400px;
@@ -79,6 +80,31 @@ h1 {
   text-decoration: underline;
 }
 
+/* buttons  */
+.tele_button {
+  width: 50%;
+  /* padding: 10px; */
+  background-color: #007bff; /* Green color */
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+  margin: 10px auto; /* Center horizontally with some margin */
+}
+
+.support_button {
+  width: 50%;
+  /* padding: 10px; */
+  background-color: #007bff; /* Red color */
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  display: block;
+  margin: 15px auto; /* Center horizontally with some margin */
+}
+
 @media (max-width: 768px) {
   .LoginPage {
     width: 90%; /* Adjust width to fit smaller screens */
@@ -90,7 +116,7 @@ h1 {
   .login_btn {
     margin-left: auto;
     margin-right: auto;
-    width: 50%; /* Adjust button width */
+    width: 80%; /* Adjust button width */
   }
   .input_box {
     margin-right: 5px !important;
@@ -107,5 +133,12 @@ h1 {
     border: 1px solid #ccc;
 
     /* border-radius: 4px; */
+  }
+}
+
+@media (max-width: 768px) {
+  .tele_button,
+  .support_button {
+    width: 80%; /* Adjust button width for smaller screens */
   }
 }
