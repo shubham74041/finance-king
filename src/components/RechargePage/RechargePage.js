@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./RechargePage.css"; // Import CSS file for styling
+import axios from "axios";
 
 const RechargePage = () => {
   const [amount, setAmount] = useState(""); // State to hold the input amount
@@ -12,8 +13,22 @@ const RechargePage = () => {
 
   // Function to handle submission
   const handleSubmit = () => {
+    const phoneNumber = localStorage.getItem("site"); // Retrieve the value from localStorage
     // You can replace the placeholder with your actual backend endpoint
-    const backendUrl = "YOUR_BACKEND_URL"; 
+    axios
+      .post("https://rajjiowin-backend.vercel.app/recharge", {
+        // Data to send to the backend
+        amount,
+        phoneNumber,
+      })
+      .then((response) => {
+        // Handle success
+        console.log("Response:", response);
+      })
+      .catch((error) => {
+        // Handle error
+        console.error("Error:", error);
+      });
 
     // Construct the Telegram link with the amount
     const telegramLink = `https://t.me/YOUR_BOT_NAME?text=Recharge%20Amount:%20${amount}`;
@@ -30,17 +45,17 @@ const RechargePage = () => {
     <div className="recharge-container">
       <h2 className="recharge-heading">Recharge Page</h2>
       <div className="input-container">
-        <input 
-          type="text" 
-          value={amount} 
-          onChange={(e) => setAmount(e.target.value)} 
-          placeholder="Enter amount" 
-          className="amount-input" 
+        <input
+          type="text"
+          value={amount}
+          onChange={(e) => setAmount(e.target.value)}
+          placeholder="Enter amount"
+          className="amount-input"
         />
         <div className="suggestions">
           {suggestions.map((suggestion, index) => (
-            <div 
-              key={index} 
+            <div
+              key={index}
               className="suggestion-box"
               onClick={() => handleSuggestionClick(suggestion)}
             >
@@ -48,7 +63,9 @@ const RechargePage = () => {
             </div>
           ))}
         </div>
-        <button onClick={handleSubmit} className="submit-button">Submit</button>
+        <button onClick={handleSubmit} className="submit-button">
+          Submit
+        </button>
       </div>
     </div>
   );

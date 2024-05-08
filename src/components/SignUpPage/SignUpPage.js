@@ -44,7 +44,6 @@ const SignUp = () => {
           }
         })
         .catch((err) => {
-          alert("Wrong Details!");
           console.log(err);
         });
     } catch (err) {
@@ -54,7 +53,7 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-      <form action="POST">
+      <form>
         <div className="form-container">
           <h2>Rajiowin</h2>
           <div>

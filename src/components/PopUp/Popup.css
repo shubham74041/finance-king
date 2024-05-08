@@ -12,6 +12,7 @@
 }
 
 .popup-content {
+  width: 200px;
   background-color: #fff;
   padding: 20px;
   border-radius: 5px;
@@ -25,4 +26,24 @@
   border: none;
   border-radius: 3px;
   cursor: pointer;
+}
+.reward-list {
+  list-style: none;
+  padding: 5;
+}
+
+.reward-list li {
+  margin-bottom: 10px;
+}
+
+.check-in-bonus {
+  margin-top: 20px;
+  justify-content: center;
+  text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .popup-content {
+    width: 60%; /* Adjust width for smaller screens */
+  }
 }

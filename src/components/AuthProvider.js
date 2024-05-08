@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
       //   setIsAuthenticated(true);
       // Make a request to your backend to authenticate the user
 
+      //rajjiowin-backend.vercel.app
       const response = await fetch("https://rajjiowin-backend.vercel.app/", {
         method: "POST",
         headers: {
@@ -30,10 +31,11 @@ export const AuthProvider = ({ children }) => {
 
       const res = await response.json();
       console.log(res.data);
+      console.log(res.data.phoneNumber);
       if (res.data) {
         setUser(res.data.user);
-        setToken(res.token);
-        localStorage.setItem("site", res.token);
+        setToken(res.data.phoneNumber);
+        localStorage.setItem("site", res.data.phoneNumber);
         setShowPopup(true); // Show popup after successful login
         navigate("/");
         return;
