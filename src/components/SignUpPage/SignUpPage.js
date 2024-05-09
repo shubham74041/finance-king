@@ -40,6 +40,7 @@ const SignUp = () => {
           if (res.data === "exists") {
             alert("User already exists");
           } else if (res.data === "notexists") {
+            alert("User Register Successfully");
             navigate("/");
           }
         })

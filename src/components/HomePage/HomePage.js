@@ -10,8 +10,26 @@ import Img4 from "../icons/img4.jpg";
 import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
 import CheckIn from "../CheckIn/CheckIn";
+// import axios from "axios";
 
 const HomePage = ({ cards }) => {
+  // const user = localStorage.getItem("site");
+
+  // const
+  // axios
+  //   .post("https://localhost:3000/", {
+  //     // Data to send to the backend
+  //     user,
+  //   })
+  //   .then((response) => {
+  //     // Handle success
+  //     console.log("Response:", response);
+  //   })
+  //   .catch((error) => {
+  //     // Handle error
+  //     console.error("Error:", error);
+  //   });
+
   const dummyCards = [
     {
       id: 1,
