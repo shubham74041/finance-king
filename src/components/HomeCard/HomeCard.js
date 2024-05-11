@@ -1,12 +1,31 @@
 // HomeCard.js
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./HomeCard.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const HomeCard = ({ userId, balance }) => {
   const phoneNumber = localStorage.getItem("site");
   console.log("Phone Number: " + phoneNumber);
+
+  // const [walletBalance, setWalletBalance] = useState(3000);
+
+  // useEffect(() => {
+  //   const phoneNumber = localStorage.getItem("site");
+  //   const fetchData = async () => {
+  //     try {
+  //       const response = await axios.get("http://localhost:8080/", {
+  //         phoneNumber,
+  //       });
+  //       setWalletBalance(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching user data:", error);
+  //     }
+  //   };
+  //   fetchData();
+  // }, [walletBalance]);
+
   // Dummy user ID and balance
   userId = phoneNumber || 327967881324531;
   balance = balance || 3000;

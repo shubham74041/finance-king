@@ -30,6 +30,7 @@ import DownloadPage from "./components/AppDownlaod/DownloadPage";
 import SupportPage from "./components/Support/SupportPage";
 import ComplaintPage from "./components/Complaint/ComplaintPage";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RechargeDataPage from "./components/AdminPage/Admin/RechargeDataPage";
 
 function App() {
   return (
@@ -157,6 +158,8 @@ function App() {
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
+
+                <Route path="/recharge-data" element={<RechargeDataPage />} />
               </Routes>
             </div>
             <Footer />

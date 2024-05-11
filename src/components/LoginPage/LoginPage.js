@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-// import axios from "axios";
+import axios from "axios";
 import telegramIcon from "../icons/icons8-telegram-100.png";
 import supportIcon from "../icons/contact.png";
 import "./LoginPage.css";
@@ -37,9 +37,9 @@ const LoginPage = () => {
   // const [password, setPassword] = useState("");
   // const [error, setError] = useState("");
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-
+    // const phoneNumber = input.phoneNumber;
     if (input.phoneNumber !== "" && input.password !== "") {
       console.log(input);
       auth.login(input);
@@ -68,6 +68,15 @@ const LoginPage = () => {
     // } catch (err) {
     //   setError("Wrong details. Please try again.");
     //   console.error(err);
+    // }
+
+    // try {
+    //   const response = await axios.get("http://localhost:8080/login", {
+    //     phoneNumber,
+    //   });
+    //   console.log(response.data);
+    // } catch (error) {
+    //   console.error("Error fetching user data:", error);
     // }
   };
   const handleInput = (e) => {

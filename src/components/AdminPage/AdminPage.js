@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { connect } from "react-redux";
 import { addCard } from "../../redux/actions";
 import "./AdminPage.css";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const AdminPage = ({ addCard }) => {
+  const navigate = useNavigate();
   const [newCardData, setNewCardData] = useState({
     timestamp: "",
     amount: "",
@@ -18,6 +21,10 @@ const AdminPage = ({ addCard }) => {
   const handleAddCard = () => {
     addCard(newCardData);
     setNewCardData({ timestamp: "", amount: "", imagePath: "" });
+  };
+
+  const handleRechargeData = () => {
+    navigate("/recharge-data");
   };
 
   return (
@@ -54,6 +61,10 @@ const AdminPage = ({ addCard }) => {
         />
       </div>
       <button onClick={handleAddCard}>Add Card</button>
+      {/* Data Showing */}
+      <div>
+        <button onClick={handleRechargeData}>Show Recharge Data</button>
+      </div>
     </div>
   );
 };
