@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+import { useLocation } from "react-router-dom";
 import "./Footer.css"; // Import your CSS file for Footer styling
 
 import contactIcon from "../icons/contact.png";
@@ -9,7 +11,15 @@ import userIcon from "../icons/user.png";
 import homeIcon from "../icons/home-icon.png";
 
 const Footer = () => {
-  return (
+  const location = useLocation();
+
+  // Define an array of routes where the footer should be hidden
+  const hideFooterRoutes = ["/login", "/signup"];
+
+  // Check if the current location matches any route where the footer should be hidden
+  const shouldHideFooter = hideFooterRoutes.includes(location.pathname);
+
+  return !shouldHideFooter ? (
     <footer className="footer">
       <ul className="footer-list">
         <li className="footer-item">
@@ -61,7 +71,7 @@ const Footer = () => {
         </li>
       </ul>
     </footer>
-  );
+  ) : null;
 };
 
 export default Footer;

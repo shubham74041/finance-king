@@ -69,7 +69,7 @@ function App() {
                   height: "30px",
                 }}
               >
-                {"Rajiowin"}
+                {"Rajjowin"}
               </span>
               {/* </Link> */}
             </div>

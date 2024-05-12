@@ -3,7 +3,7 @@
 .total-amount-container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 6px 0px 1px;
   border: 1px solid #ddd;
   border-radius: 10px;
   margin-top: 5%;
