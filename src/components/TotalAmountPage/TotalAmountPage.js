@@ -25,9 +25,7 @@ const TotalAmountPage = () => {
 
   return (
     <div className="total-amount-container">
-      <div>
-        <HomeCard />
-      </div>
+      <HomeCard />
 
       <div className="additional-links">
         <div className="link" onClick={() => handleNavigate("/order")}>

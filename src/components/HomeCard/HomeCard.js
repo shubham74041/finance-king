@@ -9,26 +9,26 @@ const HomeCard = ({ userId, balance }) => {
   const phoneNumber = localStorage.getItem("site");
   console.log("Phone Number: " + phoneNumber);
 
-  // const [walletBalance, setWalletBalance] = useState(3000);
+  const [walletBalance, setWalletBalance] = useState(3000);
 
-  // useEffect(() => {
-  //   const phoneNumber = localStorage.getItem("site");
-  //   const fetchData = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:8080/", {
-  //         phoneNumber,
-  //       });
-  //       setWalletBalance(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching user data:", error);
-  //     }
-  //   };
-  //   fetchData();
-  // }, [walletBalance]);
+  useEffect(() => {
+    const phoneNumber = localStorage.getItem("site");
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://rajjiowin-backend.vercel.app/${phoneNumber}`
+        );
+        setWalletBalance(response.data.remainingBalance);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+    fetchData();
+  }, [walletBalance]);
 
   // Dummy user ID and balance
   userId = phoneNumber || 327967881324531;
-  balance = balance || 3000;
+  balance = walletBalance || 3000;
   return (
     <div className="home-card">
       <div className="user-info">

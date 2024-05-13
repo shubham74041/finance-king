@@ -56,7 +56,7 @@ const SignUp = () => {
     <div className="signup">
       <form>
         <div className="form-container">
-          <h2>Rajiowin</h2>
+          <h2>Rajjowin</h2>
           <div>
             <label className="email-label">Email</label>
             <input

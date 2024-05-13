@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css";
@@ -10,25 +10,10 @@ import Img4 from "../icons/img4.jpg";
 import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
 import CheckIn from "../CheckIn/CheckIn";
-// import axios from "axios";
+import axios from "axios";
 
 const HomePage = ({ cards }) => {
-  // const user = localStorage.getItem("site");
-
-  // const
-  // axios
-  //   .post("https://localhost:3000/", {
-  //     // Data to send to the backend
-  //     user,
-  //   })
-  //   .then((response) => {
-  //     // Handle success
-  //     console.log("Response:", response);
-  //   })
-  //   .catch((error) => {
-  //     // Handle error
-  //     console.error("Error:", error);
-  //   });
+  const [walletBalance, setWalletBalance] = useState("");
 
   const dummyCards = [
     {
@@ -87,9 +72,40 @@ const HomePage = ({ cards }) => {
     },
   ];
 
+  const handleBuy = (card) => {
+    const userId = localStorage.getItem("site");
+    const productPrice = parseFloat(card.price); // Ensure that price is parsed as a float
+    console.log(userId);
+    console.log("productPrice", productPrice);
+    // Make an API call to fetch wallet data based on userId
+    axios
+      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
+        price: productPrice,
+      }) // Send price instead of productPrice
+      .then((response) => {
+        console.log(response.data.msg);
+        const responseMsg = response.data.msg;
+        // const walletAmount = response.data.userTotalAmount;
+        alert(responseMsg);
+      })
+      .catch((error) => {
+        if (error.response) {
+          // The request was made and the server responded with a status code
+          console.error("Server responded with status:", error.response.status);
+        } else if (error.request) {
+          // The request was made but no response was received
+          console.error("No response received:", error.request);
+        } else {
+          // Something else happened while setting up the request
+          console.error("Error:", error.message);
+        }
+        alert("Error fetching wallet data. Please try again later.");
+      });
+  };
+
   return (
     <div className="home">
-      <HomeCard />
+      <HomeCard balance={walletBalance} />
       <CheckIn />
       <div className="card-container">
         {cards && cards.length > 0
@@ -136,7 +152,9 @@ const HomePage = ({ cards }) => {
                   <b>&#8377; {card.totalAmount}</b>
                 </span>
               </div>
-              <button className="buy-button">Buy</button>
+              <button onClick={() => handleBuy(card)} className="buy-button">
+                Buy
+              </button>
             </div>
           </div>
         ))}

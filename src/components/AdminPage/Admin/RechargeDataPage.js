@@ -11,7 +11,9 @@ const RechargeDataPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/recharge-data"); // Adjust URL as per your backend endpoint
+        const response = await axios.get(
+          "https://rajjiowin-backend.vercel.app/recharge-data"
+        ); // Adjust URL as per your backend endpoint
         console.log(response.data);
         setRechargeData(response.data);
       } catch (error) {
@@ -28,11 +30,14 @@ const RechargeDataPage = () => {
       setButtonDisabled(true); // Disable the buttons when clicked
       console.log(id);
       // Make the POST request to update the data
-      await axios.post(`http://localhost:8080/recharge-data/${id}`, {
-        userId: userId,
-        rechargeAmount: rechargeAmount,
-        paid: paid,
-      });
+      await axios.post(
+        `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
+        {
+          userId: userId,
+          rechargeAmount: rechargeAmount,
+          paid: paid,
+        }
+      );
     } catch (error) {
       console.error("Error updating data:", error);
     }

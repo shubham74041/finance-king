@@ -71,10 +71,11 @@ const LoginPage = () => {
     // }
 
     // try {
-    //   const response = await axios.get("http://localhost:8080/login", {
-    //     phoneNumber,
-    //   });
-    //   console.log(response.data);
+    //   const response = await axios.get(
+    //     `http://localhost:8080/login/${phoneNumber}`,
+    //     {}
+    //   );
+    //   console.log(response.data.userWalletAmount);
     // } catch (error) {
     //   console.error("Error fetching user data:", error);
     // }
@@ -91,7 +92,7 @@ const LoginPage = () => {
     <div className="login">
       <form>
         <div className="LoginPage">
-          <h1>Rajiowin</h1>
+          <h1>Rajjowin</h1>
           <div className="phone_number">
             <label htmlFor="phoneNumber" className="login-label">
               Mobile No.
