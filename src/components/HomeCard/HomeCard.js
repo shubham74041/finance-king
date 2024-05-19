@@ -9,7 +9,7 @@ const HomeCard = ({ userId, balance }) => {
   const phoneNumber = localStorage.getItem("site");
   console.log("Phone Number: " + phoneNumber);
 
-  const [walletBalance, setWalletBalance] = useState(3000);
+  const [walletBalance, setWalletBalance] = useState(0);
 
   useEffect(() => {
     const phoneNumber = localStorage.getItem("site");
@@ -28,7 +28,7 @@ const HomeCard = ({ userId, balance }) => {
 
   // Dummy user ID and balance
   userId = phoneNumber || 327967881324531;
-  balance = walletBalance || 3000;
+  balance = walletBalance || 0;
   return (
     <div className="home-card">
       <div className="user-info">

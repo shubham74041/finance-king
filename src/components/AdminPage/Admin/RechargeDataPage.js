@@ -1,12 +1,11 @@
-// RechargeDataPage.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./style.css";
 
 const RechargeDataPage = () => {
   const [rechargeData, setRechargeData] = useState([]);
-  const [paid, setPaid] = useState();
-  const [buttonDisabled, setButtonDisabled] = useState();
+  const [paid, setPaid] = useState(null);
+  const [disabledButtons, setDisabledButtons] = useState({}); // State for tracking disabled buttons
 
   useEffect(() => {
     const fetchData = async () => {
@@ -27,7 +26,7 @@ const RechargeDataPage = () => {
   const handlePaid = async (id, userId, rechargeAmount, paid) => {
     try {
       setPaid(paid);
-      setButtonDisabled(true); // Disable the buttons when clicked
+      setDisabledButtons((prevState) => ({ ...prevState, [id]: true })); // Disable the button when clicked
       console.log(id);
       // Make the POST request to update the data
       await axios.post(
@@ -38,8 +37,10 @@ const RechargeDataPage = () => {
           paid: paid,
         }
       );
+      window.location.reload(); // Reload the page after successful update
     } catch (error) {
       console.error("Error updating data:", error);
+      setDisabledButtons((prevState) => ({ ...prevState, [id]: false })); // Re-enable the button in case of an error
     }
   };
 
@@ -57,7 +58,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, true)
                 }
-                disabled={item.paid === paid || buttonDisabled} // Disable if already paid or buttons disabled
+                disabled={disabledButtons[item._id] || item.paid} // Disable if button state is true or already paid
               >
                 Yes
               </button>
@@ -68,7 +69,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, false)
                 }
-                disabled={item.paid === paid || buttonDisabled}
+                disabled={disabledButtons[item._id] || item.paid} // Disable if button state is true or already not paid
               >
                 No
               </button>

@@ -87,6 +87,7 @@ const HomePage = ({ cards }) => {
         const responseMsg = response.data.msg;
         // const walletAmount = response.data.userTotalAmount;
         alert(responseMsg);
+        window.location.reload(); // Reload the page to reflect changes
       })
       .catch((error) => {
         if (error.response) {
