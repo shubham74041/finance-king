@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "./WithdrawalPage.css"; // Import CSS file for styling
 
 function WithdrawalPage() {
@@ -7,12 +8,41 @@ function WithdrawalPage() {
   const [accountNumber, setAccountNumber] = useState("");
   const [accountHolderName, setAccountHolderName] = useState("");
   const [ifscCode, setIFSCCode] = useState("");
-  const [mobileNumber, setMobileNumber] = useState("");
-  const [bankAddress, setBankAddress] = useState("");
+  // const [mobileNumber, setMobileNumber] = useState("");
+  // const [bankAddress, setBankAddress] = useState("");
   const [upiId, setUpiId] = useState(""); // State for UPI ID
   const [selectedMethod, setSelectedMethod] = useState("bank"); // State for selected withdrawal method
   const [showPopup, setShowPopup] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+
+  const submitWithdrawal = async (data) => {
+    const phoneNumber = localStorage.getItem("site");
+    try {
+      const response = await axios.post(
+        `https://rajjiowin-backend.vercel.app/withdrawal/${phoneNumber}`,
+        data
+      );
+
+      console.log("Success:", response.data.userId);
+
+      // Show popup
+      setShowPopup(true);
+      // Clear form
+      setWithdrawalAmount("");
+      setBankName("");
+      setAccountNumber("");
+      setAccountHolderName("");
+      setIFSCCode("");
+      // setMobileNumber("");
+      // setBankAddress("");
+      setUpiId("");
+    } catch (error) {
+      console.error(
+        "Error:",
+        error.response ? error.response.data : error.message
+      );
+    }
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -24,9 +54,9 @@ function WithdrawalPage() {
         !bankName ||
         !accountNumber ||
         !accountHolderName ||
-        !ifscCode ||
-        !mobileNumber ||
-        !bankAddress
+        !ifscCode
+        // !mobileNumber ||
+        // !bankAddress
       ) {
         errors.push("Please fill out all fields.");
       }
@@ -38,29 +68,24 @@ function WithdrawalPage() {
     if (errors.length > 0) {
       setFormErrors(errors);
     } else {
-      // Add logic for money withdrawal
-      console.log("Withdrawal Amount:", withdrawalAmount);
-      if (selectedMethod === "bank") {
-        console.log("Bank Name:", bankName);
-        console.log("Account Number:", accountNumber);
-        console.log("Account Holder Name:", accountHolderName);
-        console.log("IFSC Code:", ifscCode);
-        console.log("Mobile Number:", mobileNumber);
-        console.log("Bank Address:", bankAddress);
-      } else if (selectedMethod === "upi") {
-        console.log("UPI ID:", upiId);
-      }
-      // Show popup
-      setShowPopup(true);
-      // Clear form
-      setWithdrawalAmount("");
-      setBankName("");
-      setAccountNumber("");
-      setAccountHolderName("");
-      setIFSCCode("");
-      setMobileNumber("");
-      setBankAddress("");
-      setUpiId("");
+      const formData = {
+        withdrawalAmount,
+        method: selectedMethod,
+        ...(selectedMethod === "bank" && {
+          bankName,
+          accountNumber,
+          accountHolderName,
+          ifscCode,
+          // mobileNumber,
+          // bankAddress,
+        }),
+        ...(selectedMethod === "upi" && {
+          upiId,
+        }),
+      };
+
+      // Send form data to backend
+      submitWithdrawal(formData);
     }
   };
 
@@ -71,7 +96,6 @@ function WithdrawalPage() {
   return (
     <div className="main">
       <div className="container_withdrawal">
-        {/* <span>Money Withdrawal</span> */}
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="withdrawalAmount">Withdrawal Amount:</label>
@@ -118,7 +142,6 @@ function WithdrawalPage() {
                   required={selectedMethod === "bank"}
                 />
               </div>
-              {/* Other bank fields */}
               <div className="form-group">
                 <label htmlFor="accountNumber">Account Number:</label>
                 <input
@@ -129,7 +152,6 @@ function WithdrawalPage() {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="accountHolderName">Account Holder Name:</label>
                 <input
@@ -140,7 +162,6 @@ function WithdrawalPage() {
                   required
                 />
               </div>
-
               <div className="form-group">
                 <label htmlFor="ifscCode">IFSC Code:</label>
                 <input
@@ -151,17 +172,26 @@ function WithdrawalPage() {
                   required
                 />
               </div>
-
               {/* <div className="form-group">
-              <label htmlFor="mobileNumber">Mobile Number:</label>
-              <input
-                type="text"
-                id="mobileNumber"
-                value={mobileNumber}
-                onChange={(e) => setMobileNumber(e.target.value)}
-                required
-              />
-            </div> */}
+                <label htmlFor="mobileNumber">Mobile Number:</label>
+                <input
+                  type="text"
+                  id="mobileNumber"
+                  value={mobileNumber}
+                  onChange={(e) => setMobileNumber(e.target.value)}
+                  required
+                />
+              </div> */}
+              {/* <div className="form-group">
+                <label htmlFor="bankAddress">Bank Address:</label>
+                <input
+                  type="text"
+                  id="bankAddress"
+                  value={bankAddress}
+                  onChange={(e) => setBankAddress(e.target.value)}
+                  required
+                />
+              </div> */}
             </>
           )}
           {selectedMethod === "upi" && (
