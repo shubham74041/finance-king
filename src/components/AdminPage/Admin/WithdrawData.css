@@ -1,0 +1,139 @@
+/* Base styles */
+.withdraw_container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.withdraw_title {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* Style for the first table */
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.th,
+.td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.error,
+.no-data {
+  text-align: center;
+  color: red;
+  font-size: 18px;
+}
+
+/* Responsive styles */
+
+/* Small devices (phones, less than 600px) */
+@media (max-width: 600px) {
+  .withdraw_table_wrapper {
+    overflow-y: auto;
+    max-height: 400px; /* Adjust this value as needed */
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .table,
+  .th,
+  .td {
+    display: block;
+    width: 100%;
+  }
+
+  .th {
+    display: none;
+  }
+
+  .td {
+    border: none;
+    padding: 10px;
+    position: relative;
+    padding-left: 50%;
+    text-align: right;
+  }
+
+  .td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 10px;
+    font-weight: bold;
+    text-align: left;
+  }
+
+  .table-separator {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+}
+
+/* Medium devices (tablets, 600px to 900px) */
+@media (min-width: 600px) and (max-width: 900px) {
+  .withdraw_table_wrapper {
+    overflow-y: auto;
+    max-height: 600px; /* Adjust this value as needed */
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .th,
+  .td {
+    font-size: 14px;
+  }
+
+  .td {
+    padding: 10px;
+  }
+}
+
+/* Large devices (desktops, 900px and up) */
+@media (min-width: 900px) {
+  .withdraw_table_wrapper {
+    overflow-y: auto;
+    max-height: 800px; /* Adjust this value as needed */
+  }
+
+  .title {
+    font-size: 26px;
+  }
+
+  .th,
+  .td {
+    font-size: 16px;
+  }
+
+  .td {
+    padding: 14px;
+  }
+}
+
+/* Separator between tables */
+.separator {
+  margin-top: 40px;
+}
+
+/* Separator between users */
+.user-separator {
+  margin-top: 80px;
+}
+
+/* Styling for horizontal lines between tables */
+.table-separator {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 20px 0;
+}

@@ -31,6 +31,7 @@ import SupportPage from "./components/Support/SupportPage";
 import ComplaintPage from "./components/Complaint/ComplaintPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RechargeDataPage from "./components/AdminPage/Admin/RechargeDataPage";
+import WithdrawData from "./components/AdminPage/Admin/WithdrawData";
 
 function App() {
   return (
@@ -160,6 +161,7 @@ function App() {
                 <Route path="/signup" element={<SignUpPage />} />
 
                 <Route path="/recharge-data" element={<RechargeDataPage />} />
+                <Route path="/withdraw-data" element={<WithdrawData />} />
               </Routes>
             </div>
             <Footer />

@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { addCard } from "../../redux/actions";
 import "./AdminPage.css";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const AdminPage = ({ addCard }) => {
@@ -25,6 +25,10 @@ const AdminPage = ({ addCard }) => {
 
   const handleRechargeData = () => {
     navigate("/recharge-data");
+  };
+
+  const handleWithdrawData = () => {
+    navigate("/withdraw-data");
   };
 
   return (
@@ -64,6 +68,10 @@ const AdminPage = ({ addCard }) => {
       {/* Data Showing */}
       <div>
         <button onClick={handleRechargeData}>Show Recharge Data</button>
+      </div>
+
+      <div>
+        <button onClick={handleWithdrawData}>Show Withdraw Data</button>
       </div>
     </div>
   );
