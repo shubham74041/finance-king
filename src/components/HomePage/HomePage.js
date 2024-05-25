@@ -77,10 +77,20 @@ const HomePage = ({ cards }) => {
     const productPrice = parseFloat(card.price); // Ensure that price is parsed as a float
     console.log(userId);
     console.log("productPrice", productPrice);
+    const cardData = {
+      id: card.id,
+      title: card.title,
+      price: card.price,
+      dailyIncome: card.dailyIncome,
+      totalAmount: card.totalAmount,
+      cycle: card.cycle,
+    };
+
     // Make an API call to fetch wallet data based on userId
     axios
-      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
+      .post(`http://localhost:8080/${userId}`, {
         price: productPrice,
+        cardData,
       }) // Send price instead of productPrice
       .then((response) => {
         console.log(response.data.msg);

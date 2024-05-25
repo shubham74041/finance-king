@@ -5,14 +5,15 @@ import "./style.css";
 const RechargeDataPage = () => {
   const [rechargeData, setRechargeData] = useState([]);
   const [paid, setPaid] = useState(null);
-  const [disabledButtons, setDisabledButtons] = useState({}); // State for tracking disabled buttons
+  const [disabledButtons, setDisabledButtons] = useState({});
+  const [searchInput, setSearchInput] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
           "https://rajjiowin-backend.vercel.app/recharge-data"
-        ); // Adjust URL as per your backend endpoint
+        );
         console.log(response.data);
         setRechargeData(response.data);
       } catch (error) {
@@ -26,9 +27,8 @@ const RechargeDataPage = () => {
   const handlePaid = async (id, userId, rechargeAmount, paid) => {
     try {
       setPaid(paid);
-      setDisabledButtons((prevState) => ({ ...prevState, [id]: true })); // Disable the button when clicked
+      setDisabledButtons((prevState) => ({ ...prevState, [id]: true }));
       console.log(id);
-      // Make the POST request to update the data
       await axios.post(
         `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
         {
@@ -37,20 +37,35 @@ const RechargeDataPage = () => {
           paid: paid,
         }
       );
-      window.location.reload(); // Reload the page after successful update
+      window.location.reload();
     } catch (error) {
       console.error("Error updating data:", error);
-      setDisabledButtons((prevState) => ({ ...prevState, [id]: false })); // Re-enable the button in case of an error
+      setDisabledButtons((prevState) => ({ ...prevState, [id]: false }));
     }
   };
+
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const filteredData = rechargeData.filter((item) =>
+    item.userId.toLowerCase().includes(searchInput.toLowerCase())
+  );
 
   return (
     <div className="container">
       <h2 className="heading">Recharge Data</h2>
+      <input
+        type="text"
+        placeholder="Search by UserID"
+        value={searchInput}
+        onChange={handleSearchInputChange}
+        className="search_input"
+      />
       <ul className="list">
-        {rechargeData.map((item, index) => (
+        {filteredData.map((item, index) => (
           <li className="list_item" key={index}>
-            UserId: {item.userId} , Amount: {item.rechargeAmount}, Paid:
+            UserId: {item.userId}, Amount: {item.rechargeAmount}, Paid:{" "}
             {item.paid.toString()}
             <span>
               <button
@@ -58,7 +73,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, true)
                 }
-                disabled={disabledButtons[item._id] || item.paid} // Disable if button state is true or already paid
+                disabled={disabledButtons[item._id] || item.paid}
               >
                 Yes
               </button>
@@ -69,7 +84,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, false)
                 }
-                disabled={disabledButtons[item._id] || item.paid} // Disable if button state is true or already not paid
+                disabled={disabledButtons[item._id] || item.paid}
               >
                 No
               </button>

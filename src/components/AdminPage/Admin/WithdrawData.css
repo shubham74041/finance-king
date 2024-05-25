@@ -11,8 +11,19 @@
   font-weight: bold;
 }
 
-/* Style for the first table */
+/* Style for the search input */
+.search_input {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
 
+/* Style for the first table */
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -41,8 +52,13 @@
     max-height: 400px; /* Adjust this value as needed */
   }
 
-  .title {
+  .withdraw_title {
     font-size: 20px;
+  }
+
+  .search_input {
+    width: 90%; /* Adjust width for smaller screens */
+    font-size: 14px; /* Smaller font size */
   }
 
   .table,
@@ -86,8 +102,13 @@
     max-height: 600px; /* Adjust this value as needed */
   }
 
-  .title {
+  .withdraw_title {
     font-size: 22px;
+  }
+
+  .search_input {
+    width: 80%; /* Adjust width for medium screens */
+    font-size: 15px; /* Adjust font size */
   }
 
   .th,
@@ -107,8 +128,13 @@
     max-height: 800px; /* Adjust this value as needed */
   }
 
-  .title {
+  .withdraw_title {
     font-size: 26px;
+  }
+
+  .search_input {
+    width: 50%; /* Adjust width for larger screens */
+    font-size: 16px; /* Default font size */
   }
 
   .th,

@@ -3,6 +3,7 @@ import "./WithdrawData.css";
 
 const WithdrawData = () => {
   const [data, setData] = useState([]);
+  const [searchInput, setSearchInput] = useState("");
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -25,6 +26,14 @@ const WithdrawData = () => {
     fetchData();
   }, []);
 
+  const handleSearchInputChange = (event) => {
+    setSearchInput(event.target.value);
+  };
+
+  const filteredData = data.filter((item) =>
+    item.userId.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   if (error) {
     return <p className="error">Error: {error.message}</p>;
   }
@@ -32,7 +41,14 @@ const WithdrawData = () => {
   return (
     <div className="withdraw_container">
       <h2 className="withdraw_title">Withdraw Data</h2>
-      {data.length > 0 ? (
+      <input
+        type="text"
+        placeholder="Search by UserID"
+        value={searchInput}
+        onChange={handleSearchInputChange}
+        className="search_input"
+      />
+      {filteredData.length > 0 ? (
         <div className="withdraw_table_wrapper">
           <table className="table first-table">
             <thead>
@@ -48,7 +64,7 @@ const WithdrawData = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map((item) => (
+              {filteredData.map((item) => (
                 <React.Fragment key={item._id}>
                   <tr className="tr user-separator">
                     <td className="td" data-label="UserID">
