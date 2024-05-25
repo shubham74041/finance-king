@@ -88,7 +88,7 @@ const HomePage = ({ cards }) => {
 
     // Make an API call to fetch wallet data based on userId
     axios
-      .post(`http://localhost:8080/${userId}`, {
+      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
         price: productPrice,
         cardData,
       }) // Send price instead of productPrice

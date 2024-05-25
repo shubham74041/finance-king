@@ -9,7 +9,9 @@ const OrderPage = () => {
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
-        const response = await axios.get(`http://localhost:8080/order/${id}`);
+        const response = await axios.get(
+          `https://rajjiowin-backend.vercel.app/order/${id}`
+        );
         setOrderData(response.data);
       } catch (error) {
         console.error("Error fetching order data:", error);
