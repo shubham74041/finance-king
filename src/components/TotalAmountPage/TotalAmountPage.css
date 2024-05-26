@@ -1,19 +1,16 @@
-/* TotalAmountPage.css */
 
 .total-amount-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px 6px 0px 1px;
+  max-width: 100%;
+  margin: 5% auto 0;
+  padding: 20px;
   border: 1px solid #ddd;
   border-radius: 10px;
-  margin-top: 5%;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adding shadow */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .additional-links {
   display: flex;
-  /* flex-wrap: wrap; */
-  flex-direction: column;
+  flex-wrap: wrap; /* Allow links to wrap to the next line on smaller screens */
   margin-top: 10px;
 }
 
@@ -27,7 +24,13 @@
   margin-bottom: 10px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  width: 100%;
+  width: calc(50% - 10px); /* Take up half the width with some spacing */
+}
+
+.link img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
 }
 
 .link span {
@@ -37,12 +40,9 @@
 .link:hover {
   background-color: #e0e0e0;
 }
-.common-space {
-  display: flex;
-  justify-content: space-between;
-}
+
 @media screen and (max-width: 600px) {
-  .additional-links .link {
-    flex-basis: calc(50% - 5px); /* Adjust for margin */
+  .link {
+    width: calc(100% - 20px); /* Take up full width with some spacing */
   }
 }
