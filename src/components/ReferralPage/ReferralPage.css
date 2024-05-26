@@ -1,4 +1,4 @@
-.referral-container {
+/* .referral-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -54,4 +54,81 @@
       font-size: 14px;
     }
   }
-  
+   */
+
+.referral-page {
+  text-align: center;
+  padding: 20px;
+}
+
+.referral-container {
+  display: inline-block;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.referral-container p {
+  margin: 0 0 10px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.referral-container button {
+  padding: 5px 10px;
+  font-size: 16px;
+}
+
+.error-message {
+  color: red;
+}
+
+#email {
+  padding: 5px;
+  margin: 10px 0;
+}
+
+.promotion-task {
+  margin-top: 20px;
+}
+
+.tasks {
+  margin: 10px auto;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 80%;
+  max-width: 400px;
+  background-color: #f9f9f9;
+}
+
+.tasks h4 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.tasks p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.btn {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.btn button {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border: 1px solid #007bff;
+  background-color: #007bff;
+  color: #fff;
+  border-radius: 3px;
+}
+
+.btn button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
