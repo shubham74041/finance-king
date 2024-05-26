@@ -11,9 +11,12 @@ const ReferralPage = () => {
 
   const fetchReferralCode = async () => {
     try {
-      const response = await axios.post("http://localhost:8080/referral", {
-        email,
-      });
+      const response = await axios.post(
+        "https://rajjiowin-backend.vercel.app/referral",
+        {
+          email,
+        }
+      );
       setReferralCode(response.data.referralCode);
       setErrorMessage(""); // Clear error message on success
     } catch (error) {
