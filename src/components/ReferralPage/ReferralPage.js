@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ReferralPage.css";
 import { useNavigate } from "react-router-dom";
@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 const ReferralPage = () => {
   const navigate = useNavigate();
   const [referralCode, setReferralCode] = useState("");
-  const [email, setEmail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   const fetchReferralCode = async () => {
@@ -14,7 +13,7 @@ const ReferralPage = () => {
       const response = await axios.post(
         "https://rajjiowin-backend.vercel.app/referral",
         {
-          email,
+          // any required data can be sent here, or just send an empty object
         }
       );
       setReferralCode(response.data.referralCode);
@@ -25,19 +24,23 @@ const ReferralPage = () => {
     }
   };
 
+  useEffect(() => {
+    fetchReferralCode();
+  }, []); // Empty dependency array ensures this runs once on mount
+
   const handleCopy = () => {
     navigator.clipboard.writeText(referralCode);
     alert("Referral code copied to clipboard!");
   };
 
   const handleSendWhatsApp = () => {
-    const referralLink = `http://localhost:3000/signup?referral=${referralCode}`; // Updated with your actual signup page link
+    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referral=${referralCode}`; // Updated with your actual signup page link
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
   };
 
   const handleSendTelegram = () => {
-    const referralLink = `http://localhost:3000/signup?referral=${referralCode}`; // Updated with your actual signup page link
+    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referral=${referralCode}`; // Updated with your actual signup page link
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(
       `https://telegram.me/share/url?url=${encodeURIComponent(
@@ -45,6 +48,7 @@ const ReferralPage = () => {
       )}&text=${encodeURIComponent(message)}`
     );
   };
+
   const handlePromotion = () => {
     navigate("/promotion-tasks");
   };
@@ -52,18 +56,6 @@ const ReferralPage = () => {
   return (
     <div className="referral-page">
       <h2>Your Referral Code</h2>
-      <div>
-        <label htmlFor="email">
-          Enter your email to get your referral code:
-        </label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <button onClick={fetchReferralCode}>Get Referral Code</button>
-      </div>
       {errorMessage ? (
         <p className="error-message">{errorMessage}</p>
       ) : (

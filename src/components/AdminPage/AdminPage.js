@@ -34,7 +34,7 @@ const AdminPage = ({ addCard }) => {
   return (
     <div className="container">
       <h2>Admin Page</h2>
-      <div className="input-group">
+      {/* <div className="input-group">
         <label htmlFor="timestamp">Timestamp:</label>
         <input
           type="text"
