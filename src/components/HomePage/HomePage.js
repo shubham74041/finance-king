@@ -78,7 +78,6 @@ const HomePage = ({ cards }) => {
     console.log(userId);
     console.log("productPrice", productPrice);
     const cardData = {
-      id: card.id,
       title: card.title,
       price: card.price,
       dailyIncome: card.dailyIncome,
