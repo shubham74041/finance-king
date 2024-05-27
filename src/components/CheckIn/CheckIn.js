@@ -20,6 +20,18 @@ const CheckIn = () => {
   }, []);
 
   const handleCheckIn = async () => {
+    const lastCheckIn = localStorage.getItem("lastCheckIn");
+    const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+    if (lastCheckIn && Date.now() - parseInt(lastCheckIn) < twentyFourHours) {
+      setMessage("You have already checked in within the last 24 hours.");
+      setTimeout(() => {
+        setMessage("");
+        window.location.reload(); // Reload the window after the message disappears
+      }, 10000);
+      return;
+    }
+
     const id = localStorage.getItem("site");
     try {
       console.log("Request payload:", { userId: id }); // Log the request payload
@@ -41,10 +53,15 @@ const CheckIn = () => {
       // Make the popup disappear after 10 seconds
       setTimeout(() => {
         setMessage("");
+        window.location.reload(); // Reload the window after the message disappears
       }, 10000);
     } catch (error) {
       console.error("Error during check-in:", error);
       setMessage("An error occurred during check-in. Please try again later.");
+      setTimeout(() => {
+        setMessage("");
+        window.location.reload(); // Reload the window after the message disappears
+      }, 10000);
     }
   };
 

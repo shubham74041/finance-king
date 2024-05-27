@@ -30,6 +30,9 @@ const AdminPage = ({ addCard }) => {
   const handleWithdrawData = () => {
     navigate("/withdraw-data");
   };
+  const handleCustomPopup = () => {
+    navigate("/custom-popup");
+  };
 
   return (
     <div className="container">
@@ -72,6 +75,9 @@ const AdminPage = ({ addCard }) => {
 
       <div>
         <button onClick={handleWithdrawData}>Show Withdraw Data</button>
+      </div>
+      <div>
+        <button onClick={handleCustomPopup}>Add Custom Popup</button>
       </div>
     </div>
   );
