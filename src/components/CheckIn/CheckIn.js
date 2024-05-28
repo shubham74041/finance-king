@@ -6,7 +6,7 @@ import CheckInIcon from "../icons/icons8-entrance-100.png";
 const CheckIn = () => {
   const [message, setMessage] = useState("");
   const [buttonColor, setButtonColor] = useState("default"); // default or checked-in
-  const [lastCheckInTime, setLastCheckInTime] = useState(null);
+  // const [lastCheckInTime, setLastCheckInTime] = useState(null);
 
   useEffect(() => {
     const lastCheckIn = localStorage.getItem("lastCheckIn");
