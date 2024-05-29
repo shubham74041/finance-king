@@ -33,6 +33,13 @@ const AdminPage = ({ addCard }) => {
   const handleCustomPopup = () => {
     navigate("/custom-popup");
   };
+  const handleUser = () => {
+    navigate("/users");
+  };
+
+  const handleReferral = () => {
+    navigate("/details-referral");
+  };
 
   return (
     <div className="container">
@@ -78,6 +85,12 @@ const AdminPage = ({ addCard }) => {
       </div>
       <div>
         <button onClick={handleCustomPopup}>Add Custom Popup</button>
+      </div>
+      <div>
+        <button onClick={handleUser}>Referral Details Page</button>
+      </div>
+      <div>
+        <button onClick={handleReferral}>View User Details</button>
       </div>
     </div>
   );

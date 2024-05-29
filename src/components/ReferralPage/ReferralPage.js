@@ -8,12 +8,14 @@ const ReferralPage = () => {
   const [referralCode, setReferralCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
+  const userId = localStorage.getItem("site"); // Replace this with the actual user ID
+
   const fetchReferralCode = async () => {
     try {
       const response = await axios.post(
         "https://rajjiowin-backend.vercel.app/referral",
         {
-          // any required data can be sent here, or just send an empty object
+          userId,
         }
       );
       setReferralCode(response.data.referralCode);

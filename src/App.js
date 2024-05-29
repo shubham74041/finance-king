@@ -33,6 +33,8 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import RechargeDataPage from "./components/AdminPage/Admin/RechargeDataPage";
 import WithdrawData from "./components/AdminPage/Admin/WithdrawData";
 import CheckIn from "./components/CheckIn/CheckIn";
+import UserDetails from "./components/AdminPage/Admin/UserDetails";
+import DetailReferral from "./components/AdminPage/Admin/DetailReferral";
 // import CustomPopup from "./components/AdminPage/Admin/CustomPopup";
 
 function App() {
@@ -165,6 +167,8 @@ function App() {
                 <Route path="/recharge-data" element={<RechargeDataPage />} />
                 <Route path="/withdraw-data" element={<WithdrawData />} />
                 <Route path="check-in" element={<CheckIn />} />
+                <Route path="/users" element={<UserDetails />} />
+                <Route path="/details-referral" element={<DetailReferral />} />
               </Routes>
             </div>
             <Footer />

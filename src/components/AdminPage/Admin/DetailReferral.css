@@ -1,0 +1,41 @@
+/* DetailReferral.css */
+
+.detail-referral-container {
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+@media screen and (max-width: 600px) {
+  /* Adjust styles for small devices */
+  th,
+  td {
+    font-size: 14px;
+  }
+}
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  /* Adjust styles for mid-sized devices */
+  th,
+  td {
+    font-size: 16px;
+  }
+}
+
+/* You can add more media queries for larger devices if needed */
