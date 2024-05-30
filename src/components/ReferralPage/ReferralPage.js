@@ -36,13 +36,13 @@ const ReferralPage = () => {
   };
 
   const handleSendWhatsApp = () => {
-    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referral=${referralCode}`; // Updated with your actual signup page link
+    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referralCode=${referralCode}`; // Updated URL parameter to "referralCode"
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
   };
 
   const handleSendTelegram = () => {
-    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referral=${referralCode}`; // Updated with your actual signup page link
+    const referralLink = `https://rajjiowin-backend.vercel.app/signup?referralCode=${referralCode}`; // Updated URL parameter to "referralCode"
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(
       `https://telegram.me/share/url?url=${encodeURIComponent(

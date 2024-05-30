@@ -37,7 +37,8 @@ const UserDetails = () => {
     axios
       .post(`https://rajjiowin-backend.vercel.app/users/${userId}`, { amount })
       .then((response) => {
-        alert(response.resMsg);
+        console.log("API response:", response.data);
+        alert(response.data.resMsg);
       })
       .catch((error) => {
         console.error("Error adding amount:", error);

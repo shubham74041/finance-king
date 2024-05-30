@@ -12,14 +12,13 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [referralCode, setReferralCode] = useState("");
-
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const referral = params.get("referral");
-    if (referral) {
-      setReferralCode(referral);
+    const queryParams = new URLSearchParams(location.search);
+    const code = queryParams.get("referralCode");
+    if (code) {
+      setReferralCode(code);
     }
-  }, [location.search]);
+  }, [location]);
 
   const handleTele = () => {
     const telegramUsername = "Piyush3029";
