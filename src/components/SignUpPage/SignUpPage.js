@@ -12,9 +12,10 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [referralCode, setReferralCode] = useState("");
+
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const code = queryParams.get("referralCode");
+    const code = queryParams.get("referralCode"); // This should match the query parameter name in the referral link
     if (code) {
       setReferralCode(code);
     }
@@ -34,26 +35,27 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      await axios
-        .post("https://rajjiowin-backend.vercel.app/signup", {
+      const response = await axios.post(
+        "https://rajjiowin-backend.vercel.app/signup",
+        {
           email,
           phoneNumber,
           password,
           referralCode,
-        })
-        .then((res) => {
-          if (res.data === "exists") {
-            alert("User already exists");
-          } else if (res.data === "notexists") {
-            alert("User Register Successfully");
-            navigate("/");
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+        }
+      );
+
+      if (response.data === "exists") {
+        alert("User already exists");
+      } else if (response.data === "notexists") {
+        alert("User Registered Successfully");
+        navigate("/");
+      } else {
+        alert("Unexpected response: " + response.data);
+      }
     } catch (err) {
-      console.log(err);
+      console.error("Error during signup:", err);
+      alert("Signup failed. Please try again.");
     }
   };
 
@@ -63,7 +65,9 @@ const SignUp = () => {
         <div className="form-container">
           <h2>Rajjowin</h2>
           <div>
-            <label className="email-label">Email</label>
+            <label className="email-label" htmlFor="email">
+              Email
+            </label>
             <input
               placeholder="Enter Email"
               id="email"
@@ -71,21 +75,27 @@ const SignUp = () => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div>
-            <label className="mobile-label">Mobile No.</label>
+            <label className="mobile-label" htmlFor="phoneNumber">
+              Mobile No.
+            </label>
             <input
               placeholder="Enter Mobile No."
               id="phoneNumber"
               className="mobile_input"
-              type="number"
+              type="tel"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
+              required
             />
           </div>
           <div>
-            <label className="password-label">Password</label>
+            <label className="password-label" htmlFor="password">
+              Password
+            </label>
             <input
               className="password_input"
               id="password"
@@ -93,10 +103,13 @@ const SignUp = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              required
             />
           </div>
           <div>
-            <label className="referral-label">Referral Code (optional)</label>
+            <label className="referral-label" htmlFor="referralCode">
+              Referral Code (optional)
+            </label>
             <input
               className="referral_input"
               id="referralCode"
@@ -114,13 +127,9 @@ const SignUp = () => {
               Already have an account? <Link to="/login">Login Here</Link>
             </p>
           </div>
-          <button className="tele_button" onClick={handleTele}>
+          <button type="button" className="tele_button" onClick={handleTele}>
             <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                height: "25px",
-              }}
+              style={{ display: "flex", flexDirection: "row", height: "25px" }}
             >
               <img
                 src={telegramIcon}
@@ -135,13 +144,13 @@ const SignUp = () => {
               <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>
             </div>
           </button>
-          <button onClick={handleSupport} className="support_button">
+          <button
+            type="button"
+            onClick={handleSupport}
+            className="support_button"
+          >
             <div
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                height: "25px",
-              }}
+              style={{ display: "flex", flexDirection: "row", height: "25px" }}
             >
               <img
                 src={supportIcon}
