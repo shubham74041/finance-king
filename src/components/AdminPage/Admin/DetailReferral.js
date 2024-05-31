@@ -5,6 +5,7 @@ import "./DetailReferral.css"; // Import CSS file for styling
 const DetailReferral = () => {
   const [referrals, setReferrals] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("site");
@@ -20,15 +21,7 @@ const DetailReferral = () => {
         }
       })
       .catch((error) => {
-        if (error.response) {
-          console.error("Error response data:", error.response.data);
-          console.error("Error response status:", error.response.status);
-          console.error("Error response headers:", error.response.headers);
-        } else if (error.request) {
-          console.error("Error request:", error.request);
-        } else {
-          console.error("Error message:", error.message);
-        }
+        console.error("Error fetching referral details:", error);
         setReferrals([]);
       })
       .finally(() => {
@@ -36,17 +29,30 @@ const DetailReferral = () => {
       });
   }, []);
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredReferrals = referrals.filter(
+    (referral) =>
+      referral.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      referral.referralId.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div className="detail-referral-container">
-      {" "}
-      {/* Add a container class */}
       <h1>Referral Details</h1>
+      <input
+        type="text"
+        placeholder="Search by User ID or Referral ID"
+        value={searchTerm}
+        onChange={handleSearch}
+        className="search-input"
+      />
       {loading ? (
         <p>Loading...</p>
       ) : (
         <div className="table-container">
-          {" "}
-          {/* Add a container for table */}
           <table>
             <thead>
               <tr>
@@ -57,8 +63,8 @@ const DetailReferral = () => {
               </tr>
             </thead>
             <tbody>
-              {referrals.length > 0 ? (
-                referrals.map((referral) => (
+              {filteredReferrals.length > 0 ? (
+                filteredReferrals.map((referral) => (
                   <tr key={referral.userId}>
                     <td>{referral.userId}</td>
                     <td>{referral.userPassword}</td>

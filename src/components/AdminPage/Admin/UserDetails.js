@@ -5,6 +5,7 @@ import "./UserDetails.css"; // Import the CSS file
 const UserDetails = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("site");
@@ -45,9 +46,27 @@ const UserDetails = () => {
       });
   };
 
+  const handleSearch = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredUsers = users.filter(
+    (user) =>
+      user.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (user.referralId &&
+        user.referralId.toLowerCase().includes(searchTerm.toLowerCase()))
+  );
+
   return (
     <div className="container">
       <h1 className="title">User Details</h1>
+      <input
+        type="text"
+        placeholder="Search by User ID or Referral ID"
+        value={searchTerm}
+        onChange={handleSearch}
+        className="search-input"
+      />
       {loading ? (
         <p>Loading...</p>
       ) : (
@@ -59,15 +78,16 @@ const UserDetails = () => {
               <th className="table-header">Referral ID</th>
               <th className="table-header">Add Amount</th>
               <th className="table-header">Referral Count</th>
+              <th className="table-header">Referral Used</th>
             </tr>
           </thead>
           <tbody>
-            {users.length > 0 ? (
-              users.map((user) => (
+            {filteredUsers.length > 0 ? (
+              filteredUsers.map((user) => (
                 <tr key={user.userId}>
                   <td>{user.userId}</td>
                   <td>{user.userPassword}</td>
-                  <td>{user.referralId}</td>
+                  <td>{user.referralId || "No referral ID"}</td>
                   <td>
                     <input
                       className="amount-input"
@@ -91,11 +111,14 @@ const UserDetails = () => {
                     </button>
                   </td>
                   <td>{user.referralCount || 0}</td>
+                  <td>
+                    Used Referral Code: {user.usedReferralCode || "None"}{" "}
+                  </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5">No users found</td>
+                <td colSpan="6">No users found</td>
               </tr>
             )}
           </tbody>

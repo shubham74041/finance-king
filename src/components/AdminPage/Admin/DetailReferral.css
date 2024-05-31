@@ -22,10 +22,27 @@ td {
   text-align: left;
 }
 
+/* Search input styling */
+.search-input {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
 @media screen and (max-width: 600px) {
   /* Adjust styles for small devices */
   th,
   td {
+    font-size: 14px;
+  }
+
+  .search-input {
     font-size: 14px;
   }
 }
@@ -34,6 +51,10 @@ td {
   /* Adjust styles for mid-sized devices */
   th,
   td {
+    font-size: 16px;
+  }
+
+  .search-input {
     font-size: 16px;
   }
 }
