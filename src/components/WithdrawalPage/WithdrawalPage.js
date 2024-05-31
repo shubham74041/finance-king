@@ -48,6 +48,13 @@ function WithdrawalPage() {
     event.preventDefault();
     // Validate form
     const errors = [];
+
+    // Check for minimum withdrawal amount
+    if (Number(withdrawalAmount) < 150) {
+      alert("The minimum withdrawal amount is 150.");
+      return;
+    }
+
     if (selectedMethod === "bank") {
       if (
         !withdrawalAmount ||
@@ -65,6 +72,7 @@ function WithdrawalPage() {
         errors.push("Please fill out all fields.");
       }
     }
+
     if (errors.length > 0) {
       setFormErrors(errors);
     } else {

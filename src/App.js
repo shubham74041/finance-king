@@ -36,6 +36,7 @@ import CheckIn from "./components/CheckIn/CheckIn";
 import UserDetails from "./components/AdminPage/Admin/UserDetails";
 import DetailReferral from "./components/AdminPage/Admin/DetailReferral";
 // import CustomPopup from "./components/AdminPage/Admin/CustomPopup";
+import ContactInfo from "./components/AdminPage/Admin/ContactInfo";
 
 function App() {
   return (
@@ -169,6 +170,7 @@ function App() {
                 <Route path="check-in" element={<CheckIn />} />
                 <Route path="/users" element={<UserDetails />} />
                 <Route path="/details-referral" element={<DetailReferral />} />
+                <Route path="/messages" element={<ContactInfo />} />
               </Routes>
             </div>
             <Footer />

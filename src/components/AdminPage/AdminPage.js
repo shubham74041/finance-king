@@ -41,6 +41,10 @@ const AdminPage = ({ addCard }) => {
     navigate("/details-referral");
   };
 
+  const handleMessage = () => {
+    navigate("/messages");
+  };
+
   return (
     <div className="container">
       <h2>Admin Page</h2>
@@ -90,7 +94,10 @@ const AdminPage = ({ addCard }) => {
         <button onClick={handleUser}>Referral Details Page</button>
       </div>
       <div>
-        <button onClick={handleReferral}>View User Details</button>
+        <button onClick={handleReferral}>View Users Details</button>
+      </div>
+      <div>
+        <button onClick={handleMessage}>View Users Messages</button>
       </div>
     </div>
   );

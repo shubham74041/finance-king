@@ -3,28 +3,27 @@ import axios from "axios";
 import "./CheckIn.css";
 import CheckInIcon from "../icons/icons8-entrance-100.png";
 
-const CheckIn = () => {
+const CheckIn = ({ enabled }) => {
   const [message, setMessage] = useState("");
-  const [buttonColor, setButtonColor] = useState("default"); // default or checked-in
-  // const [lastCheckInTime, setLastCheckInTime] = useState(null);
+  const [buttonColor, setButtonColor] = useState("default");
 
   useEffect(() => {
     const lastCheckIn = localStorage.getItem("lastCheckIn");
-    if (lastCheckIn) {
-      const lastCheckInTimestamp = parseInt(lastCheckIn);
-      const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-      if (Date.now() - lastCheckInTimestamp < twentyFourHours) {
-        setButtonColor("checked-in");
-      }
+    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+
+    if (lastCheckIn === today) {
+      setButtonColor("checked-in");
+    } else {
+      setButtonColor(enabled ? "default" : "disabled");
     }
-  }, []);
+  }, [enabled]);
 
   const handleCheckIn = async () => {
     const lastCheckIn = localStorage.getItem("lastCheckIn");
-    const twentyFourHours = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
-    if (lastCheckIn && Date.now() - parseInt(lastCheckIn) < twentyFourHours) {
-      setMessage("You have already checked in within the last 24 hours.");
+    if (lastCheckIn === today) {
+      setMessage("You have already checked in today.");
       setTimeout(() => {
         setMessage("");
         window.location.reload(); // Reload the window after the message disappears
@@ -45,7 +44,7 @@ const CheckIn = () => {
       if (data.hasProducts) {
         setButtonColor("checked-in");
         setMessage("Today check-in complete");
-        localStorage.setItem("lastCheckIn", Date.now());
+        localStorage.setItem("lastCheckIn", today);
       } else {
         setButtonColor("default");
         setMessage("You don't have any products");
@@ -71,7 +70,7 @@ const CheckIn = () => {
         <button
           onClick={handleCheckIn}
           className={`check_in_button ${buttonColor}`}
-          disabled={buttonColor === "checked-in"}
+          disabled={!enabled || buttonColor === "checked-in"}
         >
           <span className="title_check">Check-in</span>
         </button>

@@ -14,6 +14,7 @@ import axios from "axios";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
+  const [purchased, setPurchased] = useState(false); // State variable to track purchase
 
   const dummyCards = [
     {
@@ -96,6 +97,7 @@ const HomePage = ({ cards }) => {
         const responseMsg = response.data.msg;
         // const walletAmount = response.data.userTotalAmount;
         alert(responseMsg);
+        setPurchased(true); // Update purchased state
         window.location.reload(); // Reload the page to reflect changes
       })
       .catch((error) => {
@@ -116,7 +118,7 @@ const HomePage = ({ cards }) => {
   return (
     <div className="home">
       <HomeCard balance={walletBalance} />
-      <CheckIn />
+      <CheckIn enabled={purchased} />
       <div className="card-container">
         {cards && cards.length > 0
           ? cards.map((card, index) => <GenericCard key={index} {...card} />)

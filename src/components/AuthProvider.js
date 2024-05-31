@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
         setToken(res.data.phoneNumber);
         localStorage.setItem("site", res.data.phoneNumber);
         setShowPopup(true); // Show popup after successful login
+        alert("Login successful!"); // Alert for successful login
         navigate("/");
         return;
       }
@@ -63,8 +64,10 @@ export const AuthProvider = ({ children }) => {
     } catch (error) {
       // Handle login errors
       console.error("Login failed:", error);
+      alert("Incorrect Phone Number or Password"); // Alert for incorrect login credentials
     }
   };
+
   const closePopup = () => {
     setShowPopup(false);
   };
