@@ -56,6 +56,7 @@ const DetailReferral = () => {
           <table>
             <thead>
               <tr>
+                <th>Serial No</th>
                 <th>User ID</th>
                 <th>Password</th>
                 <th>Referral ID</th>
@@ -64,8 +65,9 @@ const DetailReferral = () => {
             </thead>
             <tbody>
               {filteredReferrals.length > 0 ? (
-                filteredReferrals.map((referral) => (
+                filteredReferrals.map((referral, index) => (
                   <tr key={referral.userId}>
+                    <td>{index + 1}</td>
                     <td>{referral.userId}</td>
                     <td>{referral.userPassword}</td>
                     <td>{referral.referralId}</td>
@@ -74,7 +76,7 @@ const DetailReferral = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="4">No referrals found</td>
+                  <td colSpan="5">No referrals found</td>
                 </tr>
               )}
             </tbody>

@@ -73,6 +73,7 @@ const UserDetails = () => {
         <table className="user-table">
           <thead>
             <tr>
+              <th className="table-header">Serial No</th>
               <th className="table-header">User ID</th>
               <th className="table-header">Password</th>
               <th className="table-header">Referral ID</th>
@@ -83,8 +84,9 @@ const UserDetails = () => {
           </thead>
           <tbody>
             {filteredUsers.length > 0 ? (
-              filteredUsers.map((user) => (
+              filteredUsers.map((user, index) => (
                 <tr key={user.userId}>
+                  <td>{index + 1}</td>
                   <td>{user.userId}</td>
                   <td>{user.userPassword}</td>
                   <td>{user.referralId || "No referral ID"}</td>
@@ -118,7 +120,7 @@ const UserDetails = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6">No users found</td>
+                <td colSpan="7">No users found</td>
               </tr>
             )}
           </tbody>
