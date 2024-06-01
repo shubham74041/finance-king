@@ -6,6 +6,7 @@ const DetailReferral = () => {
   const [referrals, setReferrals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     const id = localStorage.getItem("site");
@@ -17,12 +18,12 @@ const DetailReferral = () => {
           setReferrals(response.data);
         } else {
           console.error("Unexpected response data format:", response.data);
-          setReferrals([]);
+          setError("Unexpected response format");
         }
       })
       .catch((error) => {
         console.error("Error fetching referral details:", error);
-        setReferrals([]);
+        setError("Error fetching referral details");
       })
       .finally(() => {
         setLoading(false);
@@ -51,6 +52,8 @@ const DetailReferral = () => {
       />
       {loading ? (
         <p>Loading...</p>
+      ) : error ? (
+        <p>{error}</p>
       ) : (
         <div className="table-container">
           <table>
