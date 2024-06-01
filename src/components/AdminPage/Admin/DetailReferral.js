@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import "./DetailReferral.css"; // Import CSS file for styling
+import "./DetailReferral.css";
 
 const DetailReferral = () => {
   const [referrals, setReferrals] = useState([]);
