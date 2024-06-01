@@ -3,7 +3,7 @@ import axios from "axios";
 import "./CheckIn.css";
 import CheckInIcon from "../icons/icons8-entrance-100.png";
 
-const CheckIn = ({ enabled }) => {
+const CheckIn = ({ enabled, setEnabled }) => {
   const [message, setMessage] = useState("");
   const [buttonColor, setButtonColor] = useState("default");
 
@@ -13,10 +13,27 @@ const CheckIn = ({ enabled }) => {
 
     if (lastCheckIn === today) {
       setButtonColor("checked-in");
+      setEnabled(false);
     } else {
       setButtonColor(enabled ? "default" : "disabled");
     }
-  }, [enabled]);
+  }, [enabled, setEnabled]);
+
+  useEffect(() => {
+    const checkNewDay = () => {
+      const now = new Date();
+      const nextCheckInTime = new Date();
+      nextCheckInTime.setHours(0, 1, 0, 0); // Set next check-in time to 12:01 am
+
+      if (now >= nextCheckInTime) {
+        setEnabled(true); // Enable check-in button
+      }
+    };
+
+    const intervalId = setInterval(checkNewDay, 60000); // Check every minute
+
+    return () => clearInterval(intervalId); // Cleanup on component unmount
+  }, [setEnabled]);
 
   const handleCheckIn = async () => {
     const lastCheckIn = localStorage.getItem("lastCheckIn");
@@ -45,6 +62,7 @@ const CheckIn = ({ enabled }) => {
         setButtonColor("checked-in");
         setMessage("Today check-in complete");
         localStorage.setItem("lastCheckIn", today);
+        setEnabled(false); // Disable check-in button
       } else {
         setButtonColor("default");
         setMessage("You don't have any products");
