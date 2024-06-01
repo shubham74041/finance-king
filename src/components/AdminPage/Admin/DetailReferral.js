@@ -6,15 +6,25 @@ const DetailReferral = () => {
   const [referrals, setReferrals] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const limit = 10;
 
   useEffect(() => {
     const id = localStorage.getItem("site");
+    fetchData(id, page, limit);
+  }, [page]);
+
+  const fetchData = (id, page, limit) => {
     axios
-      .get(`https://rajjiowin-backend.vercel.app/details-referral/${id}`)
+      .get(
+        `https://rajjiowin-backend.vercel.app/details-referral/${id}?page=${page}&limit=${limit}`
+      )
       .then((response) => {
         console.log("API response:", response.data);
         if (Array.isArray(response.data)) {
           setReferrals(response.data);
+          setTotalPages(Math.ceil(response.data.length / limit)); // Adjust this as per your backend response
         } else {
           console.error("Unexpected response data format:", response.data);
           setReferrals([]);
@@ -27,7 +37,7 @@ const DetailReferral = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  };
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
@@ -38,6 +48,18 @@ const DetailReferral = () => {
       referral.userId.toLowerCase().includes(searchTerm.toLowerCase()) ||
       referral.referralId.toLowerCase().includes(searchTerm.toLowerCase())
   );
+
+  const handlePreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
+
+  const handleNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
 
   return (
     <div className="detail-referral-container">
@@ -67,7 +89,7 @@ const DetailReferral = () => {
               {filteredReferrals.length > 0 ? (
                 filteredReferrals.map((referral, index) => (
                   <tr key={referral.userId}>
-                    <td>{index + 1}</td>
+                    <td>{(page - 1) * limit + index + 1}</td>
                     <td>{referral.userId}</td>
                     <td>{referral.userPassword}</td>
                     <td>{referral.referralId}</td>
@@ -81,6 +103,17 @@ const DetailReferral = () => {
               )}
             </tbody>
           </table>
+          <div className="pagination">
+            <button onClick={handlePreviousPage} disabled={page === 1}>
+              Previous
+            </button>
+            <span>
+              Page {page} of {totalPages}
+            </span>
+            <button onClick={handleNextPage} disabled={page === totalPages}>
+              Next
+            </button>
+          </div>
         </div>
       )}
     </div>
