@@ -12,7 +12,7 @@ const WithdrawData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/withdraw-data/${userId}`
+          `https://rajjiowin-backend.vercel.app/withdraw-data/${userId}`
         );
         setData(response.data);
       } catch (error) {
