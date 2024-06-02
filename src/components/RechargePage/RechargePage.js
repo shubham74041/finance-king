@@ -31,7 +31,7 @@ const RechargePage = () => {
       });
 
     // Construct the Telegram link with the amount
-    const telegramLink = `https://t.me/YOUR_BOT_NAME?text=Recharge%20Amount:%20${amount}`;
+    const telegramLink = `https://tttttt.me/rajjowinrecharge${amount}`;
 
     // You can use fetch or any other method to send the amount to the backend
     // Here, I'm just logging it for demonstration

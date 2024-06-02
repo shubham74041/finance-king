@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import axios from "axios";
 import "./WithdrawData.css";
 
 const WithdrawData = () => {
@@ -10,14 +11,10 @@ const WithdrawData = () => {
     const userId = localStorage.getItem("site");
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          `https://rajjiowin-backend.vercel.app/withdraw-data/${userId}`
+        const response = await axios.get(
+          `http://localhost:8080/withdraw-data/${userId}`
         );
-        if (!response.ok) {
-          throw new Error("Network response was not ok");
-        }
-        const result = await response.json();
-        setData(result);
+        setData(response.data);
       } catch (error) {
         setError(error);
       }
@@ -28,6 +25,35 @@ const WithdrawData = () => {
 
   const handleSearchInputChange = (event) => {
     setSearchInput(event.target.value);
+  };
+
+  const handleAction = async (id, action) => {
+    try {
+      const response = await axios.post(
+        `https://rajjiowin-backend.vercel.app/withdraw-data/${id}`,
+        {
+          action,
+        }
+      );
+
+      if (response.status !== 200) {
+        throw new Error("Failed to update data");
+      }
+
+      // Show success alert
+      alert(`Action ${action ? "Pay" : "Cancel"} successful!`);
+
+      // Optionally, you can refresh the data after an action is taken
+      setData((prevData) =>
+        prevData.map((item) =>
+          item._id === id ? { ...item, action, disabled: true } : item
+        )
+      );
+    } catch (error) {
+      setError(error);
+      // Show error alert
+      alert("Failed to update data");
+    }
   };
 
   const filteredData = data.filter((item) =>
@@ -61,6 +87,7 @@ const WithdrawData = () => {
                 <th className="th">Bank Name</th>
                 <th className="th">Account Number</th>
                 <th className="th">IFSC Code</th>
+                <th className="th">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -91,9 +118,25 @@ const WithdrawData = () => {
                     <td className="td" data-label="IFSC Code">
                       {item.IFSCCode}
                     </td>
+                    <td className="td" data-label="Action">
+                      <button
+                        className="action_button pay_button"
+                        onClick={() => handleAction(item._id, true)}
+                        disabled={item.disabled}
+                      >
+                        Pay
+                      </button>
+                      <button
+                        className="action_button cancel_button"
+                        onClick={() => handleAction(item._id, false)}
+                        disabled={item.disabled}
+                      >
+                        Cancel
+                      </button>
+                    </td>
                   </tr>
                   <tr className="separator">
-                    <td colSpan="8">
+                    <td colSpan="9">
                       <hr className="table-separator" />
                     </td>
                   </tr>

@@ -43,6 +43,31 @@
   font-size: 18px;
 }
 
+/* Button styles */
+.action_button {
+  padding: 5px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.pay_button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.cancel_button {
+  background-color: #f44336;
+  color: white;
+}
+
+.action_button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
 /* Responsive styles */
 
 /* Small devices (phones, less than 600px) */
@@ -93,6 +118,10 @@
     border-top: 1px solid #ddd;
     margin: 20px 0;
   }
+
+  .action_button {
+    font-size: 12px; /* Adjust button font size for small devices */
+  }
 }
 
 /* Medium devices (tablets, 600px to 900px) */
@@ -119,6 +148,10 @@
   .td {
     padding: 10px;
   }
+
+  .action_button {
+    font-size: 12px; /* Adjust button font size for medium devices */
+  }
 }
 
 /* Large devices (desktops, 900px and up) */
@@ -143,23 +176,10 @@
   }
 
   .td {
-    padding: 14px;
+    padding: 12px;
   }
-}
 
-/* Separator between tables */
-.separator {
-  margin-top: 40px;
-}
-
-/* Separator between users */
-.user-separator {
-  margin-top: 80px;
-}
-
-/* Styling for horizontal lines between tables */
-.table-separator {
-  border: none;
-  border-top: 1px solid #ddd;
-  margin: 20px 0;
+  .action_button {
+    font-size: 14px; /* Default button font size */
+  }
 }
