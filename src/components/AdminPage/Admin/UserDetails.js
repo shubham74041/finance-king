@@ -80,6 +80,7 @@ const UserDetails = () => {
               <th className="table-header">Add Amount</th>
               <th className="table-header">Referral Count</th>
               <th className="table-header">Referral Used</th>
+              <th className="table-header">Order Detail</th>
             </tr>
           </thead>
           <tbody>
@@ -113,8 +114,9 @@ const UserDetails = () => {
                     </button>
                   </td>
                   <td>{user.referralCount || 0}</td>
+                  <td>{user.usedReferralCode || "None"} </td>
                   <td>
-                    Used Referral Code: {user.usedReferralCode || "None"}{" "}
+                    User Buy <b>{user.orderCount}</b> Plans
                   </td>
                 </tr>
               ))
