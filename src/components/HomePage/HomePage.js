@@ -14,7 +14,7 @@ import axios from "axios";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
-  const [checkInEnabled, setCheckInEnabled] = useState(false); // State for enabling check-in
+  const [checkInEnabled, setCheckInEnabled] = useState(true); // State for enabling check-in
 
   const dummyCards = [
     {
@@ -95,11 +95,10 @@ const HomePage = ({ cards }) => {
       .then((response) => {
         console.log(response.data.msg);
         const responseMsg = response.data.msg;
+        // const walletAmount = response.data.userTotalAmount;
         alert(responseMsg);
         setCheckInEnabled(true); // Enable check-in button
-        console.log("Check-in enabled set to true");
-        // Update the wallet balance or any other state if needed
-        setWalletBalance(response.data.userTotalAmount);
+        window.location.reload(); // Reload the page to reflect changes
       })
       .catch((error) => {
         if (error.response) {
@@ -181,5 +180,4 @@ const mapStateToProps = (state) => {
     cards: state.cards,
   };
 };
-
 export default connect(mapStateToProps)(HomePage);
