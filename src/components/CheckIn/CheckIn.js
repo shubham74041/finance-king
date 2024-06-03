@@ -6,15 +6,14 @@ import CheckInIcon from "../icons/icons8-entrance-100.png";
 const CheckIn = ({ enabled, setEnabled }) => {
   const [message, setMessage] = useState("");
   const [buttonColor, setButtonColor] = useState("default");
-  const [lastCheckInDate, setLastCheckInDate] = useState("");
 
   useEffect(() => {
     const lastCheckIn = localStorage.getItem("lastCheckIn");
-    setLastCheckInDate(lastCheckIn);
+    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
-    const today = new Date().toISOString().split("T")[0];
+    // Set button color based on whether the user has already checked in today
     setButtonColor(lastCheckIn === today ? "checked-in" : "default");
-  }, [lastCheckInDate]);
+  }, []);
 
   const handleCheckIn = async () => {
     if (buttonColor === "checked-in") {
@@ -26,9 +25,10 @@ const CheckIn = ({ enabled, setEnabled }) => {
     }
 
     const userId = localStorage.getItem("site");
-    const today = new Date().toISOString().split("T")[0];
+    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
     try {
+      console.log("Request payload:", { userId }); // Log the request payload
       const response = await axios.post(
         `https://rajjiowin-backend.vercel.app/check-in/${userId}`,
         {}
@@ -37,14 +37,15 @@ const CheckIn = ({ enabled, setEnabled }) => {
       const data = response.data;
 
       if (data.hasProducts) {
+        setButtonColor("checked-in");
         setMessage("Today's check-in is complete");
         localStorage.setItem("lastCheckIn", today);
-        setEnabled(false);
-        setButtonColor("checked-in");
+        setEnabled(false); // Disable check-in button
       } else {
         setMessage("You don't have any products");
       }
 
+      // Make the popup disappear after 10 seconds
       setTimeout(() => {
         setMessage("");
       }, 10000);
@@ -52,6 +53,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
       console.error("Error during check-in:", error);
       setMessage("An error occurred during check-in. Please try again later.");
 
+      // Make the popup disappear after 10 seconds
       setTimeout(() => {
         setMessage("");
       }, 10000);
@@ -64,7 +66,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
         <button
           onClick={handleCheckIn}
           className={`check_in_button ${buttonColor}`}
-          disabled={!enabled || buttonColor === "checked-in"}
+          disabled={buttonColor === "checked-in"}
         >
           <span className="title_check">Check-in</span>
         </button>
