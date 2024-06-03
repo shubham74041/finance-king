@@ -14,6 +14,7 @@ const RechargePage = () => {
   // Function to handle submission
   const handleSubmit = () => {
     const phoneNumber = localStorage.getItem("site"); // Retrieve the value from localStorage
+
     // You can replace the placeholder with your actual backend endpoint
     axios
       .post("https://rajjiowin-backend.vercel.app/recharge", {
@@ -33,8 +34,7 @@ const RechargePage = () => {
     // Construct the Telegram link with the amount
     const telegramLink = `https://tttttt.me/rajjowinrecharge${amount}`;
 
-    // You can use fetch or any other method to send the amount to the backend
-    // Here, I'm just logging it for demonstration
+    // Log the amount sent to the backend
     console.log("Amount sent to backend:", amount);
 
     // Redirect the user to the Telegram link
