@@ -97,6 +97,7 @@ const HomePage = ({ cards }) => {
         const responseMsg = response.data.msg;
         alert(responseMsg);
         setCheckInEnabled(true); // Enable check-in button
+        console.log("Check-in enabled set to true");
         // Update the wallet balance or any other state if needed
         setWalletBalance(response.data.userTotalAmount);
       })

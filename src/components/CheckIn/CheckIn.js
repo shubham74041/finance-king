@@ -8,6 +8,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
   const [buttonColor, setButtonColor] = useState("default");
 
   useEffect(() => {
+    console.log("CheckIn component mounted, enabled:", enabled);
     const lastCheckIn = localStorage.getItem("lastCheckIn");
     const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
