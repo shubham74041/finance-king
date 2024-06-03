@@ -6,19 +6,20 @@ import CheckInIcon from "../icons/icons8-entrance-100.png";
 const CheckIn = ({ enabled, setEnabled }) => {
   const [message, setMessage] = useState("");
   const [buttonColor, setButtonColor] = useState("default");
+  const [lastCheckInDate, setLastCheckInDate] = useState("");
 
   useEffect(() => {
+    // Load last check-in date from local storage
     const lastCheckIn = localStorage.getItem("lastCheckIn");
-    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+    setLastCheckInDate(lastCheckIn);
 
-    if (lastCheckIn === today) {
-      setButtonColor("checked-in");
-    } else {
-      setButtonColor(enabled ? "default" : "disabled");
-    }
-  }, [enabled]);
+    // Set button color based on whether the user has already checked in today
+    const today = new Date().toISOString().split("T")[0];
+    setButtonColor(lastCheckIn === today ? "checked-in" : "default");
+  }, []);
 
   useEffect(() => {
+    // Check if it's a new day to enable the check-in button
     const checkNewDay = () => {
       const now = new Date();
       const nextCheckInTime = new Date();
@@ -35,10 +36,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
   }, [setEnabled]);
 
   const handleCheckIn = async () => {
-    const lastCheckIn = localStorage.getItem("lastCheckIn");
-    const today = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
-
-    if (lastCheckIn === today) {
+    if (buttonColor === "checked-in") {
       setMessage("You have already checked in today.");
       setTimeout(() => {
         setMessage("");
@@ -46,11 +44,13 @@ const CheckIn = ({ enabled, setEnabled }) => {
       return;
     }
 
-    const id = localStorage.getItem("site");
+    const userId = localStorage.getItem("site");
+    const today = new Date().toISOString().split("T")[0];
+
     try {
-      console.log("Request payload:", { userId: id }); // Log the request payload
+      console.log("Request payload:", { userId }); // Log the request payload
       const response = await axios.post(
-        `https://rajjiowin-backend.vercel.app/check-in/${id}`,
+        `https://rajjiowin-backend.vercel.app/check-in/${userId}`,
         {}
       );
 
@@ -62,7 +62,6 @@ const CheckIn = ({ enabled, setEnabled }) => {
         localStorage.setItem("lastCheckIn", today);
         setEnabled(false); // Disable check-in button
       } else {
-        setButtonColor("default");
         setMessage("You don't have any products");
       }
 
@@ -87,7 +86,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
         <button
           onClick={handleCheckIn}
           className={`check_in_button ${buttonColor}`}
-          disabled={buttonColor === "checked-in"}
+          disabled={enabled ? false : buttonColor === "checked-in"}
         >
           <span className="title_check">Check-in</span>
         </button>
