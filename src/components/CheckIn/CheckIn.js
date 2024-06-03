@@ -26,6 +26,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
       nextCheckInTime.setHours(0, 1, 0, 0); // Set next check-in time to 12:01 am
 
       if (now >= nextCheckInTime) {
+        setButtonColor("default"); // Reset button color for new day
         setEnabled(true); // Enable check-in button
       }
     };
@@ -57,10 +58,10 @@ const CheckIn = ({ enabled, setEnabled }) => {
       const data = response.data;
 
       if (data.hasProducts) {
-        setButtonColor("checked-in");
         setMessage("Today's check-in is complete");
         localStorage.setItem("lastCheckIn", today);
         setEnabled(false); // Disable check-in button
+        setButtonColor("checked-in"); // Change button color
       } else {
         setMessage("You don't have any products");
       }
@@ -86,7 +87,7 @@ const CheckIn = ({ enabled, setEnabled }) => {
         <button
           onClick={handleCheckIn}
           className={`check_in_button ${buttonColor}`}
-          disabled={enabled ? false : buttonColor === "checked-in"}
+          disabled={!enabled || buttonColor === "checked-in"}
         >
           <span className="title_check">Check-in</span>
         </button>
