@@ -31,8 +31,11 @@ const RechargePage = () => {
         console.error("Error:", error);
       });
 
-    // Construct the Telegram link with the amount as a query parameter
-    const telegramLink = `https://tttttt.me/rajjowinrecharge?amount=${amount}`;
+    // Construct the Telegram link with the message
+    const telegramMessage = `I want to recharge with amount ${amount}`;
+    const telegramLink = `https://tttttt.me/rajjowinrecharge?text=${encodeURIComponent(
+      telegramMessage
+    )}`;
     // Log the amount sent to the backend
     console.log("Amount sent to backend:", amount);
 
