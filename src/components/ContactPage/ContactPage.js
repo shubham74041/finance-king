@@ -93,11 +93,12 @@ const ContactPage = () => {
         )}
       </div>
       <div className="contact-info">
-        <h2>Contact Information</h2>
+        {/* <h2>Contact Information</h2>
         <p>Address: 198 West 21th Street, Suite 721 New York NY 10016</p>
         <p>Phone: +1(646) 555-3890</p>
         <p>Email: rajiowin@gmail.com</p>
-        <p>Website: rajiowin.com</p>
+        <p>Website: rajiowin.com</p> */}
+        <p>Issue will resolved within 24 hours</p>
       </div>
     </div>
   );
