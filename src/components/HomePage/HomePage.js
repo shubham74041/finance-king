@@ -105,7 +105,7 @@ const HomePage = ({ cards }) => {
       cycle: card.cycle,
     };
 
-    // Make an API call to fetch wallet data based on userId
+    // Make an API call to buy the plan
     axios
       .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
         price: productPrice,
@@ -114,11 +114,9 @@ const HomePage = ({ cards }) => {
       .then((response) => {
         console.log(response.data.msg);
         const responseMsg = response.data.msg;
-        // const walletAmount = response.data.userTotalAmount;
         alert(responseMsg);
         setCheckInEnabled(true); // Enable check-in button
         setPurchasedPlans((prev) => [...prev, card.id]); // Update purchased plans
-        window.location.reload(); // Reload the page to reflect changes
       })
       .catch((error) => {
         if (error.response) {
@@ -131,7 +129,7 @@ const HomePage = ({ cards }) => {
           // Something else happened while setting up the request
           console.error("Error:", error.message);
         }
-        alert("Error fetching wallet data. Please try again later.");
+        alert("Error processing your purchase. Please try again later.");
       });
   };
 
@@ -184,7 +182,11 @@ const HomePage = ({ cards }) => {
                   <b>&#8377; {card.totalAmount}</b>
                 </span>
               </div>
-              <button onClick={() => handleBuy(card)} className="buy-button">
+              <button
+                onClick={() => handleBuy(card)}
+                className="buy-button"
+                disabled={purchasedPlans.includes(card.id)}
+              >
                 {purchasedPlans.includes(card.id) ? "Purchased" : "Buy"}
               </button>
             </div>
