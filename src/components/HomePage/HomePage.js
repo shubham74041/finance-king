@@ -114,6 +114,7 @@ const HomePage = ({ cards }) => {
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
           setCheckInEnabled(true);
+          window.location.reload(); // Add this line to reload the page
         }
       })
       .catch((error) => {
