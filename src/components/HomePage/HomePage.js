@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css";
@@ -15,7 +15,6 @@ import axios from "axios";
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
   const [checkInEnabled, setCheckInEnabled] = useState(true); // State for enabling check-in
-  const [purchasedPlans, setPurchasedPlans] = useState([]);
 
   const dummyCards = [
     {
@@ -74,25 +73,7 @@ const HomePage = ({ cards }) => {
     },
   ];
 
-  useEffect(() => {
-    // Fetch purchased plans for the user from the backend
-    const userId = localStorage.getItem("site");
-    axios
-      .get(`https://rajjiowin-backend.vercel.app/${userId}/purchased-plans`)
-      .then((response) => {
-        setPurchasedPlans(response.data.purchasedPlans);
-      })
-      .catch((error) => {
-        console.error("Error fetching purchased plans:", error);
-      });
-  }, []);
-
   const handleBuy = (card) => {
-    if (purchasedPlans.includes(card.id)) {
-      alert("You have already purchased this plan.");
-      return;
-    }
-
     const userId = localStorage.getItem("site");
     const productPrice = parseFloat(card.price); // Ensure that price is parsed as a float
     console.log(userId);
@@ -105,7 +86,7 @@ const HomePage = ({ cards }) => {
       cycle: card.cycle,
     };
 
-    // Make an API call to buy the plan
+    // Make an API call to fetch wallet data based on userId
     axios
       .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
         price: productPrice,
@@ -114,9 +95,10 @@ const HomePage = ({ cards }) => {
       .then((response) => {
         console.log(response.data.msg);
         const responseMsg = response.data.msg;
+        // const walletAmount = response.data.userTotalAmount;
         alert(responseMsg);
         setCheckInEnabled(true); // Enable check-in button
-        setPurchasedPlans((prev) => [...prev, card.id]); // Update purchased plans
+        window.location.reload(); // Reload the page to reflect changes
       })
       .catch((error) => {
         if (error.response) {
@@ -129,7 +111,7 @@ const HomePage = ({ cards }) => {
           // Something else happened while setting up the request
           console.error("Error:", error.message);
         }
-        alert("Error processing your purchase. Please try again later.");
+        alert("Error fetching wallet data. Please try again later.");
       });
   };
 
@@ -182,12 +164,8 @@ const HomePage = ({ cards }) => {
                   <b>&#8377; {card.totalAmount}</b>
                 </span>
               </div>
-              <button
-                onClick={() => handleBuy(card)}
-                className="buy-button"
-                disabled={purchasedPlans.includes(card.id)}
-              >
-                {purchasedPlans.includes(card.id) ? "Purchased" : "Buy"}
+              <button onClick={() => handleBuy(card)} className="buy-button">
+                Buy
               </button>
             </div>
           </div>
