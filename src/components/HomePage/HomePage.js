@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css";
@@ -14,7 +14,8 @@ import axios from "axios";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
-  const [checkInEnabled, setCheckInEnabled] = useState(true); // State for enabling check-in
+  const [checkInEnabled, setCheckInEnabled] = useState(true);
+  const [purchasedPlans, setPurchasedPlans] = useState([]);
 
   const dummyCards = [
     {
@@ -73,11 +74,28 @@ const HomePage = ({ cards }) => {
     },
   ];
 
-  const handleBuy = (card) => {
+  useEffect(() => {
     const userId = localStorage.getItem("site");
-    const productPrice = parseFloat(card.price); // Ensure that price is parsed as a float
-    console.log(userId);
-    console.log("productPrice", productPrice);
+    axios
+      .get(`https://rajjiowin-backend.vercel.app/${userId}`)
+      .then((response) => {
+        setPurchasedPlans(
+          response.data.purchasedPlans.map((plan) => plan.productTitle)
+        );
+      })
+      .catch((error) => {
+        console.error("Error fetching purchased plans:", error);
+      });
+  }, []);
+
+  const handleBuy = (card) => {
+    if (purchasedPlans.includes(card.title)) {
+      alert("You have already purchased this plan.");
+      return;
+    }
+
+    const userId = localStorage.getItem("site");
+    const productPrice = parseFloat(card.price);
     const cardData = {
       title: card.title,
       price: card.price,
@@ -86,32 +104,21 @@ const HomePage = ({ cards }) => {
       cycle: card.cycle,
     };
 
-    // Make an API call to fetch wallet data based on userId
     axios
       .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
         price: productPrice,
         cardData,
-      }) // Send price instead of productPrice
+      })
       .then((response) => {
-        console.log(response.data.msg);
-        const responseMsg = response.data.msg;
-        // const walletAmount = response.data.userTotalAmount;
-        alert(responseMsg);
-        setCheckInEnabled(true); // Enable check-in button
-        window.location.reload(); // Reload the page to reflect changes
+        alert(response.data.msg);
+        if (response.data.msg === "Product purchased successfully!") {
+          setPurchasedPlans((prev) => [...prev, card.title]);
+          setCheckInEnabled(true);
+        }
       })
       .catch((error) => {
-        if (error.response) {
-          // The request was made and the server responded with a status code
-          console.error("Server responded with status:", error.response.status);
-        } else if (error.request) {
-          // The request was made but no response was received
-          console.error("No response received:", error.request);
-        } else {
-          // Something else happened while setting up the request
-          console.error("Error:", error.message);
-        }
-        alert("Error fetching wallet data. Please try again later.");
+        console.error("Error processing your purchase:", error);
+        alert("Error processing your purchase. Please try again later.");
       });
   };
 
@@ -127,9 +134,7 @@ const HomePage = ({ cards }) => {
           <div key={card.id} className="dummy-card">
             <div className="img-container">
               <div className="title">
-                <span>
-                  <b>{card.title}</b>
-                </span>
+                <b>{card.title}</b>
               </div>
               <div className="img">
                 <img
@@ -142,30 +147,26 @@ const HomePage = ({ cards }) => {
             <div className="card-details">
               <div className="card-details1">
                 <span>Price</span>
-                <span>
-                  <b>&#8377; {card.price}</b>
-                </span>
+                <b>&#8377; {card.price}</b>
               </div>
               <div className="card-details2">
                 <span>Cycle</span>
-                <span>
-                  <b>{card.cycle}</b>
-                </span>
+                <b>{card.cycle}</b>
               </div>
               <div className="card-details2">
                 <span>Daily</span>
-                <span>
-                  <b>&#8377; {card.dailyIncome}</b>
-                </span>
+                <b>&#8377; {card.dailyIncome}</b>
               </div>
               <div className="card-details2">
                 <span>Total Income</span>
-                <span>
-                  <b>&#8377; {card.totalAmount}</b>
-                </span>
+                <b>&#8377; {card.totalAmount}</b>
               </div>
-              <button onClick={() => handleBuy(card)} className="buy-button">
-                Buy
+              <button
+                onClick={() => handleBuy(card)}
+                className="buy-button"
+                disabled={purchasedPlans.includes(card.title)}
+              >
+                {purchasedPlans.includes(card.title) ? "Purchased" : "Buy"}
               </button>
             </div>
           </div>
@@ -176,8 +177,7 @@ const HomePage = ({ cards }) => {
 };
 
 const mapStateToProps = (state) => {
-  return {
-    cards: state.cards,
-  };
+  return { cards: state.cards };
 };
+
 export default connect(mapStateToProps)(HomePage);
