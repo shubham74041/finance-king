@@ -27,11 +27,14 @@ const RechargeDataPage = () => {
       setPaid(paid);
       setDisabledButtons((prevState) => ({ ...prevState, [id]: true }));
       console.log(id);
-      await axios.post(`http://localhost:8080/recharge-data/${id}`, {
-        userId: userId,
-        rechargeAmount: rechargeAmount,
-        paid: paid,
-      });
+      await axios.post(
+        `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
+        {
+          userId: userId,
+          rechargeAmount: rechargeAmount,
+          paid: paid,
+        }
+      );
       window.location.reload();
     } catch (error) {
       console.error("Error updating data:", error);
