@@ -1,185 +1,137 @@
-/* Base styles */
+/* WithdrawData.css */
+
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f4f9;
+  margin: 0;
+  padding: 0;
+}
+
 .withdraw_container {
+  margin: 20px auto;
   padding: 20px;
   max-width: 1200px;
-  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .withdraw_title {
   text-align: center;
-  font-size: 24px;
-  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
 }
 
-/* Style for the search input */
 .search_input {
   display: block;
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
+  width: calc(100% - 40px);
+  margin: 0 auto 20px;
   padding: 10px;
-  font-size: 16px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
 }
 
-/* Style for the first table */
+.withdraw_table_wrapper {
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
 .th,
 .td {
-  padding: 12px;
-  border: 1px solid #ddd;
+  padding: 12px 15px;
   text-align: left;
+  border-bottom: 1px solid #ddd;
 }
 
-.error,
-.no-data {
-  text-align: center;
-  color: red;
-  font-size: 18px;
+.th {
+  background-color: #f8f8f8;
+  color: #333;
 }
 
-/* Button styles */
+.tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.user-separator td {
+  border-top: 2px solid #ddd;
+}
+
 .action_button {
-  padding: 5px 10px;
-  margin: 2px;
+  padding: 8px 12px;
+  margin: 5px;
   border: none;
-  border-radius: 3px;
+  border-radius: 4px;
+  color: #fff;
   cursor: pointer;
-  font-size: 14px;
 }
 
 .pay_button {
-  background-color: #4caf50;
-  color: white;
+  background-color: #28a745;
 }
 
 .cancel_button {
-  background-color: #f44336;
-  color: white;
+  background-color: #dc3545;
 }
 
 .action_button:disabled {
-  background-color: #ddd;
+  background-color: #ccc;
   cursor: not-allowed;
 }
 
-/* Responsive styles */
+.table-separator {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 0;
+}
 
-/* Small devices (phones, less than 600px) */
-@media (max-width: 600px) {
-  .withdraw_table_wrapper {
-    overflow-y: auto;
-    max-height: 400px; /* Adjust this value as needed */
-  }
+.no-data {
+  text-align: center;
+  color: #888;
+}
 
-  .withdraw_title {
-    font-size: 20px;
+.error {
+  color: red;
+  text-align: center;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .th,
+  .td {
+    padding: 8px 10px;
   }
 
   .search_input {
-    width: 90%; /* Adjust width for smaller screens */
-    font-size: 14px; /* Smaller font size */
-  }
-
-  .table,
-  .th,
-  .td {
-    display: block;
-    width: 100%;
-  }
-
-  .th {
-    display: none;
-  }
-
-  .td {
-    border: none;
-    padding: 10px;
-    position: relative;
-    padding-left: 50%;
-    text-align: right;
-  }
-
-  .td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 10px;
-    font-weight: bold;
-    text-align: left;
-  }
-
-  .table-separator {
-    border: none;
-    border-top: 1px solid #ddd;
-    margin: 20px 0;
-  }
-
-  .action_button {
-    font-size: 12px; /* Adjust button font size for small devices */
+    width: calc(100% - 20px);
+    padding: 8px;
   }
 }
 
-/* Medium devices (tablets, 600px to 900px) */
-@media (min-width: 600px) and (max-width: 900px) {
-  .withdraw_table_wrapper {
-    overflow-y: auto;
-    max-height: 600px; /* Adjust this value as needed */
-  }
-
-  .withdraw_title {
-    font-size: 22px;
-  }
-
-  .search_input {
-    width: 80%; /* Adjust width for medium screens */
-    font-size: 15px; /* Adjust font size */
-  }
-
+@media (max-width: 480px) {
   .th,
   .td {
+    padding: 6px 8px;
     font-size: 14px;
   }
 
-  .td {
-    padding: 10px;
-  }
-
-  .action_button {
-    font-size: 12px; /* Adjust button font size for medium devices */
-  }
-}
-
-/* Large devices (desktops, 900px and up) */
-@media (min-width: 900px) {
-  .withdraw_table_wrapper {
-    overflow-y: auto;
-    max-height: 800px; /* Adjust this value as needed */
-  }
-
-  .withdraw_title {
-    font-size: 26px;
+  .withdraw_container {
+    padding: 15px;
   }
 
   .search_input {
-    width: 50%; /* Adjust width for larger screens */
-    font-size: 16px; /* Default font size */
-  }
-
-  .th,
-  .td {
-    font-size: 16px;
-  }
-
-  .td {
-    padding: 12px;
+    width: calc(100% - 10px);
+    padding: 6px;
+    font-size: 14px;
   }
 
   .action_button {
-    font-size: 14px; /* Default button font size */
+    padding: 6px 10px;
+    font-size: 14px;
   }
 }

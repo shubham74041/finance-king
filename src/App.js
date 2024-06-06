@@ -35,8 +35,9 @@ import WithdrawData from "./components/AdminPage/Admin/WithdrawData";
 import CheckIn from "./components/CheckIn/CheckIn";
 import UserDetails from "./components/AdminPage/Admin/UserDetails";
 import DetailReferral from "./components/AdminPage/Admin/DetailReferral";
-// import CustomPopup from "./components/AdminPage/Admin/CustomPopup";
+import CustomPopup from "./components/AdminPage/Admin/CustomPopup";
 import ContactInfo from "./components/AdminPage/Admin/ContactInfo";
+import ProductCard from "./components/AdminPage/Admin/ProductCard";
 
 function App() {
   return (
@@ -171,6 +172,8 @@ function App() {
                 <Route path="/users" element={<UserDetails />} />
                 <Route path="/details-referral" element={<DetailReferral />} />
                 <Route path="/messages" element={<ContactInfo />} />
+                <Route path="/custom-popup" element={<CustomPopup />} />
+                <Route path="/new-product" element={<ProductCard />} />
               </Routes>
             </div>
             <Footer />

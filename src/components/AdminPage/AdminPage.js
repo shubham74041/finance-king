@@ -7,22 +7,25 @@ import { useNavigate } from "react-router-dom";
 
 const AdminPage = ({ addCard }) => {
   const navigate = useNavigate();
-  const [newCardData, setNewCardData] = useState({
-    timestamp: "",
-    amount: "",
-    imagePath: "",
-  });
+  // const [newCardData, setNewCardData] = useState({
+  //   timestamp: "",
+  //   amount: "",
+  //   imagePath: "",
+  // });
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setNewCardData({ ...newCardData, [name]: value });
-  };
+  // const handleChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setNewCardData({ ...newCardData, [name]: value });
+  // };
+
+  // const handleAddCard = () => {
+  //   addCard(newCardData);
+  //   setNewCardData({ timestamp: "", amount: "", imagePath: "" });
+  // };
 
   const handleAddCard = () => {
-    addCard(newCardData);
-    setNewCardData({ timestamp: "", amount: "", imagePath: "" });
+    navigate("/new-product");
   };
-
   const handleRechargeData = () => {
     navigate("/recharge-data");
   };
@@ -46,7 +49,7 @@ const AdminPage = ({ addCard }) => {
   };
 
   return (
-    <div className="container">
+    <div className="admin_container">
       <h2>Admin Page</h2>
       {/* <div className="input-group">
         <label htmlFor="timestamp">Timestamp:</label>
@@ -81,23 +84,40 @@ const AdminPage = ({ addCard }) => {
       <button onClick={handleAddCard}>Add Card</button>
       {/* Data Showing */}
       <div>
-        <button onClick={handleRechargeData}>Show Recharge Data</button>
+        <button className="admin_button" onClick={handleRechargeData}>
+          Show Recharge Data
+        </button>
       </div>
 
       <div>
-        <button onClick={handleWithdrawData}>Show Withdraw Data</button>
+        <button className="admin_button" onClick={handleWithdrawData}>
+          Show Withdraw Data
+        </button>
       </div>
       <div>
-        <button onClick={handleCustomPopup}>Add Custom Popup</button>
+        <button className="admin_button" onClick={handleCustomPopup}>
+          Add Custom Popup
+        </button>
       </div>
       <div>
-        <button onClick={handleUser}>Referral Details Page</button>
+        <button className="admin_button" onClick={handleUser}>
+          Referral Details Page
+        </button>
       </div>
       <div>
-        <button onClick={handleReferral}>View Users Details</button>
+        <button className="admin_button" onClick={handleReferral}>
+          View Users Details
+        </button>
       </div>
       <div>
-        <button onClick={handleMessage}>View Users Messages</button>
+        <button className="admin_button" onClick={handleMessage}>
+          View Users Messages
+        </button>
+      </div>
+      <div>
+        <button className="admin_button" onClick={handleAddCard}>
+          Add New Product
+        </button>
       </div>
     </div>
   );

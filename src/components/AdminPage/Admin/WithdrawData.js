@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CustomAlert from "./CustomAlert";
 import "./WithdrawData.css";
 
 const WithdrawData = () => {
   const [data, setData] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [error, setError] = useState(null);
+  const [alertMessage, setAlertMessage] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     const userId = localStorage.getItem("site");
@@ -54,7 +57,8 @@ const WithdrawData = () => {
       }
 
       // Show success alert
-      alert(`Action ${action ? "Pay" : "Cancel"} successful!`);
+      setAlertMessage(`Action ${action ? "Pay" : "Cancel"} successful!`);
+      setShowAlert(true);
 
       // Update the disabled state in local storage
       const disabledStates =
@@ -71,7 +75,8 @@ const WithdrawData = () => {
     } catch (error) {
       setError(error);
       // Show error alert
-      alert("Failed to update data");
+      setAlertMessage("Failed to update data");
+      setShowAlert(true);
     }
   };
 
@@ -166,6 +171,12 @@ const WithdrawData = () => {
         </div>
       ) : (
         <p className="no-data">No data available</p>
+      )}
+      {showAlert && (
+        <CustomAlert
+          message={alertMessage}
+          onClose={() => setShowAlert(false)}
+        />
       )}
     </div>
   );

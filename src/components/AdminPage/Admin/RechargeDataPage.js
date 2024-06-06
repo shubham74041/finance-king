@@ -11,9 +11,7 @@ const RechargeDataPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          "https://rajjiowin-backend.vercel.app/recharge-data"
-        );
+        const response = await axios.get("http://localhost:8080/recharge-data");
         console.log(response.data);
         setRechargeData(response.data);
       } catch (error) {
@@ -29,14 +27,11 @@ const RechargeDataPage = () => {
       setPaid(paid);
       setDisabledButtons((prevState) => ({ ...prevState, [id]: true }));
       console.log(id);
-      await axios.post(
-        `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
-        {
-          userId: userId,
-          rechargeAmount: rechargeAmount,
-          paid: paid,
-        }
-      );
+      await axios.post(`http://localhost:8080/recharge-data/${id}`, {
+        userId: userId,
+        rechargeAmount: rechargeAmount,
+        paid: paid,
+      });
       window.location.reload();
     } catch (error) {
       console.error("Error updating data:", error);
@@ -53,8 +48,8 @@ const RechargeDataPage = () => {
   );
 
   return (
-    <div className="container">
-      <h2 className="heading">Recharge Data</h2>
+    <div className="recharge_container">
+      <h2 className="recharge_heading">Recharge Data</h2>
       <input
         type="text"
         placeholder="Search by UserID"
@@ -62,12 +57,17 @@ const RechargeDataPage = () => {
         onChange={handleSearchInputChange}
         className="search_input"
       />
-      <ul className="list">
+      <div className="recharge-list">
         {filteredData.map((item, index) => (
-          <li className="list_item" key={index}>
-            UserId: {item.userId}, Amount: {item.rechargeAmount}, Paid:{" "}
-            {item.paid.toString()}
-            <span>
+          <div className="recharge-item" key={index}>
+            <div>
+              <p> UserId: {item.userId}</p>
+              <p>Amount: {item.rechargeAmount}</p>
+              <p>Paid: {item.paid.toString()}</p>
+              {/* UserId: {item.userId}, Amount: {item.rechargeAmount}, Paid:{" "}
+              {item.paid.toString()} */}
+            </div>
+            <div className="recharge_btn">
               <button
                 className="btn"
                 onClick={() =>
@@ -77,8 +77,6 @@ const RechargeDataPage = () => {
               >
                 Yes
               </button>
-            </span>
-            <span>
               <button
                 className="btn"
                 onClick={() =>
@@ -88,10 +86,10 @@ const RechargeDataPage = () => {
               >
                 No
               </button>
-            </span>
-          </li>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 };

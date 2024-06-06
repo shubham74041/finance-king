@@ -1,0 +1,46 @@
+.notification {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 5px;
+  padding: 10px 20px;
+  max-width: 90%;
+  width: 400px; /* Adjust the width as needed for large screens */
+}
+
+.notification-content {
+  display: flex;
+  align-items: center;
+}
+
+.notification-content p {
+  margin: 0;
+  flex-grow: 1;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  color: #721c24;
+  margin-left: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .notification {
+    width: 90%;
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 576px) {
+  .notification {
+    width: 90%;
+    max-width: 100%;
+  }
+}
