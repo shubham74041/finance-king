@@ -16,7 +16,7 @@ const LoginPage = () => {
 
   const handleTele = (e) => {
     e.stopPropagation(); // Stop the event propagation
-    const telegramUsername = "Piyush3029";
+    const telegramUsername = "Rajjowinhelp";
 
     // Construct the Telegram URL
     const telegramUrl = `https://t.me/${telegramUsername}`;
@@ -25,9 +25,9 @@ const LoginPage = () => {
     window.open(telegramUrl, "_blank");
   };
 
-  const handleSupport = () => {
-    navigate("/contact");
-  };
+  // const handleSupport = () => {
+  //   navigate("/contact");
+  // };
 
   const auth = useAuth();
   // const navigate = useNavigate();
@@ -159,7 +159,7 @@ const LoginPage = () => {
               </div>
             </button>
 
-            <button onClick={handleSupport} className="support_button">
+            {/* <button onClick={handleSupport} className="support_button">
               <div
                 style={{
                   display: "flex",
@@ -175,7 +175,7 @@ const LoginPage = () => {
 
                 <p style={{ margin: "4px 2px 7px 2px" }}>Contact Support</p>
               </div>
-            </button>
+            </button> */}
             {/* </div> */}
           </div>
         </div>

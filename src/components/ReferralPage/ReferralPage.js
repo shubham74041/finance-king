@@ -7,6 +7,11 @@ const ReferralPage = () => {
   const navigate = useNavigate();
   const [referralCode, setReferralCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [referralData, setReferralData] = useState({
+    count: "",
+    totalReferralAmount: "",
+    lastAmount: "",
+  });
 
   const userId = localStorage.getItem("site"); // Replace this with the actual user ID
 
@@ -19,6 +24,13 @@ const ReferralPage = () => {
         }
       );
       setReferralCode(response.data.referralCode);
+
+      // Then, make a GET request
+      const getResponse = await axios.get(
+        `https://rajjiowin-backend.vercel.app/referral/${userId}`
+      );
+      console.log(getResponse.data);
+      setReferralData(getResponse.data); // Assuming the API returns an array with a single object
       setErrorMessage(""); // Clear error message on success
     } catch (error) {
       setErrorMessage("Failed to fetch referral code. Please try again later.");
@@ -51,9 +63,9 @@ const ReferralPage = () => {
     );
   };
 
-  const handlePromotion = () => {
-    navigate("/promotion-tasks");
-  };
+  // const handlePromotion = () => {
+  //   navigate("/promotion-tasks");
+  // };
 
   return (
     <div className="referral-page">
@@ -63,17 +75,39 @@ const ReferralPage = () => {
       ) : (
         referralCode && (
           <div className="referral-container">
-            <p>{referralCode}</p>
-            <button onClick={handleCopy}>Copy Code</button>
-            <button onClick={handleSendWhatsApp}>Share on WhatsApp</button>
-            <button onClick={handleSendTelegram}>Share on Telegram</button>
+            <p className="code">{referralCode}</p>
+            <button className="copy" onClick={handleCopy}>
+              Copy Code
+            </button>
+            <button className="whatsapp" onClick={handleSendWhatsApp}>
+              Share on WhatsApp
+            </button>
+            <button className="telegram" onClick={handleSendTelegram}>
+              Share on Telegram
+            </button>
           </div>
         )
       )}
-
+      {referralData && (
+        <div className="referral-data">
+          <div className="data-item">
+            <h3 className="data-title">Total Referrals</h3>
+            <p className="data">{referralData.count}</p>
+          </div>
+          <div className="data-item">
+            <h3 className="data-title">Total Referral Amount</h3>
+            <p className="data">{referralData.totalReferralAmount}</p>
+          </div>
+          <div className="data-item">
+            <h3 className="data-title">Last Referral Amount</h3>
+            <p className="data">{referralData.lastAmount}</p>
+          </div>
+        </div>
+      )}
+      {/* 
       <div>
         <button onClick={handlePromotion}>Promotion Rewards</button>
-      </div>
+      </div> */}
     </div>
   );
 };

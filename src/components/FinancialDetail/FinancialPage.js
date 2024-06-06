@@ -29,6 +29,8 @@ const FinancialPage = () => {
       return transaction.paid ? "Recharged successfully" : "In processing";
     } else if (transaction.type === "withdraw") {
       return transaction.paid ? "Successful payment" : "In processing";
+    } else if (transaction.type === "other") {
+      return transaction.paid ? "Referral reward" : "In processing";
     } else {
       return "Unknown status";
     }

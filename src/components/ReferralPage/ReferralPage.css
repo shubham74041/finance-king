@@ -1,134 +1,126 @@
-/* .referral-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-  }
-  
-  .referral-title {
-    text-align: center;
-    margin-top: 60px;
-    font-size: 24px;
-  }
-  
-  .referral-code {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-  
-  .referral-button {
-    margin-bottom: 10px;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: all 0.3s ease;
-  }
-  
-  .referral-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .whatsapp-button {
-    background: linear-gradient(to right, #25d366, #128c7e);
-    color: #fff;
-  }
-  
-  .telegram-button {
-    background: linear-gradient(to right, #0088cc, #00aaff);
-    color: #fff;
-  }
-  
-  @media only screen and (max-width: 600px) {
-    .referral-title {
-      font-size: 20px;
-    }
-  
-    .referral-code {
-      font-size: 16px;
-    }
-  
-    .referral-button {
-      font-size: 14px;
-    }
-  }
-   */
+/* ReferralPage.css */
 
 .referral-page {
-  text-align: center;
+  font-family: "Arial", sans-serif;
+  margin: 0 auto;
   padding: 20px;
+  max-width: 800px;
+  text-align: center;
+  background: #f9f9f9;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
-.referral-container {
-  display: inline-block;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.referral-container p {
-  margin: 0 0 10px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-.referral-container button {
-  padding: 5px 10px;
-  font-size: 16px;
+h2 {
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .error-message {
-  color: red;
+  color: #d9534f;
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-#email {
-  padding: 5px;
-  margin: 10px 0;
+.referral-container {
+  margin-bottom: 20px;
 }
 
-.promotion-task {
-  margin-top: 20px;
+.code {
+  font-size: 24px;
+  font-weight: bold;
+  color: #4caf50;
+  margin-bottom: 10px;
 }
 
-.tasks {
-  margin: 10px auto;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 80%;
-  max-width: 400px;
-  background-color: #f9f9f9;
-}
-
-.tasks h4 {
-  margin: 0;
-  font-size: 18px;
-}
-
-.tasks p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.btn {
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-}
-
-.btn button {
-  padding: 5px 10px;
-  font-size: 16px;
+.copy,
+.whatsapp,
+.telegram {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border: 1px solid #007bff;
-  background-color: #007bff;
-  color: #fff;
-  border-radius: 3px;
+  font-size: 16px;
+  transition: background 0.3s ease;
 }
 
-.btn button:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+.copy {
+  background: #007bff;
+  color: #fff;
+}
+
+.copy:hover {
+  background: #0056b3;
+}
+
+.whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+
+.whatsapp:hover {
+  background: #128c7e;
+}
+
+.telegram {
+  background: #0088cc;
+  color: #fff;
+}
+
+.telegram:hover {
+  background: #005f8d;
+}
+
+.referral-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.data-item {
+  background: #ffffff;
+  margin: 10px 0;
+  padding: 15px;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 61%);
+}
+
+.data-title {
+  margin-bottom: 5px;
+  color: #555;
+}
+
+.data {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Responsive Design */
+@media (min-width: 768px) {
+  .referral-data {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .data-item {
+    flex: 1 1 calc(50% - 20px);
+    margin: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .referral-page {
+    padding: 40px;
+    max-width: 1000px;
+  }
+
+  .data-item {
+    flex: 1 1 calc(33.333% - 20px);
+    margin: 10px;
+  }
 }

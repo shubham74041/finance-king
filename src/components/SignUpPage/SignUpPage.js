@@ -22,14 +22,14 @@ const SignUp = () => {
   }, [location]);
 
   const handleTele = () => {
-    const telegramUsername = "Piyush3029";
+    const telegramUsername = "Rajjowinhelp";
     const telegramUrl = `https://t.me/${telegramUsername}`;
     window.open(telegramUrl, "_blank");
   };
 
-  const handleSupport = () => {
-    navigate("/contact");
-  };
+  // const handleSupport = () => {
+  //   navigate("/contact");
+  // };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -144,7 +144,7 @@ const SignUp = () => {
               <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>
             </div>
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={handleSupport}
             className="support_button"
@@ -159,7 +159,7 @@ const SignUp = () => {
               />
               <p style={{ margin: "4px 2px 7px 2px" }}>Contact Support</p>
             </div>
-          </button>
+          </button> */}
         </div>
       </form>
     </div>

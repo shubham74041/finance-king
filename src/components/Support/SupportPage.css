@@ -1,3 +1,72 @@
-h3 {
+/* SupportPage.css */
+.support {
+  text-align: center;
   margin-top: 50px;
+}
+
+.support-heading {
+  font-size: 24px;
+  color: #333;
+}
+
+.support-text {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.support-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0088cc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  transition: background-color 0.3s ease;
+}
+
+.support-link:hover {
+  background-color: #005580;
+}
+
+.support-link img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.support-link-text {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Responsive Styling */
+@media only screen and (max-width: 767px) {
+  .support-heading {
+    font-size: 20px;
+  }
+  .support-text {
+    font-size: 14px;
+  }
+  .support-link {
+    padding: 8px 15px;
+  }
+  .support-link img {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .support-heading {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .support-heading {
+    font-size: 28px;
+  }
 }

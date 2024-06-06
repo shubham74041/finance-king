@@ -6,12 +6,13 @@ import "./CustomPopup.css"; // Import the CSS file
 const CustomPopup = () => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
+  const [timePeriod, setTimePeriod] = useState(""); // State for time period
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Prepare data to be sent to the backend
-    const data = { title, message };
+    const data = { title, message, timePeriod };
 
     try {
       // Make the API call using axios
@@ -31,6 +32,7 @@ const CustomPopup = () => {
       // Clear the form fields after submission
       setTitle("");
       setMessage("");
+      setTimePeriod(""); // Clear the time period field
     } catch (error) {
       console.error("Error:", error);
       // Handle error appropriately in the UI
@@ -58,6 +60,15 @@ const CustomPopup = () => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5} // Set the number of visible rows
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="timePeriod">Time Period (in days)</label>
+          <input
+            id="timePeriod"
+            type="number"
+            value={timePeriod}
+            onChange={(e) => setTimePeriod(e.target.value)}
           />
         </div>
         <button onClick={handleSubmit}>Submit</button>

@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "./PopUp/Popup";
-// import axios from "axios";
+import axios from "axios";
 
 const AuthContext = createContext();
 
@@ -30,6 +30,9 @@ export const AuthProvider = ({ children }) => {
       });
 
       const res = await response.json();
+
+      // const popupData = await axios.get("http://localhost:8080/");
+      // console.log(popupData);
       console.log(res.data);
       console.log(res.data.phoneNumber);
       if (res.data) {
