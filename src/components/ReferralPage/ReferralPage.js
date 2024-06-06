@@ -100,7 +100,7 @@ const ReferralPage = () => {
           </div>
           <div className="data-item">
             <h3 className="data-title">Last Referral Amount</h3>
-            <p className="data">{referralData.newAmount}</p>
+            <p className="data">{referralData.lastAmount}</p>
           </div>
         </div>
       )}
