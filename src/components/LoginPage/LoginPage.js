@@ -1,10 +1,10 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import telegramIcon from "../icons/icons8-telegram-100.png";
 import "./LoginPage.css";
-import { useAuth } from "../AuthProvider"; // Assuming you've defined an AuthContext
-import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import your CustomAlert component
+import { useAuth } from "../AuthProvider";
+import CustomAlert from "../AdminPage/Admin/CustomAlert";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -12,12 +12,12 @@ const LoginPage = () => {
     phoneNumber: "",
     password: "",
   });
-  const [showAlert, setShowAlert] = useState(false); // State to control CustomAlert visibility
-  const [alertMessage, setAlertMessage] = useState(""); // State to hold alert message
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const auth = useAuth();
 
   const handleTele = (e) => {
-    e.stopPropagation(); // Stop the event propagation
+    e.stopPropagation();
     const telegramUsername = "Rajjowinhelp";
     const telegramUrl = `https://t.me/${telegramUsername}`;
     window.open(telegramUrl, "_blank");
@@ -27,18 +27,11 @@ const LoginPage = () => {
     e.preventDefault();
     if (input.phoneNumber !== "" && input.password !== "") {
       console.log(input);
-      // auth.login(input); // Assuming login method is from AuthContext
-      // Instead of auth.login, handle the login logic here
-      // For demonstration purposes, simulate login success
       setShowAlert(true);
-      setAlertMessage("Login successful!"); // Set alert message
-      // Simulate redirect to home after 2 seconds
-      setTimeout(() => {
-        navigate("/");
-      }, 2000);
+      setAlertMessage("Login successful!");
     } else {
       setShowAlert(true);
-      setAlertMessage("Please provide valid input."); // Set alert message
+      setAlertMessage("Please provide valid input.");
     }
   };
 
@@ -52,7 +45,23 @@ const LoginPage = () => {
 
   const closeAlert = () => {
     setShowAlert(false);
+    if (alertMessage === "Login successful!") {
+      // Redirect to home after closing the alert
+      navigate("/");
+    }
   };
+
+  useEffect(() => {
+    if (showAlert && alertMessage === "Login successful!") {
+      // Redirect to home after 2 seconds
+      const timer = setTimeout(() => {
+        navigate("/");
+      }, 2000);
+
+      // Clear timeout if component unmounts or alert closes
+      return () => clearTimeout(timer);
+    }
+  }, [showAlert, alertMessage, navigate]);
 
   return (
     <div className="login">
@@ -121,7 +130,6 @@ const LoginPage = () => {
           </div>
         </div>
       </form>
-      {/* CustomAlert component */}
       {showAlert && <CustomAlert message={alertMessage} onClose={closeAlert} />}
     </div>
   );
