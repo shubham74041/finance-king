@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
-import "./SignUpPage.css";
+import CustomAlert from "../AdminPage/Admin/CustomAlert";
 import telegramIcon from "../icons/icons8-telegram-100.png";
 import supportIcon from "../icons/contact.png";
+import "./SignUpPage.css";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -12,10 +13,12 @@ const SignUp = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
   const [referralCode, setReferralCode] = useState("");
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const code = queryParams.get("referralCode"); // This should match the query parameter name in the referral link
+    const code = queryParams.get("referralCode");
     if (code) {
       setReferralCode(code);
     }
@@ -26,10 +29,6 @@ const SignUp = () => {
     const telegramUrl = `https://t.me/${telegramUsername}`;
     window.open(telegramUrl, "_blank");
   };
-
-  // const handleSupport = () => {
-  //   navigate("/contact");
-  // };
 
   const handleSignup = async (e) => {
     e.preventDefault();
@@ -46,17 +45,25 @@ const SignUp = () => {
       );
 
       if (response.data === "exists") {
-        alert("User already exists");
+        setAlertMessage("User already exists");
+        setShowAlert(true);
       } else if (response.data === "notexists") {
-        alert("User Registered Successfully");
+        setAlertMessage("User Registered Successfully");
+        setShowAlert(true);
         navigate("/");
       } else {
-        alert("Unexpected response: " + response.data);
+        setAlertMessage("Unexpected response: " + response.data);
+        setShowAlert(true);
       }
     } catch (err) {
       console.error("Error during signup:", err);
-      alert("Signup failed. Please try again.");
+      setAlertMessage("Signup failed. Please try again.");
+      setShowAlert(true);
     }
+  };
+
+  const closeAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -162,6 +169,8 @@ const SignUp = () => {
           </button> */}
         </div>
       </form>
+      {/* Render CustomAlert component conditionally */}
+      {showAlert && <CustomAlert message={alertMessage} onClose={closeAlert} />}
     </div>
   );
 };

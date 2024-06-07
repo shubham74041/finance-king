@@ -8,6 +8,7 @@ const UserDetails = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState("");
   const [notification, setNotification] = useState(null);
+  const [passwords, setPasswords] = useState({}); // State to manage password inputs
 
   useEffect(() => {
     const id = localStorage.getItem("site");
@@ -18,6 +19,12 @@ const UserDetails = () => {
           console.log("API response:", response.data);
           if (Array.isArray(response.data)) {
             setUsers(response.data);
+            // Initialize passwords state with current passwords
+            const initialPasswords = response.data.reduce((acc, user) => {
+              acc[user.userId] = user.userPassword;
+              return acc;
+            }, {});
+            setPasswords(initialPasswords);
           } else {
             console.error("Unexpected response data format:", response.data);
             setUsers([]);
@@ -33,6 +40,7 @@ const UserDetails = () => {
     } else {
       console.error("No site ID found in local storage");
       setLoading(false);
+      setNotification("No site ID found in local storage");
     }
   }, []);
 
@@ -45,6 +53,28 @@ const UserDetails = () => {
       })
       .catch((error) => {
         console.error("Error adding amount:", error);
+      });
+  };
+
+  const handlePasswordChange = (userId, newPassword) => {
+    setPasswords((prevPasswords) => ({
+      ...prevPasswords,
+      [userId]: newPassword,
+    }));
+  };
+
+  const handlePasswordSave = (userId) => {
+    const newPassword = passwords[userId];
+    axios
+      .post(`https://rajjiowin-backend.vercel.app/password/${userId}`, {
+        newPassword,
+      })
+      .then((response) => {
+        // console.log("Password update response:", response.data);
+        setNotification(response.data.resMsg);
+      })
+      .catch((error) => {
+        console.error("Error updating password:", error);
       });
   };
 
@@ -99,7 +129,22 @@ const UserDetails = () => {
                   <tr key={user.userId}>
                     <td>{index + 1}</td>
                     <td>{user.userId}</td>
-                    <td>{user.userPassword}</td>
+                    <td>
+                      <input
+                        type="text"
+                        value={passwords[user.userId] || ""}
+                        onChange={(e) =>
+                          handlePasswordChange(user.userId, e.target.value)
+                        }
+                        className="password-input"
+                      />
+                      <button
+                        className="edit-password-button"
+                        onClick={() => handlePasswordSave(user.userId)}
+                      >
+                        Edit
+                      </button>
+                    </td>
                     <td>{user.referralId || "No referral ID"}</td>
                     <td>
                       <input
@@ -134,7 +179,7 @@ const UserDetails = () => {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="8">No users found</td>
+                  <td colSpan="9">No users found</td>
                 </tr>
               )}
             </tbody>

@@ -37,8 +37,10 @@ const ContactPage = () => {
   return (
     <div className="contact-container">
       <div className="contact-form">
-        <h2>Contact Us</h2>
-        <p>We're open for any inquiry or just to have a chat.</p>
+        <h2 className="contact-heading">Contact Us</h2>
+        <p className="contact-text">
+          We're open for any inquiry or just to have a chat.
+        </p>
         {submitted ? (
           <div className="success-message">
             Thank you for your message! We'll get back to you soon.
@@ -54,6 +56,7 @@ const ContactPage = () => {
                 value={formData.name}
                 onChange={handleChange}
                 required
+                className="contact-input"
               />
             </div>
             <div className="form-group">
@@ -65,6 +68,7 @@ const ContactPage = () => {
                 value={formData.email}
                 onChange={handleChange}
                 required
+                className="contact-input"
               />
             </div>
             <div className="form-group">
@@ -76,6 +80,7 @@ const ContactPage = () => {
                 value={formData.subject}
                 onChange={handleChange}
                 required
+                className="contact-input"
               />
             </div>
             <div className="form-group">
@@ -86,9 +91,12 @@ const ContactPage = () => {
                 value={formData.message}
                 onChange={handleChange}
                 required
+                className="contact-input"
               ></textarea>
             </div>
-            <button type="submit">Send Message</button>
+            <button className="contact-button" type="submit">
+              Send Message
+            </button>
           </form>
         )}
       </div>
@@ -98,7 +106,7 @@ const ContactPage = () => {
         <p>Phone: +1(646) 555-3890</p>
         <p>Email: rajiowin@gmail.com</p>
         <p>Website: rajiowin.com</p> */}
-        <p>Issue will resolved within 24 hours</p>
+        <p className="contact-text">Issue will resolved within 24 hours</p>
       </div>
     </div>
   );

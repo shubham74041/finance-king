@@ -11,7 +11,9 @@ const RechargeDataPage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:8080/recharge-data");
+        const response = await axios.get(
+          "https://rajjiowin-backend.vercel.app/recharge-data"
+        );
         console.log(response.data);
         setRechargeData(response.data);
       } catch (error) {

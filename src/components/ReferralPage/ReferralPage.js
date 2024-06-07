@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ReferralPage.css";
 import { useNavigate } from "react-router-dom";
+import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import your CustomAlert component
 
 const ReferralPage = () => {
   const navigate = useNavigate();
@@ -12,6 +13,7 @@ const ReferralPage = () => {
     totalReferralAmount: "",
     lastAmount: "",
   });
+  const [showAlert, setShowAlert] = useState(false); // State to control CustomAlert visibility
 
   const userId = localStorage.getItem("site"); // Replace this with the actual user ID
 
@@ -35,6 +37,7 @@ const ReferralPage = () => {
     } catch (error) {
       setErrorMessage("Failed to fetch referral code. Please try again later.");
       setReferralCode(""); // Clear referral code on error
+      setShowAlert(true); // Show CustomAlert on error
     }
   };
 
@@ -44,7 +47,7 @@ const ReferralPage = () => {
 
   const handleCopy = () => {
     navigator.clipboard.writeText(referralCode);
-    alert("Referral code copied to clipboard!");
+    setShowAlert(true); // Show CustomAlert when code is copied
   };
 
   const handleSendWhatsApp = () => {
@@ -63,6 +66,10 @@ const ReferralPage = () => {
     );
   };
 
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
+
   // const handlePromotion = () => {
   //   navigate("/promotion-tasks");
   // };
@@ -71,7 +78,7 @@ const ReferralPage = () => {
     <div className="referral-page">
       <h2>Your Referral Code</h2>
       {errorMessage ? (
-        <p className="error-message">{errorMessage}</p>
+        <CustomAlert message={errorMessage} onClose={handleCloseAlert} />
       ) : (
         referralCode && (
           <div className="referral-container">

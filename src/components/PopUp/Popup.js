@@ -45,9 +45,9 @@ const Popup = ({ onClose }) => {
         const expirationDate = new Date(creationDate);
         expirationDate.setDate(creationDate.getDate() + Number(timePeriod));
 
-        console.log("Creation Date:", creationDate);
-        console.log("Current Date:", currentDate);
-        console.log("Expiration Date:", expirationDate);
+        // console.log("Creation Date:", creationDate);
+        // console.log("Current Date:", currentDate);
+        // console.log("Expiration Date:", expirationDate);
 
         if (currentDate > expirationDate) {
           setDisplayDefault(true);

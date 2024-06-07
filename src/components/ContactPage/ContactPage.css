@@ -20,13 +20,13 @@ body {
   flex-wrap: wrap;
 }
 
-.contact-form,
-.contact-info {
+.contact-form {
   flex-basis: 50%;
+  margin-bottom: 20px;
 }
 
-.contact-form {
-  margin-bottom: 20px;
+.contact-info {
+  flex-basis: 50%;
 }
 
 h2 {
@@ -39,10 +39,6 @@ p {
 }
 
 /* Form styles */
-form {
-  margin-bottom: 20px;
-}
-
 .form-group {
   margin-bottom: 15px;
 }
@@ -52,9 +48,7 @@ label {
   margin-bottom: 5px;
 }
 
-input[type="text"],
-input[type="email"],
-textarea {
+.contact-input {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
@@ -62,12 +56,8 @@ textarea {
   background-color: #ffffff;
 }
 
-/* textarea {
-  height: 100px;
-} */
-
-button[type="submit"] {
-  background-color: #4CAF50;
+.contact-button {
+  background-color: #4caf50;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -76,7 +66,7 @@ button[type="submit"] {
   margin-top: 10px;
 }
 
-button[type="submit"]:hover {
+.contact-button:hover {
   background-color: #3e8e41;
 }
 
@@ -90,21 +80,24 @@ button[type="submit"]:hover {
   margin-bottom: 20px;
 }
 
-/* Contact info styles */
-.contact-info p {
-  /* margin-bottom: 10px; */
-}
-
 /* Media queries for responsiveness */
 @media (max-width: 600px) {
   .contact-form,
   .contact-info {
-    padding-right: 0;
+    flex-basis: 100%;
   }
 
-  input[type="text"],
-  input[type="email"],
-  textarea {
-    width: calc(100% - 50px); /* Adjust width */
+  .contact-input {
+    width: calc(100% - 20px); /* Adjust width */
+  }
+}
+
+@media (max-width: 400px) {
+  .contact-container {
+    padding: 20px;
+  }
+
+  .contact-button {
+    font-size: 14px;
   }
 }

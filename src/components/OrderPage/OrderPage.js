@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import CustomAlert component
 import "./OrderPage.css";
 
 const OrderPage = () => {
   const id = localStorage.getItem("site");
   const [orderData, setOrderData] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
     const fetchOrderData = async () => {
@@ -15,7 +18,8 @@ const OrderPage = () => {
         setOrderData(response.data);
       } catch (error) {
         console.error("Error fetching order data:", error);
-        alert("Error fetching order data. Please try again later.");
+        setAlertMessage("Error fetching order data. Please try again later.");
+        setShowAlert(true);
       }
     };
 
@@ -23,6 +27,10 @@ const OrderPage = () => {
       fetchOrderData();
     }
   }, [id]);
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
+  };
 
   return (
     <div className="order-page">
@@ -63,6 +71,11 @@ const OrderPage = () => {
         </table>
       ) : (
         <p>No order details found.</p>
+      )}
+
+      {/* Render CustomAlert component conditionally */}
+      {showAlert && (
+        <CustomAlert message={alertMessage} onClose={handleCloseAlert} />
       )}
     </div>
   );

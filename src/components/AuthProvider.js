@@ -2,25 +2,20 @@ import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "./PopUp/Popup";
 import axios from "axios";
+import CustomAlert from "../components/AdminPage/Admin/CustomAlert";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  // const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.getItem("site") || "");
   const [showPopup, setShowPopup] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
   const navigate = useNavigate();
 
   const login = async (data) => {
-    // console.log(phoneNumber);
-    // console.log(password);
     try {
-      // if (phoneNumber !== "undefined" && password !== "undefined") {
-      //   setIsAuthenticated(true);
-      // Make a request to your backend to authenticate the user
-
-      //rajjiowin-backend.vercel.app
       const response = await fetch("https://rajjiowin-backend.vercel.app/", {
         method: "POST",
         headers: {
@@ -31,43 +26,21 @@ export const AuthProvider = ({ children }) => {
 
       const res = await response.json();
 
-      // const popupData = await axios.get("http://localhost:8080/");
-      // console.log(popupData);
-      console.log(res.data);
-      console.log(res.data.phoneNumber);
       if (res.data) {
         setUser(res.data.user);
         setToken(res.data.phoneNumber);
         localStorage.setItem("site", res.data.phoneNumber);
         setShowPopup(true); // Show popup after successful login
-        alert("Login successful!"); // Alert for successful login
+        setAlertMessage("Login successful!"); // Set alert message
+        setShowAlert(true); // Show custom alert
         navigate("/");
         return;
       }
       throw new Error(res.message);
-      // const response = await axios.post(
-      //   "https://rajjiowin-backend.vercel.app/",
-      //   {
-      //     phoneNumber,
-      //     password,
-      //   }
-      // );
-      // console.log(phoneNumber);
-      // console.log("Response data:", response.data);
-      // console.log("Response", response.data.success);
-      // If login is successful, set isAuthenticated to true
-      // if (response.data.success) {
-      //   // If login is successful, set isAuthenticated to true
-      //   setIsAuthenticated(true);
-      // } else {
-      //   // If login fails, throw an error
-      //   // throw new Error(response.data.message);
-      //   throw new Error("Incorrect Phone Number or Password");
-      // }
     } catch (error) {
-      // Handle login errors
       console.error("Login failed:", error);
-      alert("Incorrect Phone Number or Password"); // Alert for incorrect login credentials
+      setAlertMessage("Incorrect Phone Number or Password"); // Set alert message
+      setShowAlert(true); // Show custom alert
     }
   };
 
@@ -75,9 +48,11 @@ export const AuthProvider = ({ children }) => {
     setShowPopup(false);
   };
 
+  const closeAlert = () => {
+    setShowAlert(false);
+  };
+
   const logout = () => {
-    // Perform logout logic, set isAuthenticated to false
-    // setIsAuthenticated(false);
     setUser(null);
     setToken("");
     localStorage.removeItem("site");
@@ -89,10 +64,12 @@ export const AuthProvider = ({ children }) => {
       {children}
       {/* Render Popup component conditionally */}
       {showPopup && <Popup message="Login successful!" onClose={closePopup} />}
+      {/* Render CustomAlert component conditionally */}
+      {showAlert && <CustomAlert message={alertMessage} onClose={closeAlert} />}
     </AuthContext.Provider>
   );
 };
-// export default AuthProvider;
+
 export const useAuth = () => {
   return useContext(AuthContext);
 };

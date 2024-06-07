@@ -11,11 +11,14 @@ import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
 import CheckIn from "../CheckIn/CheckIn";
 import axios from "axios";
+import CustomAlert from "../AdminPage/Admin/CustomAlert";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
   const [checkInEnabled, setCheckInEnabled] = useState(true);
   const [purchasedPlans, setPurchasedPlans] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   const dummyCards = [
     {
@@ -90,7 +93,8 @@ const HomePage = ({ cards }) => {
 
   const handleBuy = (card) => {
     if (purchasedPlans.includes(card.title)) {
-      alert("You have already purchased this plan.");
+      setAlertMessage("You have already purchased this plan.");
+      setShowAlert(true);
       return;
     }
 
@@ -110,23 +114,36 @@ const HomePage = ({ cards }) => {
         cardData,
       })
       .then((response) => {
-        alert(response.data.msg);
+        setAlertMessage(response.data.msg);
+        setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          setCheckInEnabled(true);
-          window.location.reload(); // Add this line to reload the page
+          setCheckInEnabled(true); // Enable check-in after successful purchase
+          localStorage.setItem("allowSecondCheckIn", true);
+          setWalletBalance(response.data.walletBalance); // Update wallet balance
+          window.location.reload(); // Reload the page after successful purchase
         }
       })
       .catch((error) => {
         console.error("Error processing your purchase:", error);
-        alert("Error processing your purchase. Please try again later.");
+        setAlertMessage(
+          "Error processing your purchase. Please try again later."
+        );
+        setShowAlert(true);
       });
+  };
+  const handleCloseAlert = () => {
+    setShowAlert(false);
   };
 
   return (
     <div className="home">
       <HomeCard balance={walletBalance} />
-      <CheckIn enabled={checkInEnabled} setEnabled={setCheckInEnabled} />
+      <CheckIn
+        enabled={checkInEnabled}
+        setEnabled={setCheckInEnabled}
+        setWalletBalance={setWalletBalance} // Pass setWalletBalance as a prop
+      />
       <div className="card-container">
         {cards && cards.length > 0
           ? cards.map((card, index) => <GenericCard key={index} {...card} />)
@@ -173,6 +190,10 @@ const HomePage = ({ cards }) => {
           </div>
         ))}
       </div>
+      {/* Render CustomAlert component conditionally */}
+      {showAlert && (
+        <CustomAlert message={alertMessage} onClose={handleCloseAlert} />
+      )}
     </div>
   );
 };
