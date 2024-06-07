@@ -16,7 +16,7 @@ const HomeCard = ({ userId, balance }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:8080/${phoneNumber}`
+          `https://rajjiowin-backend.vercel.app/${phoneNumber}`
         );
         setWalletBalance(response.data.remainingBalance);
       } catch (error) {
