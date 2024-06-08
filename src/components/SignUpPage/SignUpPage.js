@@ -136,7 +136,13 @@ const SignUp = () => {
           </div>
           <button type="button" className="tele_button" onClick={handleTele}>
             <div
-              style={{ display: "flex", flexDirection: "row", height: "25px" }}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                height: "25px",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
             >
               <img
                 src={telegramIcon}
@@ -145,7 +151,7 @@ const SignUp = () => {
                   width: "30px",
                   height: "30px",
                   marginRight: "5px",
-                  marginBottom: "5px",
+                  marginBottom: "2px",
                 }}
               />
               <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>

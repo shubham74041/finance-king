@@ -140,6 +140,8 @@ const LoginPage = () => {
                   display: "flex",
                   flexDirection: "row",
                   height: "25px",
+                  justifyContent: "center",
+                  alignItems: "center",
                 }}
               >
                 <img
@@ -149,7 +151,7 @@ const LoginPage = () => {
                     width: "30px",
                     height: "30px",
                     marginRight: "5px",
-                    marginBottom: "5px",
+                    marginBottom: "2px",
                   }}
                 />
                 {/* <span style={{ textAlign: "center", margin: "2px 0 3px 0" }}>
