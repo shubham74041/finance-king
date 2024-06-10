@@ -4,7 +4,7 @@ import axios from "axios";
 
 const RechargePage = () => {
   const [amount, setAmount] = useState(""); // State to hold the input amount
-  const [suggestions] = useState(["100", "500", "1000"]); // Array of suggestion amounts
+  const [suggestions] = useState(["550", "1000", "2000", "5000"]); // Array of suggestion amounts
 
   // Function to handle suggestion selection
   const handleSuggestionClick = (suggestion) => {
@@ -45,7 +45,7 @@ const RechargePage = () => {
 
   return (
     <div className="recharge-container">
-      <h2 className="recharge-heading">Recharge Page</h2>
+      <h2 className="recharge-heading">Add Amount</h2>
       <div className="input-container">
         <input
           type="text"
@@ -66,7 +66,7 @@ const RechargePage = () => {
           ))}
         </div>
         <button onClick={handleSubmit} className="submit-button">
-          Submit
+          Recharge
         </button>
       </div>
     </div>

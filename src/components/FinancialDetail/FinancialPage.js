@@ -27,13 +27,20 @@ const FinancialPage = () => {
   const getStatus = (transaction) => {
     if (transaction.type === "recharge") {
       return transaction.paid ? "Recharged successfully" : "In processing";
-    } else if (transaction.type === "withdraw") {
-      return transaction.paid ? "Successful payment" : "In processing";
-    } else if (transaction.type === "other") {
-      return transaction.paid ? "Referral reward" : "In processing";
-    } else {
-      return "Unknown status";
     }
+
+    if (transaction.type === "withdraw") {
+      return transaction.paid ? "Successful payment" : "In processing";
+    }
+
+    if (transaction.type === "other") {
+      if (transaction.amount === "" || transaction.amount === null) {
+        return "No transactions available";
+      }
+      return transaction.paid ? "Referral reward" : "In processing";
+    }
+
+    return "Unknown status";
   };
 
   const filteredData = financialData.filter((transaction) => {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CustomAlert from "../AdminPage/Admin/CustomAlert.js";
+import "./ForgotPassword.css";
 
 const ForgotPassword = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -24,25 +25,27 @@ const ForgotPassword = () => {
   };
 
   return (
-    <div>
-      <h3 style={{ textAlign: "center", marginTop: "60px" }}>
-        Forgot Password
-      </h3>
-      <p>Make a request for changing the password</p>
-      <form>
+    <div className="forgot-password">
+      <h3 className="forgot-password-heading">Forgot Password</h3>
+      <p className="forgot-password-text">
+        Make a request for changing the password
+      </p>
+      <form className="forgot-password-form">
         <div className="phone_number">
-          <label className="form-label">UserId:</label>
+          <label className="form-label-text">UserId:</label>
           <input
             placeholder="phoneNumber"
             id="phoneNumber"
-            className="form-control"
+            className="form-control-input"
             type="number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
         </div>
 
-        <button onClick={handleRequestClick}>Request</button>
+        <button className="forgot-password-button" onClick={handleRequestClick}>
+          Request
+        </button>
       </form>
       {/* Render CustomAlert component conditionally */}
       {showAlert && (

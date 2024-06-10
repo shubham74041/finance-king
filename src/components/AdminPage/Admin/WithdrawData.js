@@ -11,7 +11,7 @@ const WithdrawData = () => {
   const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
-    const userId = localStorage.getItem("site");
+    const userId = localStorage.getItem("site") || 8684986394;
     const fetchData = async () => {
       try {
         const response = await axios.get(

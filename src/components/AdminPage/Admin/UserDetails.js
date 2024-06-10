@@ -11,7 +11,7 @@ const UserDetails = () => {
   const [passwords, setPasswords] = useState({}); // State to manage password inputs
 
   useEffect(() => {
-    const id = localStorage.getItem("site");
+    const id = localStorage.getItem("site") || 8684986394;
     if (id) {
       axios
         .get(`https://rajjiowin-backend.vercel.app/users/${id}`)
