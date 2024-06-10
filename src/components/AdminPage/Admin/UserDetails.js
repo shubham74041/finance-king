@@ -174,7 +174,7 @@ const UserDetails = () => {
                     <td>
                       User Buy <b>{user.orderCount}</b> Plans
                     </td>
-                    <td>{user.referralValue ? "Paid" : "Unpaid"}</td>
+                    <td>{user.referralValue || 0}</td>
                   </tr>
                 ))
               ) : (
