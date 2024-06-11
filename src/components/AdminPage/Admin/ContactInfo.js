@@ -4,15 +4,27 @@ import "./ContactInfoPage.css"; // Import your CSS file for styling
 
 const ContactInfoPage = () => {
   const [contactData, setContactData] = useState(null); // Initialize to null
+  const [solvedStatus, setSolvedStatus] = useState({}); // State to handle solved status
   const [error, setError] = useState(null); // State to handle errors
 
   useEffect(() => {
     const id = localStorage.getItem("site");
+
     axios
       .get(`https://rajjiowin-backend.vercel.app/messages/${id}`)
       .then((response) => {
         if (Array.isArray(response.data)) {
           setContactData(response.data);
+
+          // Load solved status from localStorage
+          const storedSolvedStatus = JSON.parse(
+            localStorage.getItem("solvedStatus") || "{}"
+          );
+          const initialSolvedStatus = response.data.reduce((acc, contact) => {
+            acc[contact._id] = storedSolvedStatus[contact._id] || false;
+            return acc;
+          }, {});
+          setSolvedStatus(initialSolvedStatus);
         } else {
           setContactData([]);
           console.error("Data fetched is not an array:", response.data);
@@ -23,6 +35,19 @@ const ContactInfoPage = () => {
         setError("Failed to fetch data");
       });
   }, []);
+
+  const handleSolvedChange = (id) => {
+    const newStatus = !solvedStatus[id];
+    const updatedSolvedStatus = {
+      ...solvedStatus,
+      [id]: newStatus,
+    };
+
+    setSolvedStatus(updatedSolvedStatus);
+
+    // Save the updated solved status to localStorage
+    localStorage.setItem("solvedStatus", JSON.stringify(updatedSolvedStatus));
+  };
 
   if (error) {
     return <div>Error: {error}</div>;
@@ -44,6 +69,7 @@ const ContactInfoPage = () => {
             <th>Subject</th>
             <th>Message</th>
             <th>Date</th>
+            <th>Solved</th>
           </tr>
         </thead>
         <tbody>
@@ -56,6 +82,13 @@ const ContactInfoPage = () => {
               <td data-label="Message">{contact.message}</td>
               <td data-label="Date">
                 {new Date(contact.createdAt).toLocaleString()}
+              </td>
+              <td data-label="Solved">
+                <input
+                  type="checkbox"
+                  checked={solvedStatus[contact._id] || false}
+                  onChange={() => handleSolvedChange(contact._id)}
+                />
               </td>
             </tr>
           ))}

@@ -61,7 +61,7 @@
     text-align: right;
     padding-left: 50%;
     position: relative;
-    border: none;
+    border: 1px solid;
     border-bottom: 1px solid #ddd;
   }
 
