@@ -31,10 +31,14 @@ const ReferralPage = () => {
       const getResponse = await axios.get(
         `https://rajjiowin-backend.vercel.app/referral/${userId}`
       );
-      console.log(getResponse.data);
+      console.log("Getting Data:", getResponse.data);
       setReferralData(getResponse.data); // Assuming the API returns an array with a single object
       setErrorMessage(""); // Clear error message on success
     } catch (error) {
+      console.error(
+        "Error fetching referral data:",
+        error.response || error.message
+      );
       setErrorMessage("Failed to fetch referral code. Please try again later.");
       setReferralCode(""); // Clear referral code on error
       setShowAlert(true); // Show CustomAlert on error
