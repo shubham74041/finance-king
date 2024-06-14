@@ -136,7 +136,7 @@ function App() {
 
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/add-card" element={<AddCardPage />} />
-                <Route path="/admin" element={<AdminPage />} />
+                <Route path="/rajiowin-admin" element={<AdminPage />} />
 
                 <Route element={<ProtectedRoute />}>
                   <Route path="/promotion-tasks" element={<PromotionPage />} />
