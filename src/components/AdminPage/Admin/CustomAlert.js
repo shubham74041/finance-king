@@ -6,7 +6,7 @@ const CustomAlert = ({ message, onClose }) => {
   return (
     <div className="custom-alert-overlay">
       <div className="custom-alert-box">
-        <p>{message}</p>
+        <p style={{color:"black"}}>{message}</p>
         <button onClick={onClose} className="custom-alert-button">
           OK
         </button>
