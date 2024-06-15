@@ -34,6 +34,9 @@ const FinancialPage = () => {
     }
 
     if (transaction.type === "other") {
+      if (transaction.anotherType === "checkIn") {
+        return transaction.checkIn ? "Check-in amount" : "Not Check-in";
+      }
       if (transaction.amount === "" || transaction.amount === null) {
         return "No transactions available";
       }
@@ -44,8 +47,17 @@ const FinancialPage = () => {
   };
 
   const filteredData = financialData.filter((transaction) => {
+    if (filter.toLowerCase() === "other") {
+      return (
+        transaction.type.toLowerCase() === "other" ||
+        (transaction.type.toLowerCase() === "other" &&
+          transaction.anotherType?.toLowerCase() === "checkIn")
+      );
+    }
     return transaction.type.toLowerCase() === filter.toLowerCase();
   });
+
+  console.log(filteredData);
 
   const handleFilterChange = (selectedFilter) => {
     setFilter(selectedFilter);
