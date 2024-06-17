@@ -172,26 +172,6 @@ function WithdrawalPage() {
                   required
                 />
               </div>
-              {/* <div className="form-group">
-                <label htmlFor="mobileNumber">Mobile Number:</label>
-                <input
-                  type="text"
-                  id="mobileNumber"
-                  value={mobileNumber}
-                  onChange={(e) => setMobileNumber(e.target.value)}
-                  required
-                />
-              </div> */}
-              {/* <div className="form-group">
-                <label htmlFor="bankAddress">Bank Address:</label>
-                <input
-                  type="text"
-                  id="bankAddress"
-                  value={bankAddress}
-                  onChange={(e) => setBankAddress(e.target.value)}
-                  required
-                />
-              </div> */}
             </>
           )}
           {selectedMethod === "upi" && (
@@ -208,6 +188,18 @@ function WithdrawalPage() {
           )}
           <button type="submit">Withdraw</button>
         </form>
+
+        <div className="info-box">
+          <ol>
+            <li>Withdrawal available daily between 08:00 - 20:00</li>
+            <li>Minimum amount to withdraw is only ₹150.</li>
+            <li>Correctly fill in bank account information and IFSC code</li>
+            <li>
+              In some cases withdraw takes upto 24 hours to arrive. If you don't
+              receive after 24 hours, contact our customer support.
+            </li>
+          </ol>
+        </div>
 
         {/* Popup */}
         {showPopup && (

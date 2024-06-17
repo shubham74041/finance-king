@@ -4,9 +4,17 @@ import "./style.css";
 
 const RechargeDataPage = () => {
   const [rechargeData, setRechargeData] = useState([]);
-  const [paid, setPaid] = useState(null);
-  const [disabledButtons, setDisabledButtons] = useState({});
   const [searchInput, setSearchInput] = useState("");
+
+  // Initialize the disabledButtons state from local storage
+  const initializeDisabledButtons = () => {
+    const savedDisabledButtons = localStorage.getItem("disabledButtons");
+    return savedDisabledButtons ? JSON.parse(savedDisabledButtons) : {};
+  };
+
+  const [disabledButtons, setDisabledButtons] = useState(
+    initializeDisabledButtons
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,21 +22,33 @@ const RechargeDataPage = () => {
         const response = await axios.get(
           "https://rajjiowin-backend.vercel.app/recharge-data"
         );
-        console.log(response.data);
         setRechargeData(response.data);
+
+        // Initialize the disabled buttons state based on the data
+        const disabledState = {};
+        response.data.forEach((item) => {
+          if (disabledButtons[item._id] === undefined) {
+            disabledState[item._id] = false;
+          }
+        });
+        setDisabledButtons((prevState) => ({ ...prevState, ...disabledState }));
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
 
     fetchData();
-  }, [paid]);
+  }, []);
 
   const handlePaid = async (id, userId, rechargeAmount, paid) => {
     try {
-      setPaid(paid);
-      setDisabledButtons((prevState) => ({ ...prevState, [id]: true }));
-      console.log(id);
+      // Immediately disable the buttons to give feedback to the user
+      setDisabledButtons((prevState) => {
+        const newState = { ...prevState, [id]: true };
+        localStorage.setItem("disabledButtons", JSON.stringify(newState));
+        return newState;
+      });
+
       await axios.post(
         `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
         {
@@ -37,10 +57,24 @@ const RechargeDataPage = () => {
           paid: paid,
         }
       );
+
+      // Update the paid status in the local state
+      setRechargeData((prevData) =>
+        prevData.map((item) =>
+          item._id === id ? { ...item, paid: paid } : item
+        )
+      );
+
+      // Reload the page to persist the disabled state
       window.location.reload();
     } catch (error) {
       console.error("Error updating data:", error);
-      setDisabledButtons((prevState) => ({ ...prevState, [id]: false }));
+      // If there's an error, re-enable the buttons
+      setDisabledButtons((prevState) => {
+        const newState = { ...prevState, [id]: false };
+        localStorage.setItem("disabledButtons", JSON.stringify(newState));
+        return newState;
+      });
     }
   };
 
@@ -66,11 +100,9 @@ const RechargeDataPage = () => {
         {filteredData.map((item, index) => (
           <div className="recharge-item" key={index}>
             <div>
-              <p> UserId: {item.userId}</p>
+              <p>UserId: {item.userId}</p>
               <p>Amount: {item.rechargeAmount}</p>
               <p>Paid: {item.paid.toString()}</p>
-              {/* UserId: {item.userId}, Amount: {item.rechargeAmount}, Paid:{" "}
-              {item.paid.toString()} */}
             </div>
             <div className="recharge_btn">
               <button
@@ -78,7 +110,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, true)
                 }
-                disabled={disabledButtons[item._id] || item.paid}
+                disabled={disabledButtons[item._id]}
               >
                 Yes
               </button>
@@ -87,7 +119,7 @@ const RechargeDataPage = () => {
                 onClick={() =>
                   handlePaid(item._id, item.userId, item.rechargeAmount, false)
                 }
-                disabled={disabledButtons[item._id] || item.paid}
+                disabled={disabledButtons[item._id]}
               >
                 No
               </button>
