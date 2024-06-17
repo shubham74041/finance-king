@@ -93,9 +93,10 @@ button {
 
 /* Media query for screens smaller than 600px */
 @media only screen and (max-width: 600px) {
-  .container {
+  .container_withdrawal {
     max-width: 85%;
     margin: 20px auto;
+    overflow-y: auto; /* Add scrollbar for overflow */
   }
 
   input[type="text"],
@@ -107,15 +108,16 @@ button {
   button {
     width: calc(100% - 20px);
   }
+
   .info-box {
     margin-top: 20px;
-    /* height: 240px; */
-
     margin-bottom: 20px;
     padding: 15px;
     padding-bottom: 30px;
     background: #eef;
     border-radius: 5px;
+    overflow-y: auto; /* Add scrollbar for overflow */
+    max-height: 150px; /* Set max height for scroll */
   }
 
   .info-box ol {
