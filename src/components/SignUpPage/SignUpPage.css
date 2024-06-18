@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 80px;
+  margin-top: 70px;
   margin-bottom: 0px;
 }
 
@@ -52,7 +52,7 @@
   /* CSS for screens smaller than 600px */
   .signup {
     max-width: 70%; /* Adjust width for small screens */
-    margin-top: 180px; /* Adjust top margin */
+    margin-top: 70px;
     margin-bottom: 0 !important; /* Remove bottom margin */
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */

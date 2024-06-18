@@ -22,7 +22,7 @@ const ComplaintPage = () => {
               marginBottom: "5px",
             }}
           />
-          <p className="support-link-text">Official Telegram</p>
+          <p className="support-link-text">Telegram</p>
         </div>
       </a>
     </div>
