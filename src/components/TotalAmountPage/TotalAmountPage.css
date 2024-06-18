@@ -1,12 +1,10 @@
 
 .total-amount-container {
-  max-width: 100%;
-  margin: 5% auto 0;
-  padding: 20px;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+    width: 100vw;
+    height: fit-content;
+    margin-top: 50px;
+    margin-bottom: 60px; /* Adjusted to ensure footer doesn't overlap content */
+  }
 
 .additional-links {
   display: flex;

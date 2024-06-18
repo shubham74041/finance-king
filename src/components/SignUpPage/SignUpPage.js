@@ -35,7 +35,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "https://rajjiowin-backend.vercel.app/signup",
+        "http://localhost:8080/signup",
         {
           email,
           phoneNumber,
@@ -70,7 +70,7 @@ const SignUp = () => {
     <div className="signup">
       <form>
         <div className="form-container">
-          <h2>Rajjowin</h2>
+          {/* <h2>Rajjowin</h2> */}
           <div>
             <label className="email-label" htmlFor="email">
               Email
@@ -154,7 +154,7 @@ const SignUp = () => {
                   marginBottom: "2px",
                 }}
               />
-              <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>
+              <p style={{ margin: "4px 2px 7px 2px" }}>Telegram</p>
             </div>
           </button>
           {/* <button

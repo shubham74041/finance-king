@@ -157,7 +157,7 @@ const LoginPage = () => {
                 {/* <span style={{ textAlign: "center", margin: "2px 0 3px 0" }}>
                 Official Telegram
               </span> */}
-                <p style={{ margin: "4px 2px 7px 2px" }}>Official Telegram</p>
+                <p style={{ margin: "4px 2px 7px 2px" }}>Telegram</p>
               </div>
             </button>
 
