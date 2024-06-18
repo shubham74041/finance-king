@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 // import "./Popup.css";
 
-const Popup = ({ onClose }) => {
+const Popup = ({ onClose, show }) => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,17 +25,10 @@ const Popup = ({ onClose }) => {
 
         const { title, message, timePeriod, createdAt } = response.data[0];
 
-        // Log each part of the response to debug the issue
-        // console.log("Title:", title);
-        // console.log("Message:", message);
-        // console.log("Time Period:", timePeriod);
-        // console.log("Created At:", createdAt);
-
         if (!createdAt) {
           throw new Error("Missing Date field in the response");
         }
 
-        // Convert createdAt to a Date object
         const creationDate = new Date(createdAt);
         if (isNaN(creationDate.getTime())) {
           throw new Error(`Invalid creation date format: ${createdAt}`);
@@ -44,10 +37,6 @@ const Popup = ({ onClose }) => {
         const currentDate = new Date();
         const expirationDate = new Date(creationDate);
         expirationDate.setDate(creationDate.getDate() + Number(timePeriod));
-
-        // console.log("Creation Date:", creationDate);
-        // console.log("Current Date:", currentDate);
-        // console.log("Expiration Date:", expirationDate);
 
         if (currentDate > expirationDate) {
           setDisplayDefault(true);
@@ -64,8 +53,14 @@ const Popup = ({ onClose }) => {
       }
     };
 
-    fetchData();
-  }, []);
+    if (show) {
+      fetchData();
+    }
+  }, [show]);
+
+  if (!show) {
+    return null;
+  }
 
   if (loading) {
     return <div className="popup">Loading...</div>;
