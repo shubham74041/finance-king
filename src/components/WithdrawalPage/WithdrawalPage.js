@@ -190,15 +190,15 @@ function WithdrawalPage() {
         </form>
 
         <div className="info-box">
-          <ol>
+        <h4 style={{display:"flex",margin:0}}>Note:</h4>
+          <ul>
             <li>Withdrawal available daily between 08:00 - 20:00</li>
             <li>Minimum amount to withdraw is only ₹150.</li>
             <li>Correctly fill in bank account information and IFSC code</li>
-            <li>
-              In some cases withdraw takes upto 24 hours to arrive. If you don't
+            <li>In some cases withdraw takes upto 24 hours to arrive. If you don't
               receive after 24 hours, contact our customer support.
             </li>
-          </ol>
+          </ul>
         </div>
 
         {/* Popup */}

@@ -16,15 +16,23 @@ form {
   align-items: center;
 }
 .info-box {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 
-  padding: 15px;
-  background: #eef;
+  /* padding: 15px; */
+  /* background: #eef; */
   border-radius: 5px;
+  font-family: Arial, sans-serif; /* Set font family */
+  line-height: 1.6; /* Set line height */
+
 }
 
-.info-box ol {
+.info-box ul {
   padding-left: 20px;
+  margin: 0; /* Remove default margin for ol */
+}
+
+.info-box li {
+  margin-bottom: 5px; /* Adjust spacing between list items */
 }
 
 .form-group {
@@ -94,14 +102,14 @@ button {
 /* Media query for screens smaller than 600px */
 @media only screen and (max-width: 600px) {
   .container_withdrawal {
-    max-width: 85%;
+    /* max-width: 85%; */
     margin: 20px auto;
     overflow-y: auto; /* Add scrollbar for overflow */
+    height: 100%;
   }
 
   input[type="text"],
-  input[type="password"],
-  textarea {
+  input[type="password"] {
     width: calc(100% - 20px);
   }
 
@@ -110,17 +118,21 @@ button {
   }
 
   .info-box {
-    margin-top: 20px;
+    /* margin-top: 20px; */
     margin-bottom: 20px;
     padding: 15px;
     padding-bottom: 30px;
-    background: #eef;
-    border-radius: 5px;
-    overflow-y: auto; /* Add scrollbar for overflow */
-    max-height: 150px; /* Set max height for scroll */
+    /* background: #eef; */
+    /* border-radius: 5px; */
+    /* overflow-y: auto; Add scrollbar for overflow */
+    /* max-height: 150px; Set max height for scroll */
+    font-size: 14px; /* Adjust font size for smaller screens */
+    max-height: none; /* Remove max-height for mobile view */
+
+
   }
 
-  .info-box ol {
+  /* .info-box ol {
     padding-left: 20px;
-  }
+  } */
 }
