@@ -35,7 +35,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8080/signup",
+        "https://rajjiowin-backend.vercel.app/signup",
         {
           email,
           phoneNumber,

@@ -28,6 +28,7 @@ const WithdrawData = () => {
         const updatedData = fetchedData.map((item) => ({
           ...item,
           disabled: disabledStates[item._id] || false,
+          paid: false, // Initialize paid state
         }));
 
         setData(updatedData);
@@ -69,7 +70,9 @@ const WithdrawData = () => {
       // Update the state
       setData((prevData) =>
         prevData.map((item) =>
-          item._id === id ? { ...item, action, disabled: true } : item
+          item._id === id
+            ? { ...item, action, disabled: true, paid: action }
+            : item
         )
       );
     } catch (error) {
@@ -111,6 +114,7 @@ const WithdrawData = () => {
                 <th className="th">Bank Name</th>
                 <th className="th">Account Number</th>
                 <th className="th">IFSC Code</th>
+                <th className="th">Status</th>
                 <th className="th">Action</th>
               </tr>
             </thead>
@@ -142,6 +146,9 @@ const WithdrawData = () => {
                     <td className="td" data-label="IFSC Code">
                       {item.IFSCCode}
                     </td>
+                    <td className="td" data-label="Status">
+                      {item.paid ? "Paid" : "Unpaid"}
+                    </td>
                     <td className="td" data-label="Action">
                       <button
                         className="action_button pay_button"
@@ -160,7 +167,7 @@ const WithdrawData = () => {
                     </td>
                   </tr>
                   <tr className="separator">
-                    <td colSpan="9">
+                    <td colSpan="10">
                       <hr className="table-separator" />
                     </td>
                   </tr>

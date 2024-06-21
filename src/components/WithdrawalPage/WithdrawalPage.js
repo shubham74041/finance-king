@@ -13,6 +13,8 @@ function WithdrawalPage() {
   const [selectedMethod, setSelectedMethod] = useState("bank"); // State for selected withdrawal method
   const [showPopup, setShowPopup] = useState(false);
   const [formErrors, setFormErrors] = useState([]);
+  const [alertMessage, setAlertMessage] = useState(""); // State for custom alert message
+  const [showAlert, setShowAlert] = useState(false); // State to show/hide custom alert
 
   const submitWithdrawal = async (data) => {
     const phoneNumber = localStorage.getItem("site");
@@ -22,7 +24,9 @@ function WithdrawalPage() {
         data
       );
 
-      console.log("Success:", response.data.userId);
+      // Show custom alert with success message
+      setAlertMessage("Withdrawal request submitted successfully.");
+      setShowAlert(true);
 
       // Show popup
       setShowPopup(true);
@@ -38,6 +42,13 @@ function WithdrawalPage() {
         "Error:",
         error.response ? error.response.data : error.message
       );
+
+      // Show custom alert with the error message
+      setAlertMessage(
+        error.response?.data?.error ||
+          "An error occurred while processing the withdrawal."
+      );
+      setShowAlert(true);
     }
   };
 
@@ -91,6 +102,10 @@ function WithdrawalPage() {
 
   const closePopup = () => {
     setShowPopup(false);
+  };
+
+  const closeAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -190,12 +205,13 @@ function WithdrawalPage() {
         </form>
 
         <div className="info-box">
-        <h4 style={{display:"flex",margin:0}}>Note:</h4>
+          <h4 style={{ display: "flex", margin: 0 }}>Note:</h4>
           <ul>
             <li>Withdrawal available daily between 08:00 - 20:00</li>
             <li>Minimum amount to withdraw is only ₹150.</li>
             <li>Correctly fill in bank account information and IFSC code</li>
-            <li>In some cases withdraw takes upto 24 hours to arrive. If you don't
+            <li>
+              In some cases withdraw takes upto 24 hours to arrive. If you don't
               receive after 24 hours, contact our customer support.
             </li>
           </ul>
@@ -220,6 +236,11 @@ function WithdrawalPage() {
               <p key={index}>{error}</p>
             ))}
           </div>
+        )}
+
+        {/* Custom Alert */}
+        {showAlert && (
+          <CustomAlert message={alertMessage} onClose={closeAlert} />
         )}
       </div>
     </div>

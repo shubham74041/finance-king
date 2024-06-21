@@ -46,16 +46,18 @@ const FinancialPage = () => {
     return "Unknown status";
   };
 
-  const filteredData = financialData.filter((transaction) => {
-    if (filter.toLowerCase() === "other") {
-      return (
-        transaction.type.toLowerCase() === "other" ||
-        (transaction.type.toLowerCase() === "other" &&
-          transaction.anotherType?.toLowerCase() === "checkIn")
-      );
-    }
-    return transaction.type.toLowerCase() === filter.toLowerCase();
-  });
+  const filteredData = financialData
+    .filter((transaction) => {
+      if (filter.toLowerCase() === "other") {
+        return (
+          transaction.type.toLowerCase() === "other" ||
+          (transaction.type.toLowerCase() === "other" &&
+            transaction.anotherType?.toLowerCase() === "checkIn")
+        );
+      }
+      return transaction.type.toLowerCase() === filter.toLowerCase();
+    })
+    .sort((a, b) => new Date(b.date) - new Date(a.date));
 
   console.log(filteredData);
 
