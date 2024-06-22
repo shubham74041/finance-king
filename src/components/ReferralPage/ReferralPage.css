@@ -76,6 +76,7 @@ h2 {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 50px;
 }
 
 .data-item {
@@ -100,7 +101,7 @@ h2 {
 }
 
 /* Responsive Design */
-@media (min-width: 768px) {
+@media (min-width: 600px) {
   .referral-data {
     flex-direction: row;
     flex-wrap: wrap;
