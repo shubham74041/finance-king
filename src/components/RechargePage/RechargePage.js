@@ -4,7 +4,9 @@ import axios from "axios";
 
 const RechargePage = () => {
   const [amount, setAmount] = useState(""); // State to hold the input amount
-  const [suggestions] = useState(["550", "2000", "5000", "15000", "40000", "50000"]); // Array of suggestion amounts
+  const [suggestions] = useState(["550", "2000", "5000"]); // Array of suggestion amounts
+
+  const [suggestionsTwo] = useState(["15000", "40000", "50000"]); // Array of suggestion amounts
 
   // Function to handle suggestion selection
   const handleSuggestionClick = (suggestion) => {
@@ -54,29 +56,49 @@ const RechargePage = () => {
           placeholder="Enter amount"
           className="amount-input"
         />
-        <div className="suggestions">
-          {suggestions.map((suggestion, index) => (
-            <div
-              key={index}
-              className="suggestion-box"
-              onClick={() => handleSuggestionClick(suggestion)}
-            >
-              {suggestion}
-            </div>
-          ))}
+        <div style={{ display:"flex", flexDirection:"column" }}>
+          <div className="suggestions">
+            {suggestions.map((suggestion, index) => (
+              <div
+                key={index}
+                className="suggestion-box"
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
+          <div className="suggestions">
+            {suggestionsTwo.map((suggestion, index) => (
+              <div
+                key={index}
+                className="suggestion-box"
+                onClick={() => handleSuggestionClick(suggestion)}
+              >
+                {suggestion}
+              </div>
+            ))}
+          </div>
         </div>
         <button onClick={handleSubmit} className="submit-button">
           Recharge
         </button>
       </div>
       <div className="info-box">
-        <h4 style={{display:"flex",margin:0}}>Note:</h4>
-          <ul>
-            <li>Confirm the recharge amount and fill in the UTR number correctly.</li>
-            <li>Every time you recharge, you need to re-acquire the receiving account at the cashier.</li>
-            <li>For recharge questions, please contact online customer service.</li>
-          </ul>
-        </div>
+        <h4 style={{ display: "flex", margin: 0 }}>Note:</h4>
+        <ul>
+          <li>
+            Confirm the recharge amount and fill in the UTR number correctly.
+          </li>
+          <li>
+            Every time you recharge, you need to re-acquire the receiving
+            account at the cashier.
+          </li>
+          <li>
+            For recharge questions, please contact online customer service.
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
