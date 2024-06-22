@@ -1,12 +1,12 @@
 .recharge-container {
-  background: #a854a8;
-  width: 80%;
+  /* background: #cbcbd4; */
+  /* width: 80%; */
   max-width: 400px; /* Adjust max-width as needed */
   margin: 60px auto;
   padding: 20px;
-  border: 2px solid #ddd;
+  /* border: 2px solid #ddd; */
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Box shadow */
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); Box shadow */
 }
 
 .recharge-heading {
@@ -75,4 +75,45 @@
 
 .suggestion-box:hover {
   background-color: #f0f0f0;
+}
+
+.info-box {
+  /* margin-bottom: 20px; */
+
+  /* padding: 15px; */
+  /* background: #eef; */
+  border-radius: 5px;
+  font-family: Arial, sans-serif; /* Set font family */
+  line-height: 1.6; /* Set line height */
+
+}
+
+.info-box ul {
+  padding-left: 20px;
+  margin: 0; /* Remove default margin for ol */
+}
+
+.info-box li {
+  margin-bottom: 5px; /* Adjust spacing between list items */
+}
+
+@media only screen and (max-width: 600px) {
+  .info-box {
+    /* margin-top: 20px; */
+    margin-bottom: 20px;
+    padding: 15px;
+    padding-bottom: 30px;
+    /* background: #eef; */
+    /* border-radius: 5px; */
+    /* overflow-y: auto; Add scrollbar for overflow */
+    /* max-height: 150px; Set max height for scroll */
+    font-size: 14px; /* Adjust font size for smaller screens */
+    max-height: none; /* Remove max-height for mobile view */
+
+
+  }
+
+  /* .info-box ol {
+    padding-left: 20px;
+  } */
 }
