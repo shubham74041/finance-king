@@ -14,13 +14,16 @@ const ContactInfoPage = () => {
       .get(`https://rajjiowin-backend.vercel.app/messages/${id}`)
       .then((response) => {
         if (Array.isArray(response.data)) {
-          setContactData(response.data);
+          const sortedData = response.data.sort(
+            (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+          );
+          setContactData(sortedData);
 
           // Load solved status from localStorage
           const storedSolvedStatus = JSON.parse(
             localStorage.getItem("solvedStatus") || "{}"
           );
-          const initialSolvedStatus = response.data.reduce((acc, contact) => {
+          const initialSolvedStatus = sortedData.reduce((acc, contact) => {
             acc[contact._id] = storedSolvedStatus[contact._id] || false;
             return acc;
           }, {});

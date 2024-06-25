@@ -15,7 +15,11 @@ const OrderPage = () => {
         const response = await axios.get(
           `https://rajjiowin-backend.vercel.app/order/${id}`
         );
-        setOrderData(response.data);
+        // Sort the data by createdAt in descending order
+        const sortedData = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setOrderData(sortedData);
       } catch (error) {
         console.error("Error fetching order data:", error);
         setAlertMessage("Error fetching order data. Please try again later.");
