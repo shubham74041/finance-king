@@ -92,8 +92,8 @@ const HomePage = ({ cards }) => {
   }, []);
 
   const handleBuy = (card) => {
-    if (purchasedPlans.includes(card.title)) {
-      setAlertMessage("You have already purchased this plan.");
+    if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
+      setAlertMessage("You have already purchased Plan A.");
       setShowAlert(true);
       return;
     }
@@ -132,6 +132,7 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
       });
   };
+
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -182,9 +183,13 @@ const HomePage = ({ cards }) => {
               <button
                 onClick={() => handleBuy(card)}
                 className="buy-button"
-                disabled={purchasedPlans.includes(card.title)}
+                disabled={
+                  card.title === "Plan A" && purchasedPlans.includes(card.title)
+                }
               >
-                {purchasedPlans.includes(card.title) ? "Purchased" : "Buy"}
+                {card.title === "Plan A" && purchasedPlans.includes(card.title)
+                  ? "Purchased"
+                  : "Buy"}
               </button>
             </div>
           </div>
