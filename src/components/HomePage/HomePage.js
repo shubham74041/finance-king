@@ -13,9 +13,6 @@ import Img3 from "../icons/img3.jpg";
 import Img4 from "../icons/img4.jpg";
 import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
-import CheckIn from "../CheckIn/CheckIn";
-import axios from "axios";
-import CustomAlert from "../AdminPage/Admin/CustomAlert";
 import Navbar from "../Header/Header";
 
 const HomePage = ({ cards }) => {
