@@ -5,6 +5,7 @@ import CustomAlert from "../AdminPage/Admin/CustomAlert";
 import telegramIcon from "../icons/icons8-telegram-100.png";
 import supportIcon from "../icons/contact.png";
 import "./SignUpPage.css";
+import logo from "../icons/rajlogo.png";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -68,6 +69,7 @@ const SignUp = () => {
 
   return (
     <div className="signup">
+                <img className="logo"  src={logo} alt="logo"/>
       <form>
         <div className="form-container">
           {/* <h2>Rajjowin</h2> */}
@@ -76,7 +78,6 @@ const SignUp = () => {
               Email
             </label>
             <input
-              placeholder="Enter Email"
               id="email"
               className="email_input"
               type="email"
@@ -90,7 +91,6 @@ const SignUp = () => {
               Mobile No.
             </label>
             <input
-              placeholder="Enter Mobile No."
               id="phoneNumber"
               className="mobile_input"
               type="tel"
@@ -106,7 +106,6 @@ const SignUp = () => {
             <input
               className="password_input"
               id="password"
-              placeholder="Enter Password"
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -120,8 +119,7 @@ const SignUp = () => {
             <input
               className="referral_input"
               id="referralCode"
-              placeholder="Enter Referral Code"
-              type="text"
+                type="text"
               value={referralCode}
               onChange={(e) => setReferralCode(e.target.value)}
             />

@@ -1,10 +1,14 @@
 .login {
   display: flex;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  height: 90vh;
-  /* margin-top: 20px; */
-padding-top: 25px;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  /* margin-top: 10px; */
+/* padding-top: 25px; */
+background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, rgba(0,232,255,0.9810049019607843) 100%);
+
 }
 .LoginPage {
   width: 400px;
@@ -12,22 +16,30 @@ padding-top: 25px;
   padding: 10px 40px 10px 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 0;
-  background-color: rgb(13, 8, 41);
+  /* margin-top: 0; */
+  /* background-color: rgb(13, 8, 41); */
+  background-color: #fff;
+  color: black;
   /* box-shadow: -13px -9px 0px 0px rgba(18, 1, 28, 0.4); */
 }
 
+.logo{
+  width: 30vw;
+}
 h1 {
   text-align: center;
-  color: white;
+  color: black;
   font-family: "'Sedan', serif";
 }
 
 .login-label {
   margin-bottom: 5px;
   display: block;
-  color: white;
+  color: black;
   margin-left: 10px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 .input_box {
@@ -37,6 +49,10 @@ h1 {
   border-radius: 10px;
   margin-bottom: 15px;
   margin-left: 10px;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+
 }
 .input_box2 {
   width: 95% !important;
@@ -51,6 +67,10 @@ h1 {
 .forgot a {
   color: #007bff;
   text-decoration: none;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 700;
+  font-style: normal;
+
 }
 .forgot a:hover {
   text-decoration: underline;
@@ -59,17 +79,24 @@ h1 {
   width: 50%;
   padding: 10px;
   background-color: #007bff;
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   display: block;
   margin-left: 95px;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-style: normal;
 }
 
 .register {
   text-align: center;
-  color: white;
+  color: black;
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-style: normal;
+  
 }
 
 .register a {
@@ -86,19 +113,23 @@ h1 {
   width: 50%;
   /* padding: 10px; */
   background-color: #007bff; /* Green color */
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 20px;
   cursor: pointer;
   display: block;
   margin: 10px auto; /* Center horizontally with some margin */
+    font-family: "Libre Baskerville", serif;
+    font-weight: 700;
+    font-style: normal;
+  
 }
 
 .support_button {
   width: 50%;
   /* padding: 10px; */
   background-color: #007bff; /* Red color */
-  color: #fff;
+  color: black;
   border: none;
   border-radius: 20px;
   cursor: pointer;
@@ -134,6 +165,9 @@ h1 {
     border: 1px solid #ccc;
 
     /* border-radius: 4px; */
+  }
+  .logo{
+    width: 58vw;
   }
 }
 

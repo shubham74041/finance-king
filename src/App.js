@@ -45,7 +45,7 @@ function App() {
       <div className="App">
         <Router>
           <AuthProvider>
-            <div
+            {/* <div
               style={{
                 position: "fixed",
                 top: 0,
@@ -67,7 +67,7 @@ function App() {
                 justifyContent: "center",
               }}
             >
-              {/* <Link to="/" className="navbar-link"> */}
+
               <span
                 style={{
                   // border: "0.5px solid steelblue",
@@ -78,8 +78,7 @@ function App() {
               >
                 {"Rajjowin"}
               </span>
-              {/* </Link> */}
-            </div>
+            </div> */}
             <div>
               <Routes>
                 {/* <Route path="/" element={<HomePage />} /> */}

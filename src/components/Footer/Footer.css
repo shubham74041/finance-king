@@ -1,11 +1,14 @@
 /* Footer CSS */
 .footer {
-  background-color: rgb(13, 8, 41);
+  /* background-color: rgb(13, 8, 41); */
   padding: 5px;
+  background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, rgba(0,232,255,0.9810049019607843) 100%);
+
   position: fixed;
   bottom: 0;
   width: 100%;
   z-index: 1000;
+  color: black;
 }
 
 .footer-list {
@@ -22,7 +25,7 @@
 
 .footer-link {
   text-decoration: none;
-  color: #fff;
+  color: black;
 }
 
 .footer-icon {
@@ -56,5 +59,6 @@
 .icon-name {
   font-size: 12px;
   margin-top: 5px;
+  color: black;
 }
 

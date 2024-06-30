@@ -1,0 +1,40 @@
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 45px;
+    z-index: 1000;
+    background: rgb(2,0,36);
+    background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, rgba(0,232,255,0.9810049019607843) 100%);
+        font-family: 'Sedan', serif;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    overflow: hidden; /* Ensure content doesn't overflow */
+  }
+  
+  .navbar-logo {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-logo img {
+    max-height: 57px; /* Constrain the image height */
+    width: auto;      /* Maintain aspect ratio */
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      font-size: 18px;
+      height: 50px;
+    }
+  
+    .navbar-logo img {
+      max-height: 70px; /* Adjust for smaller screens */
+    }
+  }
+  

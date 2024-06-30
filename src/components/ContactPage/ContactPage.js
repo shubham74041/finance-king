@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import "./ContactPage.css"; // Import your CSS file for NavBar styling
+import Navbar from "../Header/Header";
 
 const ContactPage = () => {
   const userId = localStorage.getItem("site");
@@ -36,6 +37,7 @@ const ContactPage = () => {
 
   return (
     <div className="contact-container">
+      <Navbar/>
       <div className="contact-form">
         <h2 className="contact-heading">Contact Us</h2>
         <p className="contact-text">
