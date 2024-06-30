@@ -54,20 +54,20 @@ function App() {
                 height: "45px",
                 zIndex: "1000",
                 // background: "linear-gradient(90deg, rgba(18,15,79,1) 1%, rgba(19,19,103,1) 100%, rgba(0,212,255,1) 100%)",
-                // backgroundColor: "rgb(13, 8, 41)",
+                backgroundColor: "rgb(13, 8, 41)",
                 fontFamily: "'Sedan', serif",
                 color: "white",
                 lineHeight: "39px",
                 fontSize: "22px",
                 fontWeight: "bold",
                 // paddingLeft: "10px",
-                // borderBottom: "0.5px solid white",
-                // boxShadow: "1px 1px 1px black",
+                borderBottom: "0.5px solid white",
+                boxShadow: "1px 1px 1px black",
                 display: "flex",
                 justifyContent: "center",
               }}
             >
-              {/* <Link to="/" className="navbar-link"> 
+              {/* <Link to="/" className="navbar-link"> */}
               <span
                 style={{
                   // border: "0.5px solid steelblue",
@@ -76,109 +76,107 @@ function App() {
                   height: "30px",
                 }}
               >
-                        <img  style={{width:"70vw"}} src={logo} alt="Rajologo" />
-
-                {/* {"Rajjowin"} 
+                {"Rajjowin"}
               </span>
-              {/* </Link> 
-            </div> */}
-          {/* <div> */}
-            <Routes>
-              {/* <Route path="/" element={<HomePage />} /> */}
-                <Route element={<ProtectedRoute />}>
-                <Route path="/" element={<HomePage />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/contact" element={<ContactPage />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/withdrawal" element={<WithdrawalPage />} />
-              </Route>
-              <Route path="/user-details" element={<UserDetailsPage />} />
-              {/* <Route path="/withdrawal" element={<WithdrawalPage />} /> */}
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/Wallet" element={<Wallet />} />
-              </Route>
-
-              {/* <Route path="/Wallet" element={<Wallet />} /> */}
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/recharge" element={<RechargePage />} />
-              </Route>
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/Wallet" element={<Wallet />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/referral" element={<ReferralPage />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/logout" element={<LogoutPage />} />
-              </Route>
-
-              {/* <Route path="/contact" element={<ContactPage />} /> */}
-
-              {/* <ProtectedRoute path="/contact" element={<ContactPage />} /> */}
-
-                <Route element={<ProtectedRoute />}>
-                <Route
-                  path="/product-details"
-                  element={<ProductDetailsPage />}
-                />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/total-amount" element={<TotalAmountPage />} />
-              </Route>
-
-              <Route path="/forgot-password" element={<ForgotPassword />} />
-              <Route path="/add-card" element={<AddCardPage />} />
-              <Route path="/rajiowin-admin" element={<AdminPage />} />
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/promotion-tasks" element={<PromotionPage />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/order" element={<OrderPage />} />
-              </Route>
-
-                <Route element={<ProtectedRoute />}>
-                <Route path="/financial" element={<FinancialPage />} />
-              </Route>
-
-              <Route path="/download" element={<DownloadPage />} />
-              <Route element={<ProtectedRoute />}>
-                <Route path="/support" element={<SupportPage />} />
-              </Route>
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/complaint" element={<ComplaintPage />} />
-              </Route>
-
-              <Route element={<ProtectedRoute />}>
-                <Route path="/follow" element={<FollowPage />} />
-              </Route>
-
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignUpPage />} />
-
-              <Route path="/recharge-data" element={<RechargeDataPage />} />
-              <Route path="/withdraw-data" element={<WithdrawData />} />
-              <Route path="check-in" element={<CheckIn />} />
-              <Route path="/users" element={<UserDetails />} />
-              <Route path="/details-referral" element={<DetailReferral />} />
-              <Route path="/messages" element={<ContactInfo />} />
-              <Route path="/custom-popup" element={<CustomPopup />} />
-              <Route path="/new-product" element={<ProductCard />} />
-            </Routes>
+              {/* </Link> */}
             </div>
-          <Footer />
+            <div>
+              <Routes>
+                {/* <Route path="/" element={<HomePage />} /> */}
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/" element={<HomePage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/contact" element={<ContactPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/withdrawal" element={<WithdrawalPage />} />
+                </Route>
+                <Route path="/user-details" element={<UserDetailsPage />} />
+                {/* <Route path="/withdrawal" element={<WithdrawalPage />} /> */}
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/Wallet" element={<Wallet />} />
+                </Route>
+
+                {/* <Route path="/Wallet" element={<Wallet />} /> */}
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/recharge" element={<RechargePage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/Wallet" element={<Wallet />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/referral" element={<ReferralPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/logout" element={<LogoutPage />} />
+                </Route>
+
+                {/* <Route path="/contact" element={<ContactPage />} /> */}
+
+                {/* <ProtectedRoute path="/contact" element={<ContactPage />} /> */}
+
+                <Route element={<ProtectedRoute />}>
+                  <Route
+                    path="/product-details"
+                    element={<ProductDetailsPage />}
+                  />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/total-amount" element={<TotalAmountPage />} />
+                </Route>
+
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/add-card" element={<AddCardPage />} />
+                <Route path="/rajiowin-admin" element={<AdminPage />} />
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/promotion-tasks" element={<PromotionPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/order" element={<OrderPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/financial" element={<FinancialPage />} />
+                </Route>
+
+                <Route path="/download" element={<DownloadPage />} />
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/support" element={<SupportPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/complaint" element={<ComplaintPage />} />
+                </Route>
+
+                <Route element={<ProtectedRoute />}>
+                  <Route path="/follow" element={<FollowPage />} />
+                </Route>
+
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/signup" element={<SignUpPage />} />
+
+                <Route path="/recharge-data" element={<RechargeDataPage />} />
+                <Route path="/withdraw-data" element={<WithdrawData />} />
+                <Route path="check-in" element={<CheckIn />} />
+                <Route path="/users" element={<UserDetails />} />
+                <Route path="/details-referral" element={<DetailReferral />} />
+                <Route path="/messages" element={<ContactInfo />} />
+                <Route path="/custom-popup" element={<CustomPopup />} />
+                <Route path="/new-product" element={<ProductCard />} />
+              </Routes>
+            </div>
+            <Footer />
           </AuthProvider>
         </Router>
       </div>

@@ -1,10 +1,8 @@
-import Navbar from "../Header/Header";
 import "./PromotionPage.css";
 
 const PromotionPage = () => {
   return (
     <div className="promotion-task">
-                    <Navbar/>
       <h2>Promotion Tasks</h2>
       <div className="tasks">
         <h4>Invite 1 recharge member</h4>

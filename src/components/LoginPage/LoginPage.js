@@ -6,7 +6,7 @@ import telegramIcon from "../icons/icons8-telegram-100.png";
 import supportIcon from "../icons/contact.png";
 import "./LoginPage.css";
 import { useAuth } from "../AuthProvider"; // Assuming you've defined an AuthContext
-import logo from "../icons/rajlogo.png"
+
 const LoginPage = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({
@@ -90,16 +90,15 @@ const LoginPage = () => {
 
   return (
     <div className="login">
-          <img className="logo" src={logo} alt="logo"/>
       <form>
         <div className="LoginPage">
-          {/* <h1>Rajjowin</h1> */}
+          <h1>Rajjowin</h1>
           <div className="phone_number">
             <label htmlFor="phoneNumber" className="login-label">
               Mobile No.
             </label>
             <input
-              // placeholder="Enter Mobile No."
+              placeholder="Enter Mobile No."
               id="phoneNumber"
               className="input_box input_box1"
               type="number"
@@ -115,7 +114,7 @@ const LoginPage = () => {
             <input
               className="input_box input_box2"
               id="password"
-              // placeholder="Enter Password"
+              placeholder="Enter Password"
               type="password"
               name="password"
               // value={password}
