@@ -19,7 +19,7 @@ const RechargePage = () => {
 
     // You can replace the placeholder with your actual backend endpoint
     axios
-      .post("http://localhost:8080/recharge", {
+      .post("https://rajjiowin-backend.vercel.app/recharge", {
         // Data to send to the backend
         amount,
         phoneNumber,
@@ -56,7 +56,7 @@ const RechargePage = () => {
           placeholder="Enter amount"
           className="amount-input"
         />
-        <div style={{ display:"flex", flexDirection:"column" }}>
+        <div style={{ display: "flex", flexDirection: "column" }}>
           <div className="suggestions">
             {suggestions.map((suggestion, index) => (
               <div

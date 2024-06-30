@@ -20,6 +20,11 @@ const WithdrawData = () => {
 
         const fetchedData = response.data;
 
+        // Sort data by date in descending order
+        fetchedData.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+
         // Load disabled state from local storage
         const disabledStates =
           JSON.parse(localStorage.getItem("disabledStates")) || {};

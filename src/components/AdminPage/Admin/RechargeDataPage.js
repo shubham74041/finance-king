@@ -22,11 +22,17 @@ const RechargeDataPage = () => {
         const response = await axios.get(
           "https://rajjiowin-backend.vercel.app/recharge-data"
         );
-        setRechargeData(response.data);
+
+        // Sort data by date in descending order
+        const sortedData = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+
+        setRechargeData(sortedData);
 
         // Initialize the disabled buttons state based on the data
         const disabledState = {};
-        response.data.forEach((item) => {
+        sortedData.forEach((item) => {
           if (disabledButtons[item._id] === undefined) {
             disabledState[item._id] = false;
           }

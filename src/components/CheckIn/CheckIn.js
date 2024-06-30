@@ -8,8 +8,9 @@ const CheckIn = ({ enabled, setEnabled, setWalletBalance }) => {
   const [buttonColor, setButtonColor] = useState("default");
 
   useEffect(() => {
-    const lastCheckInDate = localStorage.getItem("lastCheckInDate");
-    const allowSecondCheckIn = localStorage.getItem("allowSecondCheckIn");
+    const userId = localStorage.getItem("site");
+    const lastCheckInDate = localStorage.getItem(`lastCheckInDate_${userId}`);
+    const allowSecondCheckIn = localStorage.getItem(`allowSecondCheckIn`);
     const today = new Date().toISOString().split("T")[0];
 
     if (lastCheckInDate === today && !allowSecondCheckIn) {
@@ -22,47 +23,30 @@ const CheckIn = ({ enabled, setEnabled, setWalletBalance }) => {
   }, [setEnabled]);
 
   const handleCheckIn = async () => {
-    const id = localStorage.getItem("site");
+    const userId = localStorage.getItem("site");
     try {
       const response = await axios.post(
-        `https://rajjiowin-backend.vercel.app/check-in/${id}`,
+        `https://rajjiowin-backend.vercel.app/check-in/${userId}`,
         {}
       );
       const data = response.data;
 
-      console.log("Check-in response data:", data); // Log response data
-
-      if (data.message === "Check-in complete") {
+      if (data.message.includes("check-in complete")) {
         setMessage("Checked in successfully!");
         setButtonColor("checked-in");
         setEnabled(false);
         setWalletBalance(data.walletBalance);
 
         const today = new Date().toISOString().split("T")[0];
-        localStorage.setItem("lastCheckInDate", today);
-        localStorage.removeItem("allowSecondCheckIn");
+        localStorage.setItem(`lastCheckInDate_${userId}`, today);
+        localStorage.removeItem(`allowSecondCheckIn`);
 
         // Reload the page after successful check-in
         window.location.reload();
-      } else if (
-        data.message === "Already checked in today" &&
-        !data.hasProducts
-      ) {
-        setMessage(data.message);
-        setWalletBalance(data.walletBalance);
-      } else if (
-        data.message === "Already checked in today" &&
-        data.hasProducts
-      ) {
-        setMessage("");
-        setButtonColor("checked-in");
-        setEnabled(false);
-        setWalletBalance(data.walletBalance);
       } else {
         setMessage(data.message);
       }
     } catch (error) {
-      console.error("Error during check-in:", error); // Log the error
       setMessage("Error during check-in. Please try again.");
     }
   };
