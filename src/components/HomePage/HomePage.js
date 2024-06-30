@@ -12,6 +12,7 @@ import Img6 from "../icons/img6.jpg";
 import CheckIn from "../CheckIn/CheckIn";
 import axios from "axios";
 import CustomAlert from "../AdminPage/Admin/CustomAlert";
+import Navbar from "../Header/Header";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
@@ -138,6 +139,8 @@ const HomePage = ({ cards }) => {
 
   return (
     <div className="home">
+      <Navbar/>
+
       <HomeCard balance={walletBalance} />
       <CheckIn
         enabled={checkInEnabled}

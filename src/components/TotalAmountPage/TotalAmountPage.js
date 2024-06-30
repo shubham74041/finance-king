@@ -13,6 +13,7 @@ import supportIcon from "../icons/contact.png";
 import complainIcon from "../icons/icons8-complaint-100.png";
 import signoutIcon from "../icons/icons8-logout-100.png";
 import { useAuth } from "../AuthProvider";
+import Navbar from "../Header/Header";
 // import Support from "../icons/support.svg";
 
 const TotalAmountPage = () => {
@@ -25,6 +26,7 @@ const TotalAmountPage = () => {
 
   return (
     <div className="total-amount-container">
+      <Navbar/>
       <HomeCard />
 
       <div className="additional-links">
