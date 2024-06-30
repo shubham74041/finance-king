@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import CustomAlert component
 import "./OrderPage.css";
-import Navbar from "../Header/Header";
 
 const OrderPage = () => {
   const id = localStorage.getItem("site");
@@ -39,7 +38,6 @@ const OrderPage = () => {
 
   return (
     <div className="order-page">
-   <Navbar/>
       <h4>Order Details</h4>
 
       {orderData.length > 0 ? (

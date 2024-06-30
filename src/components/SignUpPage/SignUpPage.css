@@ -1,24 +1,16 @@
 .signup {
+  background-color: rgb(13, 8, 41); /* Dark background */
+  color: white; /* White text color */
+  max-width: 400px; /* Max width of the form */
+  margin: auto; /* Center the form on the page */
+  border-radius: 10px; /* Rounded corners */
+  border: 2px solid red; /* Red border */
+  padding: 20px; /* Padding inside the form */
   display: flex;
-  /* justify-content: center; */
+  justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
-
-  /* margin-top: 10px; */
-/* padding-top: 25px; */
-background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, rgba(0,232,255,0.9810049019607843) 100%);
-
-}
-
-.form-container{
-  width: 400px;
-  margin: auto;
-  background-color: white;
-  padding: 3px 3px 3px 3px;
-  color: black;
-
+  margin-top: 70px;
+  margin-bottom: 0px;
 }
 
 .form-container h2 {
@@ -26,28 +18,19 @@ background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, r
   margin-bottom: 40px; /* Space below the heading */
   font-family: "'Sedan', serif";
   margin-top: 0;
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .form-container label {
   display: block; /* Make labels block elements */
   margin-bottom: 5px; /* Space below the labels */
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .form-container input {
   /* Full width inputs */
   padding: 10px; /* Padding inside the inputs */
-  margin-bottom: 10px; /* Space below the inputs */
+  margin-bottom: 20px; /* Space below the inputs */
   border-radius: 5px; /* Rounded corners for inputs */
   border: 1px solid #ccc; /* Border for the inputs */
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .register_btn {
@@ -58,42 +41,23 @@ background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, r
   width: 90%; /* Full width button */
   border-radius: 20px; /* Rounded corners for the button */
   cursor: pointer; /* Pointer cursor on hover */
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
-  font-style: normal;
 }
 
 .register p {
   text-align: center; /* Center the text */
-  color: black; /* White text color */
-  font-family: "Libre Baskerville", serif;
-  font-weight: 700;
-  font-style: normal;
-}
-
-.logo{
-  width: 30vw;
+  color: white; /* White text color */
 }
 
 @media only screen and ((max-width: 600px)) {
   /* CSS for screens smaller than 600px */
   .signup {
-    /* max-width: 70%; Adjust width for small screens
-    margin-top: 70px; */
+    max-width: 70%; /* Adjust width for small screens */
+    margin-top: 70px;
     margin-bottom: 0 !important; /* Remove bottom margin */
     flex-direction: column; /* Stack items vertically */
     align-items: center; /* Center items horizontally */
   }
-  .logo{
-    width: 58vw;
-  }
 
-  .form-container{
-    width: 90%; /* Adjust width to fit smaller screens */
-    padding: 3px; /* Reduce padding */
-    margin-left: auto;
-    margin-right: auto;
-  }
   .form-container input {
     font-size: 14px; /* Smaller font size for inputs */
   }
@@ -102,6 +66,6 @@ background: linear-gradient(177deg, rgba(2,0,36,1) 0%, rgba(184,184,214,1) 0%, r
     width: 90%;
     margin-left: 0; /* Reset margin */
     margin-right: 0; /* Reset margin */
-    margin-top: 5px; /* Add margin to top */
+    margin-top: 10px; /* Add margin to top */
   }
 }

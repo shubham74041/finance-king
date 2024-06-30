@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CustomAlert from "../AdminPage/Admin/CustomAlert.js";
 import "./ForgotPassword.css";
-import Navbar from "../Header/Header.js";
 
 const ForgotPassword = () => {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,7 +26,6 @@ const ForgotPassword = () => {
 
   return (
     <div className="forgot-password">
-                    <Navbar/>
       <h3 className="forgot-password-heading">Forgot Password</h3>
       <p className="forgot-password-text">
         Make a request for changing the password
