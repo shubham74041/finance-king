@@ -85,9 +85,13 @@ const CheckIn = ({ setWalletBalance }) => {
 
   useEffect(() => {
     const storedColor = localStorage.getItem("buttonColor");
+    const storedEnabled = localStorage.getItem("checkInEnabled");
+
     if (storedColor) {
       setButtonColor(storedColor);
-      setEnabled(storedColor !== "checked-in");
+    }
+    if (storedEnabled !== null) {
+      setEnabled(storedEnabled === "true");
     }
   }, []);
 
@@ -106,6 +110,7 @@ const CheckIn = ({ setWalletBalance }) => {
         const newButtonColor = isEnabled ? "default" : "checked-in";
         setButtonColor(newButtonColor);
         localStorage.setItem("buttonColor", newButtonColor);
+        localStorage.setItem("checkInEnabled", isEnabled.toString());
       } catch (error) {
         console.error("Error fetching check-in status:", error);
       }
@@ -129,22 +134,21 @@ const CheckIn = ({ setWalletBalance }) => {
         setEnabled(false); // Disable after check-in
         setButtonColor("checked-in");
         localStorage.setItem("buttonColor", "checked-in"); // Store button color in localStorage
+        localStorage.setItem("checkInEnabled", "false"); // Update check-in state in localStorage
       } else {
         setMessage(data.message);
       }
 
-      // Close the popup after 2 seconds
+      // Close the popup after 5 seconds
       setTimeout(() => {
         setMessage("");
-        window.location.reload();
       }, 2000);
     } catch (error) {
       setMessage("Error during check-in. Please try again.");
 
-      // Close the popup after 2 seconds
+      // Close the popup after 5 seconds
       setTimeout(() => {
         setMessage("");
-        window.location.reload();
       }, 2000);
     }
   };
