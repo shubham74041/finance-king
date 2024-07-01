@@ -136,7 +136,7 @@ const CheckIn = ({ setWalletBalance }) => {
       // Close the popup after 2 seconds
       setTimeout(() => {
         setMessage("");
-        // No need to reload the page, as the state should now be accurate
+        window.location.reload();
       }, 2000);
     } catch (error) {
       setMessage("Error during check-in. Please try again.");
@@ -144,7 +144,7 @@ const CheckIn = ({ setWalletBalance }) => {
       // Close the popup after 2 seconds
       setTimeout(() => {
         setMessage("");
-        // No need to reload the page, as the state should now be accurate
+        window.location.reload();
       }, 2000);
     }
   };
