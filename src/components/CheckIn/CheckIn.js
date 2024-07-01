@@ -118,7 +118,7 @@ const CheckIn = ({ setWalletBalance }) => {
 
       if (data.message.includes("check-in complete")) {
         setMessage("Checked in successfully!");
-        setWalletBalance(data.walletBalance);
+        setWalletBalance(data.walletBalance); // Update wallet balance
         setEnabled(false); // Disable after check-in
         setButtonColor("checked-in");
         localStorage.setItem("buttonColor", "checked-in"); // Store button color in localStorage

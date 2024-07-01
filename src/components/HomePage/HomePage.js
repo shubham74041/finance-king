@@ -63,7 +63,6 @@ const HomePage = ({ cards }) => {
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
           setWalletBalance(response.data.walletBalance); // Update wallet balance
-          // Avoid unnecessary page reload
         }
       })
       .catch((error) => {
