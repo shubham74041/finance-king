@@ -55,13 +55,13 @@
   height: 40px;
   padding: 10px 10px;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 /* CheckIn.css */
 
 .check_in_button.default {
   background-color: #28a745; /* Original button color */
-  cursor: pointer;
 }
 
 .check_in_button.checked-in {

@@ -18,6 +18,7 @@ const HomePage = ({ cards }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [fetchedCards, setFetchedCards] = useState([]);
+  const [checkInEnabled, setCheckInEnabled] = useState(false); // State to manage check-in button state
 
   useEffect(() => {
     const userId = localStorage.getItem("site");
@@ -29,6 +30,8 @@ const HomePage = ({ cards }) => {
         );
         setFetchedCards(response.data.cards);
         setWalletBalance(response.data.walletBalance); // Set initial wallet balance
+        setCheckInEnabled(response.data.checkInEnabled); // Set initial check-in button state
+        console.log("Check-in status:", response.data.checkInEnabled);
       })
       .catch((error) => {
         console.error("Error fetching purchased plans:", error);
@@ -63,7 +66,11 @@ const HomePage = ({ cards }) => {
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
           setWalletBalance(response.data.walletBalance); // Update wallet balance
-          window.location.reload();
+          setCheckInEnabled(response.data.checkInEnabled); // Refresh check-in button state
+          console.log(
+            "Check-in enabled after purchase:",
+            response.data.checkInEnabled
+          );
         }
       })
       .catch((error) => {
@@ -83,7 +90,7 @@ const HomePage = ({ cards }) => {
     <div className="home">
       <Navbar />
       <HomeCard balance={walletBalance} />
-      <CheckIn setWalletBalance={setWalletBalance} />
+      <CheckIn setWalletBalance={setWalletBalance} enabled={checkInEnabled} />
       <div className="card-container">
         {fetchedCards.map((card) => (
           <div key={card.id} className="dummy-card">
@@ -130,7 +137,6 @@ const HomePage = ({ cards }) => {
   );
 };
 
-// Function to get image based on card title
 function getImageForCard(title) {
   switch (title) {
     case "Plan A":

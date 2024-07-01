@@ -77,49 +77,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CheckIn.css";
 import CheckInIcon from "../icons/icons8-entrance-100.png";
+import CustomAlert from "../AdminPage/Admin/CustomAlert";
 
-const CheckIn = ({ setWalletBalance }) => {
-  const [enabled, setEnabled] = useState(true);
-  const [message, setMessage] = useState("");
-  const [buttonColor, setButtonColor] = useState("default");
-
-  useEffect(() => {
-    const storedColor = localStorage.getItem("buttonColor");
-    if (storedColor) {
-      setButtonColor(storedColor);
-    }
-  }, []);
+const CheckIn = ({ setWalletBalance, enabled }) => {
+  const [buttonColor, setButtonColor] = useState(
+    enabled ? "default" : "checked-in"
+  );
+  const [showAlert, setShowAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    const fetchCheckInStatus = async () => {
-      const userId = localStorage.getItem("site");
-      if (!userId) return;
-
-      try {
-        const response = await axios.get(
-          `https://rajjiowin-backend.vercel.app/${userId}/check-in-status`
-        );
-        const { isEnabled, lastSuccessfulCheckIn } = response.data;
-
-        // Calculate if button should be enabled based on lastSuccessfulCheckIn
-        const today = new Date().toISOString().split("T")[0];
-        const lastCheckIn = lastSuccessfulCheckIn
-          ? new Date(lastSuccessfulCheckIn).toISOString().split("T")[0]
-          : null;
-
-        const isButtonEnabled = !lastCheckIn || lastCheckIn !== today;
-
-        setEnabled(isEnabled && isButtonEnabled);
-        const newButtonColor = isEnabled ? "default" : "checked-in";
-        setButtonColor(newButtonColor);
-        localStorage.setItem("buttonColor", newButtonColor);
-      } catch (error) {
-        console.error("Error fetching check-in status:", error);
-      }
-    };
-
-    fetchCheckInStatus();
-  }, []);
+    setButtonColor(enabled ? "default" : "checked-in");
+  }, [enabled]);
 
   const handleCheckIn = async () => {
     const userId = localStorage.getItem("site");
@@ -131,29 +100,35 @@ const CheckIn = ({ setWalletBalance }) => {
       const data = response.data;
 
       if (data.message.includes("check-in complete")) {
-        setMessage("Checked in successfully!");
         setWalletBalance(data.walletBalance);
-        setEnabled(false); // Disable after check-in
         setButtonColor("checked-in");
-        localStorage.setItem("buttonColor", "checked-in"); // Store button color in localStorage
+        setAlertMessage("Checked in successfully!");
+        setShowAlert(true);
       } else {
-        setMessage(data.message);
+        setAlertMessage(data.message); // Handle other cases if needed
+        setShowAlert(true);
       }
 
       // Close the popup after 2 seconds
       setTimeout(() => {
-        setMessage("");
+        setShowAlert(false);
         window.location.reload();
       }, 2000);
     } catch (error) {
-      setMessage("Error during check-in. Please try again.");
+      console.error("Error during check-in:", error);
+      setAlertMessage("Error during check-in. Please try again.");
+      setShowAlert(true);
 
       // Close the popup after 2 seconds
       setTimeout(() => {
-        setMessage("");
+        setShowAlert(false);
         window.location.reload();
       }, 2000);
     }
+  };
+
+  const handleCloseAlert = () => {
+    setShowAlert(false);
   };
 
   return (
@@ -172,7 +147,9 @@ const CheckIn = ({ setWalletBalance }) => {
       <div className="img_check">
         <img src={CheckInIcon} alt="checkIn-img" />
       </div>
-      {message && <div className="popup">{message}</div>}
+      {showAlert && (
+        <CustomAlert message={alertMessage} onClose={handleCloseAlert} />
+      )}
     </div>
   );
 };
