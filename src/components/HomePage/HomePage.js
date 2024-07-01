@@ -63,7 +63,7 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          localStorage.setItem("allowSecondCheckIn", true);
+          // localStorage.setItem("allowSecondCheckIn", true);
           setWalletBalance(response.data.walletBalance);
           window.location.reload(); // Ensure this does not conflict with CheckIn component
         }
