@@ -84,6 +84,13 @@ const CheckIn = ({ setWalletBalance }) => {
   const [buttonColor, setButtonColor] = useState("default");
 
   useEffect(() => {
+    const storedColor = localStorage.getItem("buttonColor");
+    if (storedColor) {
+      setButtonColor(storedColor);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchCheckInStatus = async () => {
       const userId = localStorage.getItem("site");
       if (!userId) return;
@@ -92,13 +99,20 @@ const CheckIn = ({ setWalletBalance }) => {
         const response = await axios.get(
           `https://rajjiowin-backend.vercel.app/${userId}/check-in-status`
         );
-        const { isEnabled } = response.data;
+        const { isEnabled, lastSuccessfulCheckIn } = response.data;
 
-        setEnabled(isEnabled);
+        // Calculate if button should be enabled based on lastSuccessfulCheckIn
+        const today = new Date().toISOString().split("T")[0];
+        const lastCheckIn = lastSuccessfulCheckIn
+          ? new Date(lastSuccessfulCheckIn).toISOString().split("T")[0]
+          : null;
+
+        const isButtonEnabled = !lastCheckIn || lastCheckIn !== today;
+
+        setEnabled(isEnabled && isButtonEnabled);
         const newButtonColor = isEnabled ? "default" : "checked-in";
         setButtonColor(newButtonColor);
         localStorage.setItem("buttonColor", newButtonColor);
-        localStorage.setItem("checkInEnabled", isEnabled.toString());
       } catch (error) {
         console.error("Error fetching check-in status:", error);
       }
@@ -118,11 +132,10 @@ const CheckIn = ({ setWalletBalance }) => {
 
       if (data.message.includes("check-in complete")) {
         setMessage("Checked in successfully!");
-        setWalletBalance(data.walletBalance); // Update wallet balance
+        setWalletBalance(data.walletBalance);
         setEnabled(false); // Disable after check-in
         setButtonColor("checked-in");
         localStorage.setItem("buttonColor", "checked-in"); // Store button color in localStorage
-        localStorage.setItem("checkInEnabled", "false"); // Update check-in state in localStorage
       } else {
         setMessage(data.message);
       }
@@ -130,6 +143,7 @@ const CheckIn = ({ setWalletBalance }) => {
       // Close the popup after 2 seconds
       setTimeout(() => {
         setMessage("");
+        window.location.reload();
       }, 2000);
     } catch (error) {
       setMessage("Error during check-in. Please try again.");
@@ -137,6 +151,7 @@ const CheckIn = ({ setWalletBalance }) => {
       // Close the popup after 2 seconds
       setTimeout(() => {
         setMessage("");
+        window.location.reload();
       }, 2000);
     }
   };
