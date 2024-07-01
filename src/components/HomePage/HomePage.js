@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import GenericCard from "../GenericCard/GenericCard";
+// import { connect } from "react-redux";
+// import GenericCard from "../GenericCard/GenericCard";
 import "./HomePage.css";
 import HomeCard from "../HomeCard/HomeCard";
 import Img1 from "../icons/img1.jpg";
@@ -16,76 +16,20 @@ import Navbar from "../Header/Header";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
-  const [checkInEnabled, setCheckInEnabled] = useState(true);
   const [purchasedPlans, setPurchasedPlans] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
-
-  const dummyCards = [
-    {
-      id: 1,
-      title: "Plan A",
-      price: 550,
-      dailyIncome: 15.5,
-      totalAmount: 1155,
-      cycle: "75 days",
-      image: Img2,
-    },
-    {
-      id: 2,
-      title: "Plan B",
-      price: 1900,
-      dailyIncome: 60,
-      totalAmount: 3900,
-      cycle: "65 days",
-      image: Img5,
-    },
-    {
-      id: 3,
-      title: "Plan C",
-      price: 4800,
-      dailyIncome: 164,
-      totalAmount: 9850,
-      cycle: "60 days",
-      image: Img3,
-    },
-    {
-      id: 4,
-      title: "Plan D",
-      price: 14400,
-      dailyIncome: 545,
-      totalAmount: 30000,
-      cycle: "55 days",
-      image: Img4,
-    },
-    {
-      id: 5,
-      title: "Plan E",
-      price: 38600,
-      dailyIncome: 2150,
-      totalAmount: 111800,
-      cycle: "52 days",
-      image: Img1,
-    },
-    {
-      id: 6,
-      title: "Plan F",
-      price: 92800,
-      dailyIncome: 6400,
-      totalAmount: 320150,
-      cycle: "50 days",
-      image: Img6,
-    },
-  ];
+  const [fetchedCards, setFetchedCards] = useState([]);
 
   useEffect(() => {
     const userId = localStorage.getItem("site");
     axios
-      .get(`https://rajjiowin-backend.vercel.app/${userId}`)
+      .get(`http://localhost:8080/${userId}/purchasedPlans`)
       .then((response) => {
         setPurchasedPlans(
           response.data.purchasedPlans.map((plan) => plan.productTitle)
         );
+        setFetchedCards(response.data.cards);
       })
       .catch((error) => {
         console.error("Error fetching purchased plans:", error);
@@ -93,8 +37,8 @@ const HomePage = ({ cards }) => {
   }, []);
 
   const handleBuy = (card) => {
-    if (purchasedPlans.includes(card.title)) {
-      setAlertMessage("You have already purchased this plan.");
+    if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
+      setAlertMessage("You have already purchased Plan A.");
       setShowAlert(true);
       return;
     }
@@ -110,7 +54,7 @@ const HomePage = ({ cards }) => {
     };
 
     axios
-      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
+      .post(`http://localhost:8080/${userId}`, {
         price: productPrice,
         cardData,
       })
@@ -119,10 +63,9 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          setCheckInEnabled(true);
           localStorage.setItem("allowSecondCheckIn", true);
           setWalletBalance(response.data.walletBalance);
-          window.location.reload();
+          window.location.reload(); // Ensure this does not conflict with CheckIn component
         }
       })
       .catch((error) => {
@@ -133,6 +76,7 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
       });
   };
+
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -140,18 +84,10 @@ const HomePage = ({ cards }) => {
   return (
     <div className="home">
       <Navbar />
-
       <HomeCard balance={walletBalance} />
-      <CheckIn
-        enabled={checkInEnabled}
-        setEnabled={setCheckInEnabled}
-        setWalletBalance={setWalletBalance} // Pass setWalletBalance as a prop
-      />
+      <CheckIn setWalletBalance={setWalletBalance} />
       <div className="card-container">
-        {cards && cards.length > 0
-          ? cards.map((card, index) => <GenericCard key={index} {...card} />)
-          : null}
-        {dummyCards.map((card) => (
+        {fetchedCards.map((card) => (
           <div key={card.id} className="dummy-card">
             <div className="img-container">
               <div className="title">
@@ -159,7 +95,7 @@ const HomePage = ({ cards }) => {
               </div>
               <div className="img">
                 <img
-                  src={card.image}
+                  src={getImageForCard(card.title)}
                   alt={card.title}
                   className="responsive-image"
                 />
@@ -182,18 +118,13 @@ const HomePage = ({ cards }) => {
                 <span>Total Income</span>
                 <b>&#8377; {card.totalAmount}</b>
               </div>
-              <button
-                onClick={() => handleBuy(card)}
-                className="buy-button"
-                disabled={purchasedPlans.includes(card.title)}
-              >
-                {purchasedPlans.includes(card.title) ? "Purchased" : "Buy"}
+              <button onClick={() => handleBuy(card)} className="buy-button">
+                Buy
               </button>
             </div>
           </div>
         ))}
       </div>
-      {/* Render CustomAlert component conditionally */}
       {showAlert && (
         <CustomAlert message={alertMessage} onClose={handleCloseAlert} />
       )}
@@ -201,8 +132,24 @@ const HomePage = ({ cards }) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return { cards: state.cards };
-};
+// Function to get image based on card title
+function getImageForCard(title) {
+  switch (title) {
+    case "Plan A":
+      return Img2;
+    case "Plan B":
+      return Img5;
+    case "Plan C":
+      return Img3;
+    case "Plan D":
+      return Img4;
+    case "Plan E":
+      return Img1;
+    case "Plan F":
+      return Img6;
+    default:
+      return Img1; // Default image if title doesn't match
+  }
+}
 
-export default connect(mapStateToProps)(HomePage);
+export default HomePage;
