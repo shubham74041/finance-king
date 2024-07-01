@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./FinancialPage.css";
+import Navbar from "../Header/Header";
 
 const FinancialPage = () => {
   const [financialData, setFinancialData] = useState([]);
@@ -67,6 +68,7 @@ const FinancialPage = () => {
 
   return (
     <div className="financial-page">
+      <Navbar/>
       <h3>Transactions</h3>
       <div className="transaction-types">
         <button
