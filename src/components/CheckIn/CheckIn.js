@@ -83,11 +83,11 @@ const CheckIn = ({ setWalletBalance }) => {
   const [message, setMessage] = useState("");
   const [buttonColor, setButtonColor] = useState("default");
 
-  // Retrieve button color from localStorage on initial render
   useEffect(() => {
     const storedColor = localStorage.getItem("buttonColor");
     if (storedColor) {
       setButtonColor(storedColor);
+      setEnabled(storedColor !== "checked-in");
     }
   }, []);
 
