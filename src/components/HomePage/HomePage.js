@@ -24,7 +24,7 @@ const HomePage = ({ cards }) => {
   useEffect(() => {
     const userId = localStorage.getItem("site");
     axios
-      .get(`http://localhost:8080/${userId}/purchasedPlans`)
+      .get(`https://rajjiowin-backend.vercel.app/${userId}/purchasedPlans`)
       .then((response) => {
         setPurchasedPlans(
           response.data.purchasedPlans.map((plan) => plan.productTitle)
@@ -54,7 +54,7 @@ const HomePage = ({ cards }) => {
     };
 
     axios
-      .post(`http://localhost:8080/${userId}`, {
+      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
         price: productPrice,
         cardData,
       })
