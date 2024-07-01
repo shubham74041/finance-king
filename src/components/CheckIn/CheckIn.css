@@ -61,10 +61,12 @@
 
 .check_in_button.default {
   background-color: #28a745; /* Original button color */
+  cursor: pointer;
 }
 
 .check_in_button.checked-in {
   background-color: #007bff; /* Green color to indicate success */
+  cursor: not-allowed;
 }
 
 .popup {

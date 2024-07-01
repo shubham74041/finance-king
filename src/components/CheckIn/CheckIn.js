@@ -163,6 +163,7 @@ const CheckIn = ({ setWalletBalance }) => {
           onClick={handleCheckIn}
           className={`check_in_button ${buttonColor}`}
           disabled={!enabled}
+          style={{ cursor: !enabled ? "not-allowed" : "pointer" }}
         >
           <span className="title_check">Check-in</span>
         </button>
