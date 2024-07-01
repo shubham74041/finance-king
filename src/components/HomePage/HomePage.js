@@ -1,18 +1,16 @@
 import React, { useState, useEffect } from "react";
-// import { connect } from "react-redux";
-// import GenericCard from "../GenericCard/GenericCard";
-import "./HomePage.css";
+import axios from "axios";
+import Navbar from "../Header/Header";
 import HomeCard from "../HomeCard/HomeCard";
+import CheckIn from "../CheckIn/CheckIn";
+import CustomAlert from "../AdminPage/Admin/CustomAlert";
 import Img1 from "../icons/img1.jpg";
 import Img2 from "../icons/img2.jpg";
 import Img3 from "../icons/img3.jpg";
 import Img4 from "../icons/img4.jpg";
 import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
-import CheckIn from "../CheckIn/CheckIn";
-import axios from "axios";
-import CustomAlert from "../AdminPage/Admin/CustomAlert";
-import Navbar from "../Header/Header";
+import "./HomePage.css";
 
 const HomePage = ({ cards }) => {
   const [walletBalance, setWalletBalance] = useState("");
@@ -30,6 +28,7 @@ const HomePage = ({ cards }) => {
           response.data.purchasedPlans.map((plan) => plan.productTitle)
         );
         setFetchedCards(response.data.cards);
+        setWalletBalance(response.data.walletBalance); // Set initial wallet balance
       })
       .catch((error) => {
         console.error("Error fetching purchased plans:", error);
@@ -63,9 +62,7 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          // localStorage.setItem("allowSecondCheckIn", true);
-          setWalletBalance(response.data.walletBalance);
-          window.location.reload(); // Ensure this does not conflict with CheckIn component
+          setWalletBalance(response.data.walletBalance); // Update wallet balance
         }
       })
       .catch((error) => {
