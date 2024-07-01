@@ -64,9 +64,16 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          setCheckInEnabled(true);
-          localStorage.setItem("allowSecondCheckIn", true);
+          // setCheckInEnabled(true);
+          // localStorage.setItem("allowSecondCheckIn", true);
           setWalletBalance(response.data.walletBalance);
+          // Update check-in status
+          axios
+            .get(`http://localhost:8080/${userId}/check-in-status`)
+            .then((res) => {
+              setCheckInEnabled(res.data.isEnabled);
+            });
+
           window.location.reload();
         }
       })

@@ -57,6 +57,8 @@ export const AuthProvider = ({ children }) => {
     setToken("");
     localStorage.removeItem("site");
     // localStorage.removeItem("lastCheckInDate");
+    localStorage.removeItem(`lastCheckInDate_${localStorage.getItem("site")}`);
+    localStorage.removeItem(`allowSecondCheckIn`);
     navigate("/login");
   };
 
