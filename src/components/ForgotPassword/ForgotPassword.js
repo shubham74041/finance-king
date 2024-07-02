@@ -10,9 +10,9 @@ const ForgotPassword = () => {
   const handleRequestClick = (e) => {
     e.preventDefault();
 
-    const telegramUsername = "Rajjowinhelp";
+    // const telegramUsername = "Rajjowinhelp";
     const message = `I want to change my password, here is my userid: ${phoneNumber}`;
-    const telegramUrl = `https://t.me/${telegramUsername}?text=${encodeURIComponent(
+    const telegramUrl = `https://tttttt.me/Rajjowinhelp?text=${encodeURIComponent(
       message
     )}`;
 
@@ -27,7 +27,7 @@ const ForgotPassword = () => {
 
   return (
     <div className="forgot-password">
-                    <Navbar/>
+      <Navbar />
       <h3 className="forgot-password-heading">Forgot Password</h3>
       <p className="forgot-password-text">
         Make a request for changing the password

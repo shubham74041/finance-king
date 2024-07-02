@@ -8,7 +8,7 @@ const SupportPage = () => {
       <h3 className="support-heading">Support</h3>
       <p className="support-text">For support, contact us on Telegram:</p>
       <a
-        href="https://t.me/Rajjowinhelp"
+        href="https://tttttt.me/Rajjowinhelp"
         target="_blank"
         rel="noopener noreferrer"
       >

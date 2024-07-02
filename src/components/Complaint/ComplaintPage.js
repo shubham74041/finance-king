@@ -7,7 +7,7 @@ const ComplaintPage = () => {
       <h3 className="support-heading">Complaint Here</h3>
       <p className="support-text">For any help, contact us on Telegram:</p>
       <a
-        href="https://t.me/Rajjowinhelp"
+        href="https://tttttt.me/Rajjowinhelp"
         target="_blank"
         rel="noopener noreferrer"
       >
