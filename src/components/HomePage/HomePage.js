@@ -21,7 +21,6 @@ const HomePage = ({ cards }) => {
   const [checkInEnabled, setCheckInEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Function to fetch check-in status from server and update localStorage
   useEffect(() => {
     const userId = localStorage.getItem("site");
 
@@ -39,9 +38,9 @@ const HomePage = ({ cards }) => {
           `${userId}-checkInEnabled`
         );
         if (checkInEnabledFromStorage !== null) {
-          setCheckInEnabled(checkInEnabledFromStorage === "true"); // Convert string to boolean
+          setCheckInEnabled(checkInEnabledFromStorage === "true");
         } else {
-          fetchCheckInStatus(userId); // Fetch from server if not found in sessionStorage
+          fetchCheckInStatus(userId);
         }
       } catch (error) {
         console.error("Error fetching purchased plans:", error);
@@ -61,7 +60,7 @@ const HomePage = ({ cards }) => {
         sessionStorage.setItem(
           `${userId}-checkInEnabled`,
           isEnabled.toString()
-        ); // Store as string in sessionStorage
+        );
         setCheckInEnabled(isEnabled);
         console.log("Check-in status from server:", isEnabled);
       })
@@ -70,7 +69,6 @@ const HomePage = ({ cards }) => {
       });
   };
 
-  // Function to handle purchase of a card
   const handleBuy = (card) => {
     if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
       setAlertMessage("You have already purchased Plan A.");
@@ -99,11 +97,10 @@ const HomePage = ({ cards }) => {
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
           setWalletBalance(response.data.walletBalance);
-          // Update checkInEnabled based on server response after purchase
           sessionStorage.setItem(
             `${userId}-checkInEnabled`,
             response.data.checkInEnabled.toString()
-          ); // Update sessionStorage
+          );
           setCheckInEnabled(response.data.checkInEnabled);
           window.location.reload();
         }
@@ -117,13 +114,12 @@ const HomePage = ({ cards }) => {
       });
   };
 
-  // Function to handle closing the alert message
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Or any loading indicator
+    return <div>Loading...</div>;
   }
 
   return (
