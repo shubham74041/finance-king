@@ -19,7 +19,8 @@ const HomePage = ({ cards }) => {
   const [alertMessage, setAlertMessage] = useState("");
   const [fetchedCards, setFetchedCards] = useState([]);
   const [checkInEnabled, setCheckInEnabled] = useState(false);
-  // Function to fetch check-in status from server and update localStorage
+  const [isCheckingIn, setIsCheckingIn] = useState(false); // Flag to prevent double check-in
+
   useEffect(() => {
     const userId = localStorage.getItem("site");
 
@@ -51,6 +52,9 @@ const HomePage = ({ cards }) => {
   }, []);
 
   const fetchCheckInStatus = (userId) => {
+    if (isCheckingIn) return; // Prevent double check-in
+
+    setIsCheckingIn(true); // Set flag to true
     axios
       .get(`https://rajjiowin-backend.vercel.app/${userId}/check-in-status`)
       .then((response) => {
@@ -64,10 +68,12 @@ const HomePage = ({ cards }) => {
       })
       .catch((error) => {
         console.error("Error fetching check-in status:", error);
+      })
+      .finally(() => {
+        setIsCheckingIn(false); // Reset flag after request is complete
       });
   };
 
-  // Function to handle purchase of a card
   const handleBuy = (card) => {
     if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
       setAlertMessage("You have already purchased Plan A.");
@@ -114,7 +120,6 @@ const HomePage = ({ cards }) => {
       });
   };
 
-  // Function to handle closing the alert message
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
