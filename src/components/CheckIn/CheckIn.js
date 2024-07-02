@@ -105,11 +105,10 @@ const CheckIn = ({ setWalletBalance, enabled }) => {
         setAlertMessage("Checked in successfully!");
         setShowAlert(true);
       } else {
-        setAlertMessage(data.message); // Handle other cases if needed
+        setAlertMessage(data.message);
         setShowAlert(true);
       }
 
-      // Close the popup after 2 seconds
       setTimeout(() => {
         setShowAlert(false);
         window.location.reload();
@@ -119,7 +118,6 @@ const CheckIn = ({ setWalletBalance, enabled }) => {
       setAlertMessage("Error during check-in. Please try again.");
       setShowAlert(true);
 
-      // Close the popup after 2 seconds
       setTimeout(() => {
         setShowAlert(false);
         window.location.reload();

@@ -18,26 +18,56 @@ const HomePage = ({ cards }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [fetchedCards, setFetchedCards] = useState([]);
-  const [checkInEnabled, setCheckInEnabled] = useState(false); // State to manage check-in button state
-
+  const [checkInEnabled, setCheckInEnabled] = useState(false);
+  // Function to fetch check-in status from server and update localStorage
   useEffect(() => {
     const userId = localStorage.getItem("site");
-    axios
-      .get(`https://rajjiowin-backend.vercel.app/${userId}/purchasedPlans`)
-      .then((response) => {
+
+    const initializeData = async () => {
+      try {
+        const response = await axios.get(
+          `https://rajjiowin-backend.vercel.app/${userId}/purchasedPlans`
+        );
         setPurchasedPlans(
           response.data.purchasedPlans.map((plan) => plan.productTitle)
         );
         setFetchedCards(response.data.cards);
-        setWalletBalance(response.data.walletBalance); // Set initial wallet balance
-        setCheckInEnabled(response.data.checkInEnabled); // Set initial check-in button state
-        console.log("Check-in status:", response.data.checkInEnabled);
-      })
-      .catch((error) => {
+        setWalletBalance(response.data.walletBalance);
+      } catch (error) {
         console.error("Error fetching purchased plans:", error);
-      });
+      }
+    };
+
+    const checkInEnabledFromStorage = sessionStorage.getItem(
+      `${userId}-checkInEnabled`
+    );
+    if (checkInEnabledFromStorage !== null) {
+      setCheckInEnabled(checkInEnabledFromStorage === "true"); // Convert string to boolean
+    } else {
+      fetchCheckInStatus(userId); // Fetch from server if not found in sessionStorage
+    }
+
+    initializeData();
   }, []);
 
+  const fetchCheckInStatus = (userId) => {
+    axios
+      .get(`https://rajjiowin-backend.vercel.app/${userId}/check-in-status`)
+      .then((response) => {
+        const isEnabled = response.data.isEnabled;
+        sessionStorage.setItem(
+          `${userId}-checkInEnabled`,
+          isEnabled.toString()
+        ); // Store as string in sessionStorage
+        setCheckInEnabled(isEnabled);
+        console.log("Check-in status from server:", isEnabled);
+      })
+      .catch((error) => {
+        console.error("Error fetching check-in status:", error);
+      });
+  };
+
+  // Function to handle purchase of a card
   const handleBuy = (card) => {
     if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
       setAlertMessage("You have already purchased Plan A.");
@@ -65,12 +95,14 @@ const HomePage = ({ cards }) => {
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
-          setWalletBalance(response.data.walletBalance); // Update wallet balance
-          setCheckInEnabled(response.data.checkInEnabled); // Refresh check-in button state
-          console.log(
-            "Check-in enabled after purchase:",
-            response.data.checkInEnabled
-          );
+          setWalletBalance(response.data.walletBalance);
+          // Update checkInEnabled based on server response after purchase
+          sessionStorage.setItem(
+            `${userId}-checkInEnabled`,
+            response.data.checkInEnabled.toString()
+          ); // Update sessionStorage
+          setCheckInEnabled(response.data.checkInEnabled);
+          window.location.reload();
         }
       })
       .catch((error) => {
@@ -82,6 +114,7 @@ const HomePage = ({ cards }) => {
       });
   };
 
+  // Function to handle closing the alert message
   const handleCloseAlert = () => {
     setShowAlert(false);
   };
@@ -152,7 +185,7 @@ function getImageForCard(title) {
     case "Plan F":
       return Img6;
     default:
-      return Img1; // Default image if title doesn't match
+      return Img1;
   }
 }
 

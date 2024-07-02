@@ -59,14 +59,34 @@
 }
 
 /* CheckIn.css */
+/* 
+.check_in_button.default {
+  background-color: #28a745; /* Original button color */
+/* } */
 
+/* .check_in_button.checked-in {
+  background-color: #007bff; /* Green color to indicate success */
+/* cursor: not-allowed; */
+/* } */
 .check_in_button.default {
   background-color: #28a745; /* Original button color */
 }
 
 .check_in_button.checked-in {
-  background-color: #007bff; /* Green color to indicate success */
+  background-color: #007bff; /* Color to indicate success */
+}
+
+.check_in_button:disabled {
   cursor: not-allowed;
+}
+
+/* Retain color when disabled */
+.check_in_button.default:disabled {
+  background-color: #28a745;
+}
+
+.check_in_button.checked-in:disabled {
+  background-color: #007bff;
 }
 
 .popup {
