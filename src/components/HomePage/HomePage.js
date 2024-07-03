@@ -12,62 +12,37 @@ import Img5 from "../icons/img5.jpg";
 import Img6 from "../icons/img6.jpg";
 import "./HomePage.css";
 
-const HomePage = ({ cards }) => {
+const HomePage = () => {
   const [walletBalance, setWalletBalance] = useState("");
   const [purchasedPlans, setPurchasedPlans] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
   const [alertMessage, setAlertMessage] = useState("");
   const [fetchedCards, setFetchedCards] = useState([]);
-  const [checkInEnabled, setCheckInEnabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const userId = localStorage.getItem("site");
+    // console.log("Fetching initial data for userId:", userId);
 
     const initializeData = async () => {
       try {
         const response = await axios.get(
           `https://rajjiowin-backend.vercel.app/${userId}/purchasedPlans`
         );
+        console.log("Purchased plans response data:", response.data);
         setPurchasedPlans(
           response.data.purchasedPlans.map((plan) => plan.productTitle)
         );
         setFetchedCards(response.data.cards);
         setWalletBalance(response.data.walletBalance);
-        const checkInEnabledFromStorage = sessionStorage.getItem(
-          `${userId}-checkInEnabled`
-        );
-        if (checkInEnabledFromStorage !== null) {
-          setCheckInEnabled(checkInEnabledFromStorage === "true");
-        } else {
-          fetchCheckInStatus(userId);
-        }
       } catch (error) {
-        console.error("Error fetching purchased plans:", error);
-      } finally {
-        setIsLoading(false);
+        console.error("Error fetching initial data:", error);
+        setAlertMessage("Error fetching data. Please refresh the page.");
+        setShowAlert(true);
       }
     };
 
     initializeData();
   }, []);
-
-  const fetchCheckInStatus = (userId) => {
-    axios
-      .get(`https://rajjiowin-backend.vercel.app/${userId}/check-in-status`)
-      .then((response) => {
-        const isEnabled = response.data.isEnabled;
-        sessionStorage.setItem(
-          `${userId}-checkInEnabled`,
-          isEnabled.toString()
-        );
-        setCheckInEnabled(isEnabled);
-        console.log("Check-in status from server:", isEnabled);
-      })
-      .catch((error) => {
-        console.error("Error fetching check-in status:", error);
-      });
-  };
 
   const handleBuy = (card) => {
     if (card.title === "Plan A" && purchasedPlans.includes(card.title)) {
@@ -77,6 +52,7 @@ const HomePage = ({ cards }) => {
     }
 
     const userId = localStorage.getItem("site");
+    console.log("Attempting to buy card for userId:", userId, "card:", card);
     const productPrice = parseFloat(card.price);
     const cardData = {
       title: card.title,
@@ -92,16 +68,12 @@ const HomePage = ({ cards }) => {
         cardData,
       })
       .then((response) => {
+        console.log("Purchase response data:", response.data);
         setAlertMessage(response.data.msg);
         setShowAlert(true);
         if (response.data.msg === "Product purchased successfully!") {
           setPurchasedPlans((prev) => [...prev, card.title]);
           setWalletBalance(response.data.walletBalance);
-          sessionStorage.setItem(
-            `${userId}-checkInEnabled`,
-            response.data.checkInEnabled.toString()
-          );
-          setCheckInEnabled(response.data.checkInEnabled);
           window.location.reload();
         }
       })
@@ -118,15 +90,11 @@ const HomePage = ({ cards }) => {
     setShowAlert(false);
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   return (
     <div className="home">
       <Navbar />
       <HomeCard balance={walletBalance} />
-      <CheckIn setWalletBalance={setWalletBalance} enabled={checkInEnabled} />
+      <CheckIn setWalletBalance={setWalletBalance} />
       <div className="card-container">
         {fetchedCards.map((card) => (
           <div key={card.id} className="dummy-card">
