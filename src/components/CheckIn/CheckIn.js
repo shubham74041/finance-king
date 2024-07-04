@@ -13,14 +13,10 @@ const CheckIn = ({ setWalletBalance }) => {
       const response = await axios.get(
         `https://rajjiowin-backend.vercel.app/${userId}/check-in-status`
       );
-      const { checkInStatus, lastCheckIn } = response.data;
-      const today = new Date().toDateString();
-
-      // Check if last check-in was on a different day
-      if (today !== new Date(lastCheckIn).toDateString()) {
+      if (response.data.checkInStatus) {
         setButtonEnabled(true);
       } else {
-        setButtonEnabled(checkInStatus);
+        setButtonEnabled(false);
       }
     } catch (error) {
       console.error("Error fetching check-in status:", error);
@@ -31,7 +27,7 @@ const CheckIn = ({ setWalletBalance }) => {
     fetchCheckInStatus();
 
     // Polling mechanism to fetch check-in status every 10 seconds
-    const intervalId = setInterval(fetchCheckInStatus, 4000); // Increased interval to 10 seconds
+    const intervalId = setInterval(fetchCheckInStatus, 3000); // Adjust the interval as needed
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
@@ -52,7 +48,6 @@ const CheckIn = ({ setWalletBalance }) => {
         setButtonEnabled(false); // Disable button after successful check-in
         // Notify other tabs or devices about the update
         localStorage.setItem("checkInUpdated", Date.now());
-        localStorage.setItem("lastCheckIn", new Date().toISOString());
         window.location.reload();
       } else {
         setMessage(data.message);
