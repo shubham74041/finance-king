@@ -1,4 +1,3 @@
-// CheckIn.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./CheckIn.css";
@@ -8,21 +7,35 @@ const CheckIn = ({ setWalletBalance }) => {
   const [message, setMessage] = useState("");
   const [buttonEnabled, setButtonEnabled] = useState(false);
 
-  useEffect(() => {
+  const fetchCheckInStatus = async () => {
     const userId = localStorage.getItem("site");
-    axios
-      .get(`https://rajjiowin-backend.vercel.app/${userId}/check-in-status`)
-      .then((response) => {
-        if (response.data.checkInStatus) {
-          setButtonEnabled(true);
-        } else {
-          setButtonEnabled(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching check-in status:", error);
-      });
-  }, [setButtonEnabled]); // Add setButtonEnabled as a dependency
+    try {
+      const response = await axios.get(
+        `https://rajjiowin-backend.vercel.app/${userId}/check-in-status`
+      );
+      const { checkInStatus, lastCheckIn } = response.data;
+      const today = new Date().toDateString();
+
+      // Check if last check-in was on a different day
+      if (today !== new Date(lastCheckIn).toDateString()) {
+        setButtonEnabled(true);
+      } else {
+        setButtonEnabled(checkInStatus);
+      }
+    } catch (error) {
+      console.error("Error fetching check-in status:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchCheckInStatus();
+
+    // Polling mechanism to fetch check-in status every 10 seconds
+    const intervalId = setInterval(fetchCheckInStatus, 2000); // Adjust the interval as needed
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(intervalId);
+  }, []);
 
   const handleCheckIn = async () => {
     const userId = localStorage.getItem("site");
@@ -36,7 +49,10 @@ const CheckIn = ({ setWalletBalance }) => {
       if (data.message.includes("check-in complete")) {
         setMessage("Checked in successfully!");
         setWalletBalance(data.walletBalance);
-        setButtonEnabled(true); // Re-enable button after successful check-in
+        setButtonEnabled(false); // Disable button after successful check-in
+        // Notify other tabs or devices about the update
+        localStorage.setItem("checkInUpdated", Date.now());
+        localStorage.setItem("lastCheckIn", new Date().toISOString());
         window.location.reload();
       } else {
         setMessage(data.message);
@@ -45,6 +61,19 @@ const CheckIn = ({ setWalletBalance }) => {
       setMessage("Error during check-in. Please try again.");
     }
   };
+
+  useEffect(() => {
+    const handleStorageChange = (event) => {
+      if (event.key === "checkInUpdated") {
+        fetchCheckInStatus();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+
+    // Cleanup listener on component unmount
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
 
   return (
     <div className="checkIn-container">
