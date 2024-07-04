@@ -59,12 +59,15 @@ const RechargeDataPage = () => {
       }));
 
       // Update backend with payment status
-      await axios.post(`http://localhost:8080/recharge-data/${id}`, {
-        userId,
-        rechargeAmount,
-        paid,
-        disabled: true, // Set disabled to true
-      });
+      await axios.post(
+        `https://rajjiowin-backend.vercel.app/recharge-data/${id}`,
+        {
+          userId,
+          rechargeAmount,
+          paid,
+          disabled: true, // Set disabled to true
+        }
+      );
 
       // Update local state (rechargeData and disabledButtons)
       setRechargeData((prevRechargeData) =>

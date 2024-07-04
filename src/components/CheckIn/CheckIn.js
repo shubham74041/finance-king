@@ -31,7 +31,7 @@ const CheckIn = ({ setWalletBalance }) => {
     fetchCheckInStatus();
 
     // Polling mechanism to fetch check-in status every 10 seconds
-    const intervalId = setInterval(fetchCheckInStatus, 2000); // Adjust the interval as needed
+    const intervalId = setInterval(fetchCheckInStatus, 4000); // Increased interval to 10 seconds
 
     // Cleanup interval on component unmount
     return () => clearInterval(intervalId);
