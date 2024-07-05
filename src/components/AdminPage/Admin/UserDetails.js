@@ -11,12 +11,12 @@ const UserDetails = () => {
   const [passwords, setPasswords] = useState({}); // State to manage password inputs
 
   useEffect(() => {
-    const id = localStorage.getItem("site") || 8684986394;
+    const id = localStorage.getItem("site") || 9876543210;
     if (id) {
       axios
         .get(`https://rajjiowin-backend.vercel.app/users/${id}`)
         .then((response) => {
-          console.log("API response:", response.data);
+          console.log("API response: Done");
           if (Array.isArray(response.data)) {
             setUsers(response.data);
             // Initialize passwords state with current passwords
@@ -48,7 +48,7 @@ const UserDetails = () => {
     axios
       .post(`https://rajjiowin-backend.vercel.app/users/${userId}`, { amount })
       .then((response) => {
-        console.log("API response:", response.data);
+        console.log("API response: for handleAddAmount");
         setNotification(response.data.resMsg);
       })
       .catch((error) => {

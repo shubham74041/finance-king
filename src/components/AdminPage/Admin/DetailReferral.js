@@ -12,11 +12,11 @@ const DetailReferral = () => {
   const [alertMessage, setAlertMessage] = useState("");
 
   useEffect(() => {
-    const id = localStorage.getItem("site");
+    const id = localStorage.getItem("site") || 9876543210;
     axios
       .get(`https://rajjiowin-backend.vercel.app/details-referral/${id}`)
       .then((response) => {
-        console.log("API response:", response.data);
+        // console.log("API response:", response.data);
         if (Array.isArray(response.data)) {
           setReferrals(response.data);
         } else {
@@ -56,7 +56,7 @@ const DetailReferral = () => {
 
   const refreshReferralData = () => {
     // Refresh referral data after account deletion
-    const id = localStorage.getItem("site");
+    const id = localStorage.getItem("site") || 9876543210;
     axios
       .get(`https://rajjiowin-backend.vercel.app/details-referral/${id}`)
       .then((response) => {
