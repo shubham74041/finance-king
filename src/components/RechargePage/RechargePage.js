@@ -35,7 +35,7 @@ const RechargePage = () => {
 
     // Construct the Telegram link with the message
     const telegramMessage = `I want to recharge with amount ${amount}`;
-    const telegramLink = `https://tttttt.me/Rajjowin_Official?text=${encodeURIComponent(
+    const telegramLink = `https://tttttt.me/rajjowinrecharge?text=${encodeURIComponent(
       telegramMessage
     )}`;
     // Log the amount sent to the backend
