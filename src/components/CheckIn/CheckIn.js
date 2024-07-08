@@ -144,7 +144,7 @@ const CheckIn = ({ setWalletBalance }) => {
         {}
       );
       const data = response.data;
-
+      console.log("Getting data:", data);
       if (data.message.includes("check-in complete")) {
         console.log("Check-in complete:", data);
         setMessage("Checked in successfully!");
