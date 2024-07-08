@@ -108,13 +108,18 @@ const CheckIn = ({ setWalletBalance }) => {
     const userId = localStorage.getItem("site");
     try {
       const response = await axios.get(
-        `https://rajjiowin-backend.vercel.app/${userId}/check-in-status`
+        `https://rajjiowin-backend.vercel.app/check-in/${userId}`
       );
       const { checkInStatus, lastCheckIn } = response.data;
       console.log("Fetched check-in status:", checkInStatus, lastCheckIn);
       setButtonEnabled(checkInStatus);
       if (lastCheckIn) {
-        setLastCheckInDate(new Date(lastCheckIn));
+        const lastCheckInDate = new Date(lastCheckIn);
+        console.log("Setting lastCheckInDate:", lastCheckInDate);
+        setLastCheckInDate(lastCheckInDate);
+      } else {
+        console.log("lastCheckIn is null");
+        setLastCheckInDate(null);
       }
     } catch (error) {
       console.error("Error fetching check-in status:", error);
@@ -145,8 +150,10 @@ const CheckIn = ({ setWalletBalance }) => {
         setMessage("Checked in successfully!");
         setWalletBalance(data.walletBalance);
         setButtonEnabled(false); // Disable button after successful check-in
+        const now = new Date();
+        console.log("Updating lastCheckInDate after check-in:", now);
+        setLastCheckInDate(now); // Update the last check-in date
         localStorage.setItem("checkInUpdated", Date.now());
-        setLastCheckInDate(new Date()); // Update the last check-in date
         window.location.reload();
       } else {
         setMessage(data.message);
