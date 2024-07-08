@@ -157,6 +157,7 @@ const CheckIn = ({ setWalletBalance }) => {
         window.location.reload();
       } else {
         setMessage(data.message);
+        window.location.reload();
       }
     } catch (error) {
       console.error("Error during check-in:", error);
