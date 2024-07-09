@@ -4,10 +4,18 @@
   max-width: 100%;
   padding: 20px;
   box-sizing: border-box;
+  padding-bottom: 60px; /* Ensure there's enough space at the bottom */
 }
 
 .table-container {
   overflow-x: auto;
+  margin-bottom: 20px; /* Add some space below the table */
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* Ensure the pagination is clearly visible */
 }
 
 table {

@@ -9,6 +9,7 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   overflow-x: hidden; /* Hide horizontal overflow */
+  overflow-y: auto; /* Enable vertical scrolling if necessary */
 }
 
 .title {
@@ -79,6 +80,11 @@ td {
   margin-right: 10px;
   border: 1px solid #ced4da;
   border-radius: 4px;
+}
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0; /* Ensure the pagination is clearly visible */
 }
 
 .edit-password-button {
