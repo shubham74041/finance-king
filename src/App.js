@@ -38,7 +38,9 @@ import DetailReferral from "./components/AdminPage/Admin/DetailReferral";
 import CustomPopup from "./components/AdminPage/Admin/CustomPopup";
 import ContactInfo from "./components/AdminPage/Admin/ContactInfo";
 import ProductCard from "./components/AdminPage/Admin/ProductCard";
-
+import AdminLogin from "./components/AdminPage/Admin/AdminLogin/AdminLogin";
+import AdminPassword from "./components/AdminPage/Admin/AdminLogin/AdminPassword";
+import AdminProtectedRoute from "./components/AdminPage/AdminProtectedRoute";
 function App() {
   return (
     <Provider store={store}>
@@ -135,7 +137,7 @@ function App() {
 
                 <Route path="/forgot-password" element={<ForgotPassword />} />
                 <Route path="/add-card" element={<AddCardPage />} />
-                <Route path="/rajiowin-admin" element={<AdminPage />} />
+                {/* <Route path="/rajiowin-admin" element={<AdminPage />} /> */}
 
                 <Route element={<ProtectedRoute />}>
                   <Route path="/promotion-tasks" element={<PromotionPage />} />
@@ -164,15 +166,31 @@ function App() {
 
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
-
-                <Route path="/recharge-data" element={<RechargeDataPage />} />
-                <Route path="/withdraw-data" element={<WithdrawData />} />
+                <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/change-password" element={<AdminPassword />} />
+                {/* <Route path="/recharge-data" element={<RechargeDataPage />} />
+                <Route path="/withdraw-data" element={<WithdrawData />} /> */}
                 <Route path="check-in" element={<CheckIn />} />
-                <Route path="/users" element={<UserDetails />} />
+                {/* <Route path="/users" element={<UserDetails />} />
                 <Route path="/details-referral" element={<DetailReferral />} />
                 <Route path="/messages" element={<ContactInfo />} />
                 <Route path="/custom-popup" element={<CustomPopup />} />
-                <Route path="/new-product" element={<ProductCard />} />
+                <Route path="/new-product" element={<ProductCard />} /> */}
+
+                <Route element={<AdminProtectedRoute />}>
+                  <Route path="/rajiowin-admin" element={<AdminPage />} />
+                  <Route path="/add-card" element={<AddCardPage />} />
+                  <Route path="/recharge-data" element={<RechargeDataPage />} />
+                  <Route path="/withdraw-data" element={<WithdrawData />} />
+                  <Route path="/users" element={<UserDetails />} />
+                  <Route
+                    path="/details-referral"
+                    element={<DetailReferral />}
+                  />
+                  <Route path="/messages" element={<ContactInfo />} />
+                  <Route path="/custom-popup" element={<CustomPopup />} />
+                  <Route path="/new-product" element={<ProductCard />} />
+                </Route>
               </Routes>
             </div>
             <Footer />

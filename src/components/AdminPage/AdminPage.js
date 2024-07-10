@@ -7,22 +7,6 @@ import { useNavigate } from "react-router-dom";
 
 const AdminPage = ({ addCard }) => {
   const navigate = useNavigate();
-  // const [newCardData, setNewCardData] = useState({
-  //   timestamp: "",
-  //   amount: "",
-  //   imagePath: "",
-  // });
-
-  // const handleChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setNewCardData({ ...newCardData, [name]: value });
-  // };
-
-  // const handleAddCard = () => {
-  //   addCard(newCardData);
-  //   setNewCardData({ timestamp: "", amount: "", imagePath: "" });
-  // };
-
   const handleAddCard = () => {
     navigate("/new-product");
   };
@@ -46,6 +30,11 @@ const AdminPage = ({ addCard }) => {
 
   const handleMessage = () => {
     navigate("/messages");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("adminAuthenticated");
+    navigate("/admin-login");
   };
 
   return (
@@ -118,6 +107,11 @@ const AdminPage = ({ addCard }) => {
         <button className="admin_button" onClick={handleAddCard}>
           Add New Product
         </button>
+        <div>
+          <button className="admin_button" onClick={handleLogout}>
+            Admin Logout
+          </button>
+        </div>
       </div>
     </div>
   );
