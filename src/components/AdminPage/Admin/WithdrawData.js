@@ -25,7 +25,18 @@ const WithdrawData = () => {
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
         );
 
-        setData(fetchedData);
+        // Load disabled state from local storage
+        const disabledStates =
+          JSON.parse(localStorage.getItem("disabledStates")) || {};
+
+        // Map the disabled state to the fetched data
+        const updatedData = fetchedData.map((item) => ({
+          ...item,
+          disabled: disabledStates[item._id] || false,
+          paid: false, // Initialize paid state
+        }));
+
+        setData(updatedData);
       } catch (error) {
         setError(error);
       }
@@ -57,11 +68,17 @@ const WithdrawData = () => {
       setAlertMessage(`Action ${action ? "Pay" : "Cancel"} successful!`);
       setShowAlert(true);
 
+      // Update the disabled state in local storage
+      const disabledStates =
+        JSON.parse(localStorage.getItem("disabledStates")) || {};
+      disabledStates[id] = true;
+      localStorage.setItem("disabledStates", JSON.stringify(disabledStates));
+
       // Update the state
       setData((prevData) =>
         prevData.map((item) =>
           item._id === id
-            ? { ...item, paid: action, disabled: true } // Update the 'disabled' state
+            ? { ...item, action, disabled: true, paid: action }
             : item
         )
       );
