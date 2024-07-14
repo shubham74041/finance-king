@@ -35,12 +35,15 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://43.204.37.41/signup", {
-        email,
-        phoneNumber,
-        password,
-        referralCode,
-      });
+      const response = await axios.post(
+        "https://rajjiowin-backend.vercel.app/signup",
+        {
+          email,
+          phoneNumber,
+          password,
+          referralCode,
+        }
+      );
 
       if (response.data === "exists") {
         setAlertMessage("User already exists");

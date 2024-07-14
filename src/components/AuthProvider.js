@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     try {
-      const response = await fetch("http://43.204.37.41/", {
+      const response = await fetch("https://rajjiowin-backend.vercel.app/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
