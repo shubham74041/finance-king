@@ -49,12 +49,14 @@ const WithdrawData = () => {
     setSearchInput(event.target.value);
   };
 
-  const handleAction = async (id, action) => {
+  const handleAction = async (id, action, amount, userId) => {
     try {
       const response = await axios.post(
         `https://rajjiowin-backend.vercel.app/withdraw-data/${id}`,
         {
           action,
+          amount,
+          userId,
         }
       );
 
@@ -157,14 +159,28 @@ const WithdrawData = () => {
                     <td className="td" data-label="Action">
                       <button
                         className="action_button pay_button"
-                        onClick={() => handleAction(item._id, true)}
+                        onClick={() =>
+                          handleAction(
+                            item._id,
+                            true,
+                            item.withdrawalAmount,
+                            item.userId
+                          )
+                        }
                         disabled={item.disabled}
                       >
                         Pay
                       </button>
                       <button
                         className="action_button cancel_button"
-                        onClick={() => handleAction(item._id, false)}
+                        onClick={() =>
+                          handleAction(
+                            item._id,
+                            false,
+                            item.withdrawalAmount,
+                            item.userId
+                          )
+                        }
                         disabled={item.disabled}
                       >
                         Cancel
