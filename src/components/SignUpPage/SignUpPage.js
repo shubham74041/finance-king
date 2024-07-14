@@ -35,15 +35,12 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        "https://rajjiowin-backend.vercel.app/signup",
-        {
-          email,
-          phoneNumber,
-          password,
-          referralCode,
-        }
-      );
+      const response = await axios.post("http://43.204.37.41/signup", {
+        email,
+        phoneNumber,
+        password,
+        referralCode,
+      });
 
       if (response.data === "exists") {
         setAlertMessage("User already exists");
@@ -69,7 +66,7 @@ const SignUp = () => {
 
   return (
     <div className="signup">
-                <img className="logo"  src={logo} alt="logo"/>
+      <img className="logo" src={logo} alt="logo" />
       <form>
         <div className="form-container">
           {/* <h2>Rajjowin</h2> */}
@@ -119,7 +116,7 @@ const SignUp = () => {
             <input
               className="referral_input"
               id="referralCode"
-                type="text"
+              type="text"
               value={referralCode}
               onChange={(e) => setReferralCode(e.target.value)}
             />
