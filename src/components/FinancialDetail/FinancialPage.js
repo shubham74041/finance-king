@@ -11,7 +11,7 @@ const FinancialPage = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`https://rajjiowin-backend.vercel.app/financial/${id}`)
+        .get(`${process.env.REACT_APP_PATH_URL}/financial/${id}`)
         .then((response) => {
           console.log("API response:", response.data);
           setFinancialData(response.data);
@@ -27,11 +27,15 @@ const FinancialPage = () => {
 
   const getStatus = (transaction) => {
     if (transaction.type === "recharge") {
-      return transaction.paid ? "Recharged successfully" : "In processing";
+      if (transaction.status === "false") {
+        return "In processing";
+      } else return transaction.paid ? "Recharged successfully" : "Cancelled";
     }
 
     if (transaction.type === "withdraw") {
-      return transaction.paid ? "Successful payment" : "In processing";
+      if (transaction.status === "false") {
+        return "In processing";
+      } else return transaction.paid ? "Withdraw successfully" : "Cancelled";
     }
 
     if (transaction.type === "other") {
@@ -68,7 +72,7 @@ const FinancialPage = () => {
 
   return (
     <div className="financial-page">
-      <Navbar/>
+      <Navbar />
       <h3>Transactions</h3>
       <div className="transaction-types">
         <button

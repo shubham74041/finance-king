@@ -13,7 +13,7 @@ const OrderPage = () => {
     const fetchOrderData = async () => {
       try {
         const response = await axios.get(
-          `https://rajjiowin-backend.vercel.app/order/${id}`
+          `${process.env.REACT_APP_PATH_URL}/order/${id}`
         );
         // Sort the data by createdAt in descending order
         const sortedData = response.data.sort(

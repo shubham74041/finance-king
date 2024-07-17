@@ -26,7 +26,7 @@ const HomePage = () => {
     const initializeData = async () => {
       try {
         const response = await axios.get(
-          `https://rajjiowin-backend.vercel.app/${userId}/purchasedPlans`
+          `${process.env.REACT_APP_PATH_URL}/${userId}/purchasedPlans`
         );
         console.log("Purchased plans response data:", response.data);
         setPurchasedPlans(
@@ -63,7 +63,7 @@ const HomePage = () => {
     };
 
     axios
-      .post(`https://rajjiowin-backend.vercel.app/${userId}`, {
+      .post(`http://localhost:8080/${userId}`, {
         price: productPrice,
         cardData,
       })

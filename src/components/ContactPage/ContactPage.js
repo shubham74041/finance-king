@@ -25,7 +25,7 @@ const ContactPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `https://rajjiowin-backend.vercel.app/contact/${userId}`,
+        `${process.env.REACT_APP_PATH_URL}/contact/${userId}`,
         formData
       );
       console.log("Success:", response.data);
@@ -37,7 +37,7 @@ const ContactPage = () => {
 
   return (
     <div className="contact-container">
-      <Navbar/>
+      <Navbar />
       <div className="contact-form">
         <h2 className="contact-heading">Contact Us</h2>
         <p className="contact-text">

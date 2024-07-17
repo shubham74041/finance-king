@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-import axios from "axios";
+// import axios from "axios";
 import telegramIcon from "../icons/icons8-telegram-100.png";
-import supportIcon from "../icons/contact.png";
+// import supportIcon from "../icons/contact.png";
 import "./LoginPage.css";
 import { useAuth } from "../AuthProvider"; // Assuming you've defined an AuthContext
-import logo from "../icons/rajlogo.png"
+import logo from "../icons/rajlogo.png";
 const LoginPage = () => {
   const navigate = useNavigate();
   const [input, setInput] = useState({
@@ -47,38 +47,6 @@ const LoginPage = () => {
     }
 
     alert("please provide a valid input");
-    // try {
-    //   const response = await axios.post(
-    //     "https://rajjiowin-backend.vercel.app/",
-    //     {
-    //       phoneNumber,
-    //       password,
-    //     }
-    //   );
-    //   console.log(response.data);
-    //   if (response.data.message === "exist") {
-    //     // Perform any necessary action upon successful login
-    //     // For example, storing authentication token or user information
-    //     // and then redirecting to the home page
-    //     await login(phoneNumber, password); // Update authentication state
-    //     navigate("/");
-    //   } else if (response.data.message === "notexist") {
-    //     setError("Incorrect Password / User not Signed Up!");
-    //   }
-    // } catch (err) {
-    //   setError("Wrong details. Please try again.");
-    //   console.error(err);
-    // }
-
-    // try {
-    //   const response = await axios.get(
-    //     `http://localhost:8080/login/${phoneNumber}`,
-    //     {}
-    //   );
-    //   console.log(response.data.userWalletAmount);
-    // } catch (error) {
-    //   console.error("Error fetching user data:", error);
-    // }
   };
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -90,7 +58,7 @@ const LoginPage = () => {
 
   return (
     <div className="login">
-          <img className="logo" src={logo} alt="logo"/>
+      <img className="logo" src={logo} alt="logo" />
       <form>
         <div className="LoginPage">
           {/* <h1>Rajjowin</h1> */}

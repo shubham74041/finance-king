@@ -20,7 +20,7 @@ function WithdrawalPage() {
     const phoneNumber = localStorage.getItem("site");
     try {
       const response = await axios.post(
-        `https://rajjiowin-backend.vercel.app/withdrawal/${phoneNumber}`,
+        `${process.env.REACT_APP_PATH_URL}/withdrawal/${phoneNumber}`,
         data
       );
 

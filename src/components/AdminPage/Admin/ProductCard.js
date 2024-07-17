@@ -14,7 +14,7 @@ const ProductCard = () => {
     const fetchProducts = async () => {
       try {
         const response = await axios.get(
-          "https://rajjiowin-backend.vercel.app/new-product"
+          `${process.env.REACT_APP_PATH_URL}/new-product`
         ); // Replace with your API endpoint
         setProducts(response.data);
         setLoading(false);

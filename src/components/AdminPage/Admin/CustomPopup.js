@@ -17,7 +17,7 @@ const CustomPopup = () => {
     try {
       // Make the API call using axios
       const response = await axios.post(
-        "https://rajjiowin-backend.vercel.app/custom-popup",
+        `${process.env.REACT_APP_PATH_URL}/custom-popup`,
         data,
         {
           headers: {
