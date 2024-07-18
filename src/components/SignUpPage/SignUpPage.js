@@ -3,7 +3,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import axios from "axios";
 import CustomAlert from "../AdminPage/Admin/CustomAlert";
 import telegramIcon from "../icons/icons8-telegram-100.png";
-import supportIcon from "../icons/contact.png";
+
 import "./SignUpPage.css";
 import logo from "../icons/rajlogo.png";
 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./ReferralPage.css";
-import { useNavigate } from "react-router-dom";
+
 import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import your CustomAlert component
 
 const ReferralPage = () => {
-  const navigate = useNavigate();
   const [referralCode, setReferralCode] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [referralData, setReferralData] = useState({

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // import axios from "axios";
 import telegramIcon from "../icons/icons8-telegram-100.png";
@@ -8,7 +8,6 @@ import "./LoginPage.css";
 import { useAuth } from "../AuthProvider"; // Assuming you've defined an AuthContext
 import logo from "../icons/rajlogo.png";
 const LoginPage = () => {
-  const navigate = useNavigate();
   const [input, setInput] = useState({
     phoneNumber: "",
     password: "",
@@ -41,7 +40,7 @@ const LoginPage = () => {
     e.preventDefault();
     // const phoneNumber = input.phoneNumber;
     if (input.phoneNumber !== "" && input.password !== "") {
-      console.log(input);
+      // console.log(input);
       auth.login(input);
       return;
     }

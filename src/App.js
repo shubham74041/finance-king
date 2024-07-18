@@ -20,7 +20,7 @@ import TotalAmountPage from "./components/TotalAmountPage/TotalAmountPage";
 import LoginPage from "./components/LoginPage/LoginPage";
 import SignUpPage from "./components/SignUpPage/SignUpPage";
 import ForgotPassword from "./components/ForgotPassword/ForgotPassword";
-import { Link } from "react-router-dom";
+
 import PromotionPage from "./components/PromotionTasks/PromotionPage";
 import Wallet from "./components/wallet/Wallet";
 import OrderPage from "./components/OrderPage/OrderPage";

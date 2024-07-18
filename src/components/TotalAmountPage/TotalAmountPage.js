@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import "./TotalAmountPage.css";
 import HomeCard from "../HomeCard/HomeCard";
 // import { FaAngleRight } from "react-icons/fa";
-import withdrawalIcon from "../icons/withdrawalIcon.png";
+
 import recordIcon from "../icons/order-icon.png";
 import financialIcon from "../icons/icons8-financial-100.png";
 import followIcon from "../icons/icons8-telegram-100.png";
@@ -26,7 +26,7 @@ const TotalAmountPage = () => {
 
   return (
     <div className="total-amount-container">
-      <Navbar/>
+      <Navbar />
       <HomeCard />
 
       <div className="additional-links">

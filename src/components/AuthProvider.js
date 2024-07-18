@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Popup from "./PopUp/Popup";
-import axios from "axios";
+
 import CustomAlert from "../components/AdminPage/Admin/CustomAlert";
 
 const AuthContext = createContext();

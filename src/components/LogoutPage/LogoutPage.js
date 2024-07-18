@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
-import TotalAmountPage from "../TotalAmountPage/TotalAmountPage";
+
 import { useAuth } from "../AuthProvider";
 
 const LogoutPage = () => {
