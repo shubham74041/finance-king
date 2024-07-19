@@ -14,7 +14,7 @@ const ReferralPage = () => {
   });
   const [showAlert, setShowAlert] = useState(false); // State to control CustomAlert visibility
 
-  const userId = localStorage.getItem("site"); // Replace this with the actual user ID
+  const userId = localStorage.getItem("site");
 
   const fetchReferralCode = async () => {
     try {
