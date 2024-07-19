@@ -54,13 +54,13 @@ const ReferralPage = () => {
   };
 
   const handleSendWhatsApp = () => {
-    const referralLink = `https://finance-king-pi.vercel.app/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
+    const referralLink = `${process.env.REACT_APP_PATH_URL}/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
   };
 
   const handleSendTelegram = () => {
-    const referralLink = `https://finance-king-pi.vercel.app/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
+    const referralLink = `${process.env.REACT_APP_PATH_URL}/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(
       `https://telegram.me/share/url?url=${encodeURIComponent(
