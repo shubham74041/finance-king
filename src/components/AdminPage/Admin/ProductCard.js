@@ -47,7 +47,7 @@ const ProductCard = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `https://rajjiowin-backend.vercel.app/new-product/${selectedProduct._id}`,
+        `${process.env.REACT_APP_PATH_URL}/new-product/${selectedProduct._id}`,
         selectedProduct
       ); // Replace with your API endpoint
       console.log("Form submitted:", selectedProduct);
