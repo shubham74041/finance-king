@@ -15,14 +15,11 @@ const AdminPassword = () => {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/change-password`,
-        {
-          username,
-          passkey,
-          newPassword,
-        }
-      );
+      const response = await axios.post(`https://rajjowin.in/change-password`, {
+        username,
+        passkey,
+        newPassword,
+      });
       if (response.data.success) {
         setSuccess("Password changed successfully");
         setTimeout(() => navigate("/admin-login"), 2000);

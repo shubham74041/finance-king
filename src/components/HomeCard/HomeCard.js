@@ -15,9 +15,7 @@ const HomeCard = ({ userId, balance }) => {
     const phoneNumber = localStorage.getItem("site");
     const fetchData = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/${phoneNumber}`
-        );
+        const response = await axios.get(`https://rajjowin.in/${phoneNumber}`);
         setWalletBalance(response.data.remainingBalance);
       } catch (error) {
         console.error("Error fetching user data:", error);

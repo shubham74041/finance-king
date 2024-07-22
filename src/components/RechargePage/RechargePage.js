@@ -19,7 +19,7 @@ const RechargePage = () => {
 
     // You can replace the placeholder with your actual backend endpoint
     axios
-      .post(`${process.env.REACT_APP_PATH_URL}/recharge`, {
+      .post(`https://rajjowin.in/recharge`, {
         // Data to send to the backend
         amount,
         phoneNumber,

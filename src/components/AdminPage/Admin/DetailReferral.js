@@ -165,7 +165,7 @@ const DetailReferral = () => {
     setLoading(true);
     const id = localStorage.getItem("site") || 9876543210;
     axios
-      .get(`${process.env.REACT_APP_PATH_URL}/details-referral/${id}`, {
+      .get(`https://rajjowin.in/details-referral/${id}`, {
         params: {
           page,
           size,
@@ -202,7 +202,7 @@ const DetailReferral = () => {
 
   const handleDelete = (userId) => {
     axios
-      .post(`${process.env.REACT_APP_PATH_URL}/delete-account/${userId}`)
+      .post(`https://rajjowin.in/delete-account/${userId}`)
       .then((response) => {
         setAlertMessage("Account deleted successfully");
         setShowAlert(true);

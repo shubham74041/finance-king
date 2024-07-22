@@ -35,15 +35,12 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/signup`,
-        {
-          email,
-          phoneNumber,
-          password,
-          referralCode,
-        }
-      );
+      const response = await axios.post(`https://rajjowin.in/signup`, {
+        email,
+        phoneNumber,
+        password,
+        referralCode,
+      });
 
       if (response.data === "exists") {
         setAlertMessage("User already exists");

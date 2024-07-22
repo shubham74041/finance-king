@@ -17,7 +17,7 @@ const CustomPopup = () => {
     try {
       // Make the API call using axios
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/custom-popup`,
+        `https://rajjowin.in/custom-popup`,
         data,
         {
           headers: {

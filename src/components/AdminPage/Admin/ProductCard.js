@@ -13,9 +13,7 @@ const ProductCard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/new-product`
-        ); // Replace with your API endpoint
+        const response = await axios.get(`https://rajjowin.in/new-product`); // Replace with your API endpoint
         setProducts(response.data);
         setLoading(false);
       } catch (err) {
@@ -47,7 +45,7 @@ const ProductCard = () => {
     e.preventDefault();
     try {
       await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/new-product/${selectedProduct._id}`,
+        `https://rajjowin.in/new-product/${selectedProduct._id}`,
         selectedProduct
       ); // Replace with your API endpoint
       console.log("Form submitted:", selectedProduct);
