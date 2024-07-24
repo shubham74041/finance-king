@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     try {
-      const response = await fetch(`http://rajjowin.in/`, {
+      const response = await fetch(`http://43.204.109.203/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
