@@ -35,7 +35,7 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`https://rajjowin.in/signup`, {
+      const response = await axios.post(`http://rajjowin.in/signup`, {
         email,
         phoneNumber,
         password,
