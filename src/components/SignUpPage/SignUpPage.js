@@ -36,7 +36,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/signup`,
+        `http://http://rajjowin.in/signup`,
         {
           email,
           phoneNumber,
