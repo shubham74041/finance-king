@@ -36,7 +36,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_VERCEL_URL}/signup`,
+        `https://rajjiowin-backend.vercel.app/signup`,
         {
           email,
           phoneNumber,
