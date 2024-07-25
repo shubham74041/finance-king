@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (data) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_PATH_URL}/`, {
+      const response = await fetch(`https://rajjowin.in/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

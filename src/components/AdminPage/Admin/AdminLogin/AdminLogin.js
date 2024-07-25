@@ -17,7 +17,7 @@ const AdminLogin = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/admin-login`,
+        `https://rajjowin.in/admin-login`,
         {
           username,
           password,
