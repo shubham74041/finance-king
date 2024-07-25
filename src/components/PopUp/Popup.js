@@ -12,7 +12,7 @@ const Popup = ({ onClose, show }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://rajjowin.in/`);
+        const response = await axios.get(`${process.env.REACT_APP_PATH_URL}/`);
         console.log("Response Data:", response.data);
 
         if (!Array.isArray(response.data) || response.data.length === 0) {

@@ -12,7 +12,7 @@ const CheckIn = ({ setWalletBalance }) => {
     const userId = localStorage.getItem("site");
     try {
       const response = await axios.get(
-        `https://rajjowin.in/check-in/${userId}`
+        `${process.env.REACT_APP_PATH_URL}/check-in/${userId}`
       );
       const { checkInStatus, lastCheckIn } = response.data;
       console.log("Fetched check-in status:", checkInStatus, lastCheckIn);
@@ -46,7 +46,7 @@ const CheckIn = ({ setWalletBalance }) => {
     setButtonEnabled(false);
     try {
       const response = await axios.post(
-        `https://rajjowin.in/check-in/${userId}`,
+        `${process.env.REACT_APP_PATH_URL}/check-in/${userId}`,
         {}
       );
       const data = response.data;

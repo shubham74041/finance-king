@@ -15,7 +15,9 @@ const RechargeDataPage = () => {
   // Function to fetch recharge data from the server
   const fetchData = async () => {
     try {
-      const response = await axios.get(`https://rajjowin.in/recharge-data`);
+      const response = await axios.get(
+        `${process.env.REACT_APP_PATH_URL}/recharge-data`
+      );
       const sortedData = response.data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -57,12 +59,15 @@ const RechargeDataPage = () => {
       }));
 
       // Update backend with payment status
-      await axios.post(`https://rajjowin.in/recharge-data/${id}`, {
-        userId,
-        rechargeAmount,
-        paid,
-        disabled: true, // Set disabled to true
-      });
+      await axios.post(
+        `${process.env.REACT_APP_PATH_URL}/recharge-data/${id}`,
+        {
+          userId,
+          rechargeAmount,
+          paid,
+          disabled: true, // Set disabled to true
+        }
+      );
 
       // Update local state (rechargeData and disabledButtons)
       setRechargeData((prevRechargeData) =>

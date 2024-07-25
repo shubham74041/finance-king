@@ -11,7 +11,7 @@ const ContactInfoPage = () => {
     const id = localStorage.getItem("site");
 
     axios
-      .get(`https://rajjowin.in/messages/${id}`)
+      .get(`${process.env.REACT_APP_PATH_URL}/messages/${id}`)
       .then((response) => {
         if (Array.isArray(response.data)) {
           const sortedData = response.data.sort(

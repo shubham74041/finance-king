@@ -16,10 +16,13 @@ const AdminLogin = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`https://rajjowin.in/admin-login`, {
-        username,
-        password,
-      });
+      const response = await axios.post(
+        `${process.env.REACT_APP_PATH_URL}/admin-login`,
+        {
+          username,
+          password,
+        }
+      );
       if (response.data.success) {
         localStorage.setItem("adminAuthenticated", "true");
         navigate("/rajiowin-admin");

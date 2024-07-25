@@ -23,7 +23,7 @@ const UserDetails = () => {
     const id = localStorage.getItem("site") || 9876543210;
     if (id) {
       axios
-        .get(`https://rajjowin.in/users/${id}`, {
+        .get(`${process.env.REACT_APP_PATH_URL}/users/${id}`, {
           params: {
             page,
             size,
@@ -60,7 +60,7 @@ const UserDetails = () => {
 
   const handleAddAmount = (userId, amount) => {
     axios
-      .post(`https://rajjowin.in/users/${userId}`, { amount })
+      .post(`${process.env.REACT_APP_PATH_URL}/users/${userId}`, { amount })
       .then((response) => {
         setNotification(response.data.resMsg);
       })
@@ -79,7 +79,7 @@ const UserDetails = () => {
   const handlePasswordSave = (userId) => {
     const newPassword = passwords[userId];
     axios
-      .post(`https://rajjowin.in/password/${userId}`, {
+      .post(`${process.env.REACT_APP_PATH_URL}/password/${userId}`, {
         newPassword,
       })
       .then((response) => {

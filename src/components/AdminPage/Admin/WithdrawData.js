@@ -15,7 +15,7 @@ const WithdrawData = () => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `https://rajjowin.in/withdraw-data/${userId}`
+          `${process.env.REACT_APP_PATH_URL}/withdraw-data/${userId}`
         );
 
         const fetchedData = response.data;
@@ -41,7 +41,7 @@ const WithdrawData = () => {
   const handleAction = async (id, action, amount, userId) => {
     try {
       const response = await axios.post(
-        `https://rajjowin.in/withdraw-data/${id}`,
+        `${process.env.REACT_APP_PATH_URL}/withdraw-data/${id}`,
         {
           action,
           amount,

@@ -12,7 +12,9 @@ const OrderPage = () => {
   useEffect(() => {
     const fetchOrderData = async () => {
       try {
-        const response = await axios.get(`https://rajjowin.in/order/${id}`);
+        const response = await axios.get(
+          `${process.env.REACT_APP_PATH_URL}/order/${id}`
+        );
         // Sort the data by createdAt in descending order
         const sortedData = response.data.sort(
           (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
