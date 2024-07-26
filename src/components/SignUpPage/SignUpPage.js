@@ -36,7 +36,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        `https://rajjowin.in/signup`,
+        `rajjowin.in/signup`,
         {
           email,
           phoneNumber,
