@@ -3,6 +3,7 @@ import axios from "axios";
 import "./ReferralPage.css";
 
 import CustomAlert from "../AdminPage/Admin/CustomAlert"; // Import your CustomAlert component
+import Navbar from "../Header/Header";
 
 const ReferralPage = () => {
   const [referralCode, setReferralCode] = useState("");
@@ -79,6 +80,7 @@ const ReferralPage = () => {
 
   return (
     <div className="referral-page">
+      <Navbar />
       <h2>Your Referral Code</h2>
       {errorMessage ? (
         <CustomAlert message={errorMessage} onClose={handleCloseAlert} />
