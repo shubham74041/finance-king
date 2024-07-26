@@ -33,27 +33,32 @@ const SignUp = () => {
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
+  
     try {
-      const response = await axios.post(
-        `rajjowin.in/signup`,
-        {
+      const response = await fetch('rajjowin.in/signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
           email,
           phoneNumber,
           password,
           referralCode,
-        }
-      );
-
-      if (response.data === "exists") {
+        }),
+      });
+  
+      const data = await response.json();
+  
+      if (data === "exists") {
         setAlertMessage("User already exists");
         setShowAlert(true);
-      } else if (response.data === "notexists") {
+      } else if (data === "notexists") {
         setAlertMessage("User Registered Successfully");
         setShowAlert(true);
         navigate("/");
       } else {
-        setAlertMessage("Unexpected response: " + response.data);
+        setAlertMessage("Unexpected response: " + data);
         setShowAlert(true);
       }
     } catch (err) {
@@ -62,6 +67,38 @@ const SignUp = () => {
       setShowAlert(true);
     }
   };
+  
+  // const handleSignup = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const response = await axios.post(
+  //       `rajjowin.in/signup`,
+  //       {
+  //         email,
+  //         phoneNumber,
+  //         password,
+  //         referralCode,
+  //       }
+  //     );
+
+  //     if (response.data === "exists") {
+  //       setAlertMessage("User already exists");
+  //       setShowAlert(true);
+  //     } else if (response.data === "notexists") {
+  //       setAlertMessage("User Registered Successfully");
+  //       setShowAlert(true);
+  //       navigate("/");
+  //     } else {
+  //       setAlertMessage("Unexpected response: " + response.data);
+  //       setShowAlert(true);
+  //     }
+  //   } catch (err) {
+  //     console.error("Error during signup:", err);
+  //     setAlertMessage("Signup failed. Please try again.");
+  //     setShowAlert(true);
+  //   }
+  // };
 
   const closeAlert = () => {
     setShowAlert(false);
