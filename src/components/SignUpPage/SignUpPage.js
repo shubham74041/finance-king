@@ -35,20 +35,14 @@ const SignUp = () => {
     e.preventDefault();
   
     try {
-      const response = await fetch('rajjowin.in/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          email,
-          phoneNumber,
-          password,
-          referralCode,
-        }),
+      const response = await axios.post('https://rajjowin.in/signup', {
+        email,
+        phoneNumber,
+        password,
+        referralCode,
       });
   
-      const data = await response.json();
+      const data = response.data;
   
       if (data === "exists") {
         setAlertMessage("User already exists");
@@ -68,38 +62,6 @@ const SignUp = () => {
     }
   };
   
-  // const handleSignup = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const response = await axios.post(
-  //       `rajjowin.in/signup`,
-  //       {
-  //         email,
-  //         phoneNumber,
-  //         password,
-  //         referralCode,
-  //       }
-  //     );
-
-  //     if (response.data === "exists") {
-  //       setAlertMessage("User already exists");
-  //       setShowAlert(true);
-  //     } else if (response.data === "notexists") {
-  //       setAlertMessage("User Registered Successfully");
-  //       setShowAlert(true);
-  //       navigate("/");
-  //     } else {
-  //       setAlertMessage("Unexpected response: " + response.data);
-  //       setShowAlert(true);
-  //     }
-  //   } catch (err) {
-  //     console.error("Error during signup:", err);
-  //     setAlertMessage("Signup failed. Please try again.");
-  //     setShowAlert(true);
-  //   }
-  // };
-
   const closeAlert = () => {
     setShowAlert(false);
   };
@@ -192,25 +154,9 @@ const SignUp = () => {
               <p style={{ margin: "4px 2px 7px 2px" }}>Telegram</p>
             </div>
           </button>
-          {/* <button
-            type="button"
-            onClick={handleSupport}
-            className="support_button"
-          >
-            <div
-              style={{ display: "flex", flexDirection: "row", height: "25px" }}
-            >
-              <img
-                src={supportIcon}
-                alt="support"
-                style={{ width: "30px", height: "30px", marginRight: "5px" }}
-              />
-              <p style={{ margin: "4px 2px 7px 2px" }}>Contact Support</p>
-            </div>
-          </button> */}
+         
         </div>
       </form>
-      {/* Render CustomAlert component conditionally */}
       {showAlert && <CustomAlert message={alertMessage} onClose={closeAlert} />}
     </div>
   );
