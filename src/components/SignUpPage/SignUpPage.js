@@ -56,11 +56,12 @@ const SignUp = () => {
         setShowAlert(true);
       }
     } catch (err) {
-      console.error("Error during signup:", err);
+      console.error("Error during signup:", err.response || err.message);
       setAlertMessage("Signup failed. Please try again.");
       setShowAlert(true);
     }
   };
+  
   
   const closeAlert = () => {
     setShowAlert(false);
