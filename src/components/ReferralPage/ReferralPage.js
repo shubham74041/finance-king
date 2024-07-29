@@ -54,13 +54,13 @@ const ReferralPage = () => {
   };
 
   const handleSendWhatsApp = () => {
-    const referralLink = `Rajjowin.in/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
+    const referralLink = `https://rajjowin.in/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(`https://wa.me/?text=${encodeURIComponent(message)}`);
   };
 
   const handleSendTelegram = () => {
-    const referralLink = `Rajjowin.in/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
+    const referralLink = `https://rajjowin.in/signup?referralCode=${referralCode}`; // Updated with the correct query parameter name
     const message = `Join me on this awesome platform using my referral code ${referralCode}! ${referralLink}`;
     window.open(
       `https://telegram.me/share/url?url=${encodeURIComponent(
