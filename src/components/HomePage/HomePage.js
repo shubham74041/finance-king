@@ -26,7 +26,7 @@ const HomePage = () => {
     const initializeData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/${userId}/purchasedPlans`
+          `https://rajjowin.in/${userId}/purchasedPlans`
         );
         console.log("Purchased plans response data:", response.data);
         setPurchasedPlans(
