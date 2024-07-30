@@ -28,19 +28,23 @@ const HomePage = () => {
         const response = await axios.get(
           `https://rajjowin.in/${userId}/purchasedPlans`
         );
-        console.log("Purchased plans response data:", response.data);
-        setPurchasedPlans(
-          response.data.purchasedPlans.map((plan) => plan.productTitle)
-        );
-        setFetchedCards(response.data.cards);
-        setWalletBalance(response.data.walletBalance);
+        console.log("Full response data:", response.data); // Log entire response data
+        if (response.data && response.data.purchasedPlans) {
+          setPurchasedPlans(
+            response.data.purchasedPlans.map((plan) => plan.productTitle)
+          );
+          setFetchedCards(response.data.cards);
+          setWalletBalance(response.data.walletBalance);
+        } else {
+          console.error("Unexpected response data format:", response.data);
+        }
       } catch (error) {
         console.error("Error fetching initial data:", error);
         setAlertMessage("Error fetching data. Please refresh the page.");
         setShowAlert(true);
       }
     };
-
+    
     initializeData();
   }, []);
 
