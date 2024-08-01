@@ -177,8 +177,8 @@ function App() {
                 <Route path="/custom-popup" element={<CustomPopup />} />
                 <Route path="/new-product" element={<ProductCard />} /> */}
 
-                {/* <Route element={<AdminProtectedRoute />}> */}
-                  <Route path="/admin-login" element={<AdminPage />} />
+                <Route element={<AdminProtectedRoute />}>
+                  <Route path="/rajiowin-admin" element={<AdminPage />} />
                   <Route path="/add-card" element={<AddCardPage />} />
                   <Route path="/recharge-data" element={<RechargeDataPage />} />
                   <Route path="/withdraw-data" element={<WithdrawData />} />
@@ -190,7 +190,7 @@ function App() {
                   <Route path="/messages" element={<ContactInfo />} />
                   <Route path="/custom-popup" element={<CustomPopup />} />
                   <Route path="/new-product" element={<ProductCard />} />
-                {/* </Route> */}
+                </Route>
               </Routes>
             </div>
             <Footer />

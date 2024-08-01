@@ -25,7 +25,7 @@ const AdminLogin = () => {
       );
       if (response.data.success) {
         localStorage.setItem("adminAuthenticated", "true");
-        navigate("/admin-login");
+        navigate("/rajiowin-admin");
       } else {
         setError("Invalid username or password");
       }
