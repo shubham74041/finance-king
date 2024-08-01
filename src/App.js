@@ -178,7 +178,7 @@ function App() {
                 <Route path="/new-product" element={<ProductCard />} /> */}
 
                 <Route element={<AdminProtectedRoute />}>
-                  <Route path="/rajiowin-admin" element={<AdminPage />} />
+                  <Route path="/admin-login" element={<AdminPage />} />
                   <Route path="/add-card" element={<AddCardPage />} />
                   <Route path="/recharge-data" element={<RechargeDataPage />} />
                   <Route path="/withdraw-data" element={<WithdrawData />} />
