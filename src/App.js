@@ -177,7 +177,7 @@ function App() {
                 <Route path="/custom-popup" element={<CustomPopup />} />
                 <Route path="/new-product" element={<ProductCard />} /> */}
 
-                <Route element={<AdminProtectedRoute />}>
+                {/* <Route element={<AdminProtectedRoute />}> */}
                   <Route path="/admin-login" element={<AdminPage />} />
                   <Route path="/add-card" element={<AddCardPage />} />
                   <Route path="/recharge-data" element={<RechargeDataPage />} />
@@ -190,7 +190,7 @@ function App() {
                   <Route path="/messages" element={<ContactInfo />} />
                   <Route path="/custom-popup" element={<CustomPopup />} />
                   <Route path="/new-product" element={<ProductCard />} />
-                </Route>
+                {/* </Route> */}
               </Routes>
             </div>
             <Footer />
