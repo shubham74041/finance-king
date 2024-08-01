@@ -16,7 +16,7 @@ const HomeCard = ({ userId, balance }) => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/${phoneNumber}`
+          `https://rajjowin.in/${phoneNumber}`
         );
         setWalletBalance(response.data.remainingBalance);
       } catch (error) {
