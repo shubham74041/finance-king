@@ -25,7 +25,7 @@ const ContactPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/contact/${userId}`,
+        `https://rajjowin.in/contact/${userId}`,
         formData
       );
       console.log("Success:", response.data);
