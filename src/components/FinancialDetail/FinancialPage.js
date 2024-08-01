@@ -11,7 +11,7 @@ const FinancialPage = () => {
   useEffect(() => {
     if (id) {
       axios
-        .get(`${process.env.REACT_APP_PATH_URL}/financial/${id}`)
+        .get(`https://rajjowin.in/financial/${id}`)
         .then((response) => {
           console.log("API response:", response.data);
           setFinancialData(response.data);
