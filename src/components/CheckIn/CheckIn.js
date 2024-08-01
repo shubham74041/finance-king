@@ -12,7 +12,7 @@ const CheckIn = ({ setWalletBalance }) => {
     const userId = localStorage.getItem("site");
     try {
       const response = await axios.get(
-        `https://rajjowin.in/check-in/${userId}`
+        `https://rajjowin.in/check-in-get/${userId}`
       );
       const { checkInStatus, lastCheckIn } = response.data;
       console.log("Fetched check-in status:", checkInStatus, lastCheckIn);
