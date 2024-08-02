@@ -20,7 +20,7 @@ const ReferralPage = () => {
   const fetchReferralCode = async () => {
     try {
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/referral`,
+        `https://rajjowin.in/user-referral`,
         {
           userId,
         }
@@ -29,7 +29,7 @@ const ReferralPage = () => {
 
       // Then, make a GET request
       const getResponse = await axios.get(
-        `${process.env.REACT_APP_PATH_URL}/referral/${userId}`
+        `https://rajjowin.in/user-referral/${userId}`
       );
       console.log("Getting Data:", getResponse.data);
       setReferralData(getResponse.data); // Assuming the API returns an array with a single object
