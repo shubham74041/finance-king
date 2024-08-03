@@ -44,7 +44,7 @@ const HomePage = () => {
         setShowAlert(true);
       }
     };
-    
+
     initializeData();
   }, []);
 
@@ -67,7 +67,7 @@ const HomePage = () => {
     };
 
     axios
-      .post(`https://rajjowin.in/${userId}`, {
+      .post(`https://rajjowin.in/buy-product/${userId}`, {
         price: productPrice,
         cardData,
       })
