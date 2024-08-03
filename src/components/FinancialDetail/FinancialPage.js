@@ -41,11 +41,9 @@ const FinancialPage = () => {
     if (transaction.type === "other") {
       if (transaction.anotherType === "checkIn") {
         return transaction.checkIn ? "Check-in amount" : "Not Check-in";
+      } else if (transaction.anotherType === "referral") {
+        return transaction.paid ? "Referral reward" : "In processing";
       }
-      if (transaction.amount === "" || transaction.amount === null) {
-        return "No transactions available";
-      }
-      return transaction.paid ? "Referral reward" : "In processing";
     }
 
     return "Unknown status";
@@ -54,11 +52,7 @@ const FinancialPage = () => {
   const filteredData = financialData
     .filter((transaction) => {
       if (filter.toLowerCase() === "other") {
-        return (
-          transaction.type.toLowerCase() === "other" ||
-          (transaction.type.toLowerCase() === "other" &&
-            transaction.anotherType?.toLowerCase() === "checkIn")
-        );
+        return transaction.type.toLowerCase() === "other";
       }
       return transaction.type.toLowerCase() === filter.toLowerCase();
     })
