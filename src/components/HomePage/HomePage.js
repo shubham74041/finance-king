@@ -67,7 +67,7 @@ const HomePage = () => {
     };
 
     axios
-      .post(`${process.env.REACT_APP_PATH_URL}/${userId}`, {
+      .post(`https://rajjowin.in/${userId}`, {
         price: productPrice,
         cardData,
       })
