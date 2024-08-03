@@ -14,8 +14,9 @@ const WithdrawData = () => {
     const userId = localStorage.getItem("site") || 8684986394;
     const fetchData = async () => {
       try {
+        // change get url from /withdraw-data => /userwithdraw-data
         const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/withdraw-data/${userId}`
+          `${process.env.REACT_APP_PATH_URL}/userwithdraw-data/${userId}`
         );
 
         const fetchedData = response.data;

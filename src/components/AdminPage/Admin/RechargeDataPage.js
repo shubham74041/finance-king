@@ -15,8 +15,9 @@ const RechargeDataPage = () => {
   // Function to fetch recharge data from the server
   const fetchData = async () => {
     try {
+      //Replace get url from /recharge-data => /get-recharge
       const response = await axios.get(
-        `${process.env.REACT_APP_PATH_URL}/recharge-data`
+        `${process.env.REACT_APP_PATH_URL}/get-recharge`
       );
       const sortedData = response.data.sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)

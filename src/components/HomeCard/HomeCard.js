@@ -15,8 +15,9 @@ const HomeCard = ({ userId, balance }) => {
     const phoneNumber = localStorage.getItem("site");
     const fetchData = async () => {
       try {
+        // change get url from https://rajjowin.in/${phoneNumber} => https://rajjowin.in/wallet-data/${phoneNumber}
         const response = await axios.get(
-          `https://rajjowin.in/${phoneNumber}`
+          `https://rajjowin.in/wallet-data/${phoneNumber}`
         );
         setWalletBalance(response.data.remainingBalance);
       } catch (error) {

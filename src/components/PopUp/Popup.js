@@ -12,7 +12,8 @@ const Popup = ({ onClose, show }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`https://rajjowin.in/`);
+        // change get url from https://rajjowin.in/ => https://rajjowin.in/popup
+        const response = await axios.get(`https://rajjowin.in/popup`);
         console.log("Response Data:", response.data);
 
         if (!Array.isArray(response.data) || response.data.length === 0) {

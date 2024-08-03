@@ -87,86 +87,53 @@ function App() {
                 <Route element={<ProtectedRoute />}>
                   <Route path="/" element={<HomePage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/contact" element={<ContactPage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/withdrawal" element={<WithdrawalPage />} />
                 </Route>
                 <Route path="/user-details" element={<UserDetailsPage />} />
                 {/* <Route path="/withdrawal" element={<WithdrawalPage />} /> */}
-
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/Wallet" element={<Wallet />} />
-                </Route>
-
                 {/* <Route path="/Wallet" element={<Wallet />} /> */}
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/recharge" element={<RechargePage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/Wallet" element={<Wallet />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/referral" element={<ReferralPage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/logout" element={<LogoutPage />} />
                 </Route>
-
                 {/* <Route path="/contact" element={<ContactPage />} /> */}
-
                 {/* <ProtectedRoute path="/contact" element={<ContactPage />} /> */}
-
-                <Route element={<ProtectedRoute />}>
-                  <Route
-                    path="/product-details"
-                    element={<ProductDetailsPage />}
-                  />
-                </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/total-amount" element={<TotalAmountPage />} />
                 </Route>
-
                 <Route path="/forgot-password" element={<ForgotPassword />} />
-                <Route path="/add-card" element={<AddCardPage />} />
                 {/* <Route path="/rajiowin-admin" element={<AdminPage />} /> */}
-
-                <Route element={<ProtectedRoute />}>
-                  <Route path="/promotion-tasks" element={<PromotionPage />} />
-                </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/order" element={<OrderPage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/financial" element={<FinancialPage />} />
                 </Route>
-
-                <Route path="/download" element={<DownloadPage />} />
                 <Route element={<ProtectedRoute />}>
                   <Route path="/support" element={<SupportPage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/complaint" element={<ComplaintPage />} />
                 </Route>
-
                 <Route element={<ProtectedRoute />}>
                   <Route path="/follow" element={<FollowPage />} />
                 </Route>
-
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/signup" element={<SignUpPage />} />
-                <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/admin" element={<AdminLogin />} />{" "}
+                {/* change path  admin-login => admin   */}
                 <Route path="/change-password" element={<AdminPassword />} />
                 {/* <Route path="/recharge-data" element={<RechargeDataPage />} />
                 <Route path="/withdraw-data" element={<WithdrawData />} /> */}
@@ -176,10 +143,9 @@ function App() {
                 <Route path="/messages" element={<ContactInfo />} />
                 <Route path="/custom-popup" element={<CustomPopup />} />
                 <Route path="/new-product" element={<ProductCard />} /> */}
-
                 <Route element={<AdminProtectedRoute />}>
                   <Route path="/rajiowin-admin" element={<AdminPage />} />
-                  <Route path="/add-card" element={<AddCardPage />} />
+
                   <Route path="/recharge-data" element={<RechargeDataPage />} />
                   <Route path="/withdraw-data" element={<WithdrawData />} />
                   <Route path="/users" element={<UserDetails />} />

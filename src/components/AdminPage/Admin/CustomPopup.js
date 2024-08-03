@@ -16,8 +16,10 @@ const CustomPopup = () => {
 
     try {
       // Make the API call using axios
+
+      // Replace url from /custom-popup => /adminCustom-popup
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/custom-popup`,
+        `${process.env.REACT_APP_PATH_URL}/adminCustom-popup`,
         data,
         {
           headers: {

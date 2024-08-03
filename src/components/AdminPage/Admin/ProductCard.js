@@ -13,8 +13,9 @@ const ProductCard = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
+        // Replace get url /new-product => /get-products
         const response = await axios.get(
-          `${process.env.REACT_APP_PATH_URL}/new-product`
+          `${process.env.REACT_APP_PATH_URL}/get-products`
         ); // Replace with your API endpoint
         setProducts(response.data);
         setLoading(false);

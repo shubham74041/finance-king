@@ -22,8 +22,9 @@ const UserDetails = () => {
     setLoading(true);
     const id = localStorage.getItem("site") || 9876543210;
     if (id) {
+      // change get url from /users => /get-users
       axios
-        .get(`${process.env.REACT_APP_PATH_URL}/users/${id}`, {
+        .get(`${process.env.REACT_APP_PATH_URL}/get-users/${id}`, {
           params: {
             page,
             size,

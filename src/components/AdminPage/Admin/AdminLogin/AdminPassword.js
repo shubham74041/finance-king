@@ -15,8 +15,9 @@ const AdminPassword = () => {
   const handleChangePassword = async (e) => {
     e.preventDefault();
     try {
+      // change url from /change-password => /admin-changePassword
       const response = await axios.post(
-        `${process.env.REACT_APP_PATH_URL}/change-password`,
+        `${process.env.REACT_APP_PATH_URL}/admin-changePassword`,
         {
           username,
           passkey,

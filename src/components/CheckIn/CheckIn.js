@@ -15,14 +15,14 @@ const CheckIn = ({ setWalletBalance }) => {
         `https://rajjowin.in/check-in-get/${userId}`
       );
       const { checkInStatus, lastCheckIn } = response.data;
-      console.log("Fetched check-in status:", checkInStatus, lastCheckIn);
+      // console.log("Fetched check-in status:", checkInStatus, lastCheckIn);
       setButtonEnabled(checkInStatus);
       if (lastCheckIn) {
         const lastCheckInDate = new Date(lastCheckIn);
-        console.log("Setting lastCheckInDate:", lastCheckInDate);
+        // console.log("Setting lastCheckInDate:", lastCheckInDate);
         setLastCheckInDate(lastCheckInDate);
       } else {
-        console.log("lastCheckIn is null");
+        // console.log("lastCheckIn is null");
         setLastCheckInDate(null);
       }
     } catch (error) {
@@ -52,7 +52,7 @@ const CheckIn = ({ setWalletBalance }) => {
       const data = response.data;
       console.log("Getting data:", data);
       if (data.message.includes("check-in complete")) {
-        console.log("Check-in complete:", data);
+        // console.log("Check-in complete:", data);
         setMessage("Checked in successfully!");
         setWalletBalance(data.walletBalance);
         // setButtonEnabled(false); // Disable button after successful check-in
@@ -88,7 +88,7 @@ const CheckIn = ({ setWalletBalance }) => {
   // Enable button at the start of a new day
   useEffect(() => {
     const now = new Date();
-    console.log("Checking if it's a new day:", now, lastCheckInDate);
+    // console.log("Checking if it's a new day:", now, lastCheckInDate);
     if (
       // lastCheckInDate &&
       // now.toDateString() !== lastCheckInDate.toDateString()
