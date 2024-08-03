@@ -13,7 +13,7 @@ const Popup = ({ onClose, show }) => {
     const fetchData = async () => {
       try {
         // change get url from https://rajjowin.in/ => https://rajjowin.in/popup
-        const response = await axios.get(`https://rajjowin.in/popup`);
+        const response = await axios.get(`https://rajjowin.in/`);
         console.log("Response Data:", response.data);
 
         if (!Array.isArray(response.data) || response.data.length === 0) {
