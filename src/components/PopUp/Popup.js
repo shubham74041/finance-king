@@ -1,7 +1,7 @@
 // src/Popup.js
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-// import "./Popup.css";
+import "./Popup.css";
 
 const Popup = ({ onClose, show }) => {
   const [data, setData] = useState(null);
@@ -74,13 +74,14 @@ const Popup = ({ onClose, show }) => {
       <div className="popup-content">
         {displayDefault ? (
           <>
-            <ul className="reward-list">
-              <li>Invite 10 Valid members to get daily 100 Rs</li>
-              <li>Invite 50 Valid members to get daily 1000 Rs</li>
-              <li>Invite 100 Valid members to get daily 2200 Rs</li>
-              <li>Invite 300 Valid members to get daily 7000 Rs</li>
-            </ul>
-            <p className="check-in-bonus">Daily Check-in Bonus: 10 Rs</p>
+            <h3 className="popup-title">Notice!</h3>
+
+            <p className="popup-message">
+              Welcome to Rajjowin Join the official Telegram channel to get the
+              latest news. Minimum recharge = 550 Rs Minimum withdrawal = 150 Rs
+              Daily Income Daily Withdrawal Invitation commission 20%. Any Help
+              please contact online customer service.
+            </p>
           </>
         ) : (
           <>
@@ -88,7 +89,9 @@ const Popup = ({ onClose, show }) => {
             <p className="popup-message">{data.message}</p>
           </>
         )}
-        <button onClick={onClose}>Close</button>
+        <button className="popup-close-button" onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );
