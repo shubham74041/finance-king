@@ -70,7 +70,7 @@ const Popup = ({ onClose, show }) => {
   }
 
   return (
-    <div className="popup">
+    <div className="custom-popup">
       <div className="popup-content">
         {displayDefault ? (
           <>
