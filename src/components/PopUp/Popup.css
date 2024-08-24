@@ -69,7 +69,7 @@
 }
 
 @media (max-width: 480px) {
-  .popup {
+  .custom-popup {
     max-width: 90%;
     max-height: 480px;
     padding: 10px;

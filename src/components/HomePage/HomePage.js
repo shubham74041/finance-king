@@ -4,12 +4,8 @@ import Navbar from "../Header/Header";
 import HomeCard from "../HomeCard/HomeCard";
 import CheckIn from "../CheckIn/CheckIn";
 import CustomAlert from "../AdminPage/Admin/CustomAlert";
-import Img1 from "../icons/img1.jpg";
-import Img2 from "../icons/img2.jpg";
-import Img3 from "../icons/img3.jpg";
-import Img4 from "../icons/img4.jpg";
-import Img5 from "../icons/img5.jpg";
-import Img6 from "../icons/img6.jpg";
+
+import CardImage from "../icons/Card.png";
 import "./HomePage.css";
 
 const HomePage = () => {
@@ -108,7 +104,7 @@ const HomePage = () => {
               </div>
               <div className="img">
                 <img
-                  src={getImageForCard(card.title)}
+                  src={CardImage}
                   alt={card.title}
                   className="responsive-image"
                 />
@@ -145,23 +141,23 @@ const HomePage = () => {
   );
 };
 
-function getImageForCard(title) {
-  switch (title) {
-    case "Plan A":
-      return Img2;
-    case "Plan B":
-      return Img5;
-    case "Plan C":
-      return Img3;
-    case "Plan D":
-      return Img4;
-    case "Plan E":
-      return Img1;
-    case "Plan F":
-      return Img6;
-    default:
-      return Img1;
-  }
-}
+// function getImageForCard(title) {
+//   switch (title) {
+//     case "Plan A":
+//       return Img2;
+//     case "Plan B":
+//       return Img5;
+//     case "Plan C":
+//       return Img3;
+//     case "Plan D":
+//       return Img4;
+//     case "Plan E":
+//       return Img1;
+//     case "Plan F":
+//       return Img6;
+//     default:
+//       return Img1;
+//   }
+// }
 
 export default HomePage;
