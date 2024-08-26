@@ -70,7 +70,7 @@ button {
   font-size: 16px;
 }
 
-.popup-div {
+.popup {
   position: fixed;
   top: 0;
   left: 0;
@@ -82,7 +82,7 @@ button {
   align-items: center;
 }
 
-.popup-content-div {
+.popup-content {
   background-color: #fff;
   padding: 20px;
   border-radius: 8px;

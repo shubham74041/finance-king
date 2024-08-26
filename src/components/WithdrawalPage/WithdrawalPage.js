@@ -219,8 +219,8 @@ function WithdrawalPage() {
 
         {/* Popup */}
         {showPopup && (
-          <div className="popup-div">
-            <div className="popup-content-div">
+          <div className="popup">
+            <div className="popup-content">
               <span className="close" onClick={closePopup}>
                 &times;
               </span>
