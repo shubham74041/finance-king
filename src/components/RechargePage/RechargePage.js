@@ -34,12 +34,10 @@ const RechargePage = () => {
       });
 
     // Construct the Telegram link with the message
-    const telegramMessage = `I want to recharge with amount ${amount}`;
-    const telegramLink = `https://tttttt.me/Rajjowin_bot?text=${encodeURIComponent(
-      telegramMessage
-    )}`;
+    // const telegramMessage = `I want to recharge with amount ${amount}`;
+    const telegramLink = `https://tttttt.me/Rajjowin_bot`;
     // Log the amount sent to the backend
-    console.log("Amount sent to backend:", amount);
+    // console.log("Amount sent to backend:", amount);
 
     // Redirect the user to the Telegram link
     window.location.href = telegramLink;
